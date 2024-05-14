@@ -1,4 +1,4 @@
-module github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-endpoint/ctimage
+module github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-endpoint/ctiam
 
 go 1.14
 
