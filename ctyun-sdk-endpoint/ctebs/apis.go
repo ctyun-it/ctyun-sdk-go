@@ -1,7 +1,7 @@
 package ctebs
 
 import (
-	"github.com/ctyun-it/ctyun-sdk-go/ctyunsdk"
+	"github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core/ctyunsdk"
 )
 
 // Apis api的接口

@@ -1,6 +1,6 @@
 package ctimage
 
-import "github.com/ctyun-it/ctyun-sdk-go/ctyunsdk"
+import "github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core/ctyunsdk"
 
 const (
 	EndpointNameCtimage = "ctimage"

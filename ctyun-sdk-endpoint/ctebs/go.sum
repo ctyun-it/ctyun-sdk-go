@@ -1,2 +1,10 @@
+github.com/ctyun-it/ctyun-sdk-go v1.0.0 h1:JUfKJsRxXv95L0BJA5BIyIBaR6R3vh4UEPwznYYPQw8=
+github.com/ctyun-it/ctyun-sdk-go v1.0.0/go.mod h1:qGLsfjCmFMOxmRTne5OC3xjoT97jxEM4aAeP81Jb86g=
+github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core v0.0.0-20240514092409-137ec422574f h1:QCrnNDhsmhUXovZ/uiXMzNWL8wNwYPYnRXWUAzca9ko=
+github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core v0.0.0-20240514092409-137ec422574f/go.mod h1:kWHEV7yf5GgM+19ka+mQV7xdWBQsuXPSzdN+3CMyx64=
+github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core v1.0.0 h1:lvwwcoRmvspqeaq2U8Qq4c3W7/ThHGTpQAa5ikAE1Mo=
+github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core v1.0.0/go.mod h1:kWHEV7yf5GgM+19ka+mQV7xdWBQsuXPSzdN+3CMyx64=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.919 h1:EkJBnCNyTfBNK/pFdc7Gq/LsIO7cMxufuhNMQc/7n3Q=
+github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.919/go.mod h1:r5r4xbfxSaeR04b166HGsBa/R4U3SueirEUpXGuw+Q0=
