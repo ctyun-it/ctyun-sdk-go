@@ -1,4 +1,4 @@
-module ctyun-sdk-core
+module github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core
 
 go 1.14
 
