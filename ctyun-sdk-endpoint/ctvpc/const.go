@@ -1,6 +1,6 @@
 package ctvpc
 
-import "github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core/ctyunsdk"
+import "github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core"
 
 const (
 	EndpointNameCtvpc = "ctvpc"

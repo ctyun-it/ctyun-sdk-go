@@ -1,7 +1,7 @@
 package ctiam
 
 import (
-	"github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core/ctyunsdk"
+	"github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core"
 )
 
 // Apis api的接口

@@ -2,7 +2,7 @@ package ctimage
 
 import (
 	"context"
-	"github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core/ctyunsdk"
+	"github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core"
 	"net/http"
 	"strconv"
 )
