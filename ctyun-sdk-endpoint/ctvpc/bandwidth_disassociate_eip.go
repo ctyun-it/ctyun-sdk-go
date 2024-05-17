@@ -26,10 +26,10 @@ func NewBandwidthDisassociateEipApi(client *ctyunsdk.CtyunClient) *BandwidthDisa
 func (this *BandwidthDisassociateEipApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *BandwidthDisassociateEipRequest) (*BandwidthDisassociateEipResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 	requestContent := bandwidthDisassociateEipRealRequest{
-		RegionID:    req.RegionId,
+		RegionID:    req.RegionID,
 		ClientToken: req.ClientToken,
-		EipIds:      req.EipIds,
-		BandwidthID: req.BandwidthId,
+		EipIds:      req.EipIDs,
+		BandwidthID: req.BandwidthID,
 	}
 	_, err := builder.WriteJson(requestContent)
 	if err != nil {
@@ -57,10 +57,10 @@ type bandwidthDisassociateEipRealRequest struct {
 }
 
 type BandwidthDisassociateEipRequest struct {
-	RegionId    string
+	RegionID    string
 	ClientToken string
-	EipIds      []string
-	BandwidthId string
+	EipIDs      []string
+	BandwidthID string
 }
 
 type BandwidthDisassociateEipResponse struct {

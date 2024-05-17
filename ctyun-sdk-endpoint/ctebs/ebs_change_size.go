@@ -26,8 +26,8 @@ func NewEbsChangeSizeApi(client *ctyunsdk.CtyunClient) *EbsChangeSizeApi {
 func (this *EbsChangeSizeApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EbsChangeSizeRequest) (*EbsChangeSizeResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 	_, err := builder.WriteJson(&ebsChangeSizeRealRequest{
-		RegionID:    req.RegionId,
-		DiskID:      req.DiskId,
+		RegionID:    req.RegionID,
+		DiskID:      req.DiskID,
 		DiskSize:    req.DiskSize,
 		ClientToken: req.ClientToken,
 	})
@@ -64,8 +64,8 @@ type ebsChangeSizeRealResponse struct {
 }
 
 type EbsChangeSizeRequest struct {
-	RegionId    string
-	DiskId      string
+	RegionID    string
+	DiskID      string
 	DiskSize    int
 	ClientToken string
 }

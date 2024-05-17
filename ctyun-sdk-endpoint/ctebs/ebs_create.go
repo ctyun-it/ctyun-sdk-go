@@ -31,7 +31,7 @@ func (this *EbsCreateApi) Do(ctx context.Context, credential ctyunsdk.Credential
 		DiskMode:    req.DiskMode,
 		DiskType:    req.DiskType,
 		DiskSize:    req.DiskSize,
-		RegionID:    req.RegionId,
+		RegionID:    req.RegionID,
 		AzName:      req.AzName,
 		OnDemand:    req.OnDemand,
 		CycleType:   req.CycleType,
@@ -125,7 +125,7 @@ type EbsCreateRequest struct {
 	DiskMode    string
 	DiskType    string
 	DiskSize    int64
-	RegionId    string
+	RegionID    string
 	AzName      string
 	OnDemand    bool
 	CycleType   string

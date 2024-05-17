@@ -26,8 +26,8 @@ func NewEbsDeleteApi(client *ctyunsdk.CtyunClient) *EbsDeleteApi {
 func (this *EbsDeleteApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EbsDeleteRequest) (*EbsDeleteResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 	_, err := builder.WriteJson(&ebsDeleteRealRequest{
-		RegionID:    req.RegionId,
-		DiskID:      req.DiskId,
+		RegionID:    req.RegionID,
+		DiskID:      req.DiskID,
 		ClientToken: req.ClientToken,
 	})
 	if err != nil {
@@ -62,8 +62,8 @@ type ebsDeleteRealResponse struct {
 }
 
 type EbsDeleteRequest struct {
-	RegionId    string
-	DiskId      string
+	RegionID    string
+	DiskID      string
 	ClientToken string
 }
 
