@@ -26,9 +26,9 @@ func NewBandwidthChangeNameApi(client *ctyunsdk.CtyunClient) *BandwidthChangeNam
 func (this *BandwidthChangeNameApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *BandwidthChangeNameRequest) (*BandwidthChangeNameResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 	_, err := builder.WriteJson(&bandwidthChangeNameRealRequest{
-		RegionID:    req.RegionId,
+		RegionID:    req.RegionID,
 		ClientToken: req.ClientToken,
-		BandwidthID: req.BandwidthId,
+		BandwidthID: req.BandwidthID,
 		Name:        req.Name,
 	})
 	if err != nil {
@@ -59,9 +59,9 @@ type bandwidthChangeNameRealResponse struct {
 }
 
 type BandwidthChangeNameRequest struct {
-	RegionId    string
+	RegionID    string
 	ClientToken string
-	BandwidthId string
+	BandwidthID string
 	Name        string
 }
 

@@ -25,9 +25,9 @@ func NewBandwidthDescribeApi(client *ctyunsdk.CtyunClient) *BandwidthDescribeApi
 
 func (this *BandwidthDescribeApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *BandwidthDescribeRequest) (*BandwidthDescribeResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
-	builder.AddParam("regionID", req.RegionId)
-	builder.AddParam("projectID", req.ProjectId)
-	builder.AddParam("bandwidthID", req.BandwidthId)
+	builder.AddParam("regionID", req.RegionID)
+	builder.AddParam("projectID", req.ProjectID)
+	builder.AddParam("bandwidthID", req.BandwidthID)
 
 	response, err := this.client.RequestToEndpoint(ctx, EndpointNameCtvpc, builder)
 	if err != nil {
@@ -67,9 +67,9 @@ type bandwidthDescribeRealResponse struct {
 }
 
 type BandwidthDescribeRequest struct {
-	RegionId    string
-	ProjectId   string
-	BandwidthId string
+	RegionID    string
+	ProjectID   string
+	BandwidthID string
 }
 
 type BandwidthDescribeEipsResponse struct {
