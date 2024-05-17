@@ -39,6 +39,8 @@ type Apis struct {
 	BandwidthDeleteApi                *BandwidthDeleteApi
 	BandwidthAssociateEipApi          *BandwidthAssociateEipApi
 	BandwidthDisassociateEipApi       *BandwidthDisassociateEipApi
+	SecurityGroupRuleEgressCreateApi  *SecurityGroupRuleEgressCreateApi
+	SecurityGroupRuleIngressCreateApi *SecurityGroupRuleIngressCreateApi
 }
 
 // NewApis 构建
@@ -84,5 +86,7 @@ func NewApis(client *ctyunsdk.CtyunClient) *Apis {
 		BandwidthDeleteApi:                NewBandwidthDeleteApi(client),
 		BandwidthAssociateEipApi:          NewBandwidthAssociateEipApi(client),
 		BandwidthDisassociateEipApi:       NewBandwidthDisassociateEipApi(client),
+		SecurityGroupRuleEgressCreateApi:  NewSecurityGroupRuleEgressCreateApi(client),
+		SecurityGroupRuleIngressCreateApi: NewSecurityGroupRuleIngressCreateApi(client),
 	}
 }

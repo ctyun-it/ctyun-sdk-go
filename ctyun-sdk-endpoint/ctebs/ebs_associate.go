@@ -28,7 +28,7 @@ func (this *EbsAssociateApi) Do(ctx context.Context, credential ctyunsdk.Credent
 	requestContent := ebsAssociateRealRequest{
 		RegionID:   req.RegionId,
 		DiskID:     req.DiskId,
-		InstanceID: req.InstanceId,
+		InstanceID: req.InstanceID,
 	}
 	_, err := builder.WriteJson(requestContent)
 	if err != nil {
@@ -64,7 +64,7 @@ type ebsAssociateRealResponse struct {
 type EbsAssociateRequest struct {
 	RegionId   string
 	DiskId     string
-	InstanceId string
+	InstanceID string
 }
 
 type EbsAssociateResponse struct {

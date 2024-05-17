@@ -26,7 +26,7 @@ func NewBandwidthCreateApi(client *ctyunsdk.CtyunClient) *BandwidthCreateApi {
 func (this *BandwidthCreateApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *BandwidthCreateRequest) (*BandwidthCreateResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 	_, err := builder.WriteJson(bandwidthCreateRealRequest{
-		RegionID:    req.RegionId,
+		RegionID:    req.RegionID,
 		ClientToken: req.ClientToken,
 		CycleType:   req.CycleType,
 		Bandwidth:   req.Bandwidth,
@@ -79,7 +79,7 @@ type bandwidthCreateRealResponse struct {
 }
 
 type BandwidthCreateRequest struct {
-	RegionId    string
+	RegionID    string
 	ClientToken string
 	CycleType   string
 	Bandwidth   int64

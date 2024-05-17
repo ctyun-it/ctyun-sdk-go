@@ -26,10 +26,10 @@ func NewBandwidthDeleteApi(client *ctyunsdk.CtyunClient) *BandwidthDeleteApi {
 func (this *BandwidthDeleteApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *BandwidthDeleteRequest) (*BandwidthDeleteResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 	_, err := builder.WriteJson(&bandwidthDeleteRealRequest{
-		RegionID:    req.RegionId,
-		BandwidthID: req.BandwidthId,
+		RegionID:    req.RegionID,
+		BandwidthID: req.BandwidthID,
 		ClientToken: req.ClientToken,
-		ProjectID:   req.ProjectId,
+		ProjectID:   req.ProjectID,
 	})
 	if err != nil {
 		return nil, err
@@ -66,10 +66,10 @@ type bandwidthDeleteRealResponse struct {
 }
 
 type BandwidthDeleteRequest struct {
-	RegionId    string
+	RegionID    string
 	ClientToken string
-	BandwidthId string
-	ProjectId   string
+	BandwidthID string
+	ProjectID   string
 }
 
 type BandwidthDeleteResponse struct {

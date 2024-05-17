@@ -26,9 +26,9 @@ func NewBandwidthChangeSpecApi(client *ctyunsdk.CtyunClient) *BandwidthChangeSpe
 func (this *BandwidthChangeSpecApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *BandwidthChangeSpecRequest) (*BandwidthChangeSpecResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 	_, err := builder.WriteJson(&bandwidthChangeSpecRealRequest{
-		RegionID:    req.RegionId,
+		RegionID:    req.RegionID,
 		ClientToken: req.ClientToken,
-		BandwidthID: req.BandwidthId,
+		BandwidthID: req.BandwidthID,
 		Bandwidth:   req.Bandwidth,
 	})
 	if err != nil {
@@ -66,9 +66,9 @@ type bandwidthChangeSpecRealResponse struct {
 }
 
 type BandwidthChangeSpecRequest struct {
-	RegionId    string
+	RegionID    string
 	ClientToken string
-	BandwidthId string
+	BandwidthID string
 	Bandwidth   int
 }
 
