@@ -12,6 +12,7 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -27,6 +28,14 @@ type CtyunRequest struct {
 type CtyunRequestBuilder struct {
 	Method  string // 请求方法
 	UrlPath string // url路径
+}
+
+// ReplaceUrl 替换路径中的目标值，例如把/orders/{masterOrderId}替换为/orders/1
+func (c CtyunRequestBuilder) ReplaceUrl(src string, target interface{}) *CtyunRequestBuilder {
+	str := fmt.Sprintf("%v", target)
+	str = url.PathEscape(str)
+	c.UrlPath = strings.Replace(c.UrlPath, "{"+src+"}", str, -1)
+	return &c
 }
 
 // WithCredential 增加请求credential
