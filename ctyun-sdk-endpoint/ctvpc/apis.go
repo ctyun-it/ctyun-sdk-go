@@ -24,6 +24,7 @@ type Apis struct {
 	EipDisassociateApi                *EipDisassociateApi
 	EipShowApi                        *EipShowApi
 	SecurityGroupCreateApi            *SecurityGroupCreateApi
+	SecurityGroupQueryApi             *SecurityGroupQueryApi
 	SecurityGroupModifyAttributionApi *SecurityGroupModifyAttributionApi
 	SecurityGroupDeleteApi            *SecurityGroupDeleteApi
 	SecurityGroupDescribeAttributeApi *SecurityGroupDescribeAttributeApi
@@ -70,6 +71,7 @@ func NewApis(client *ctyunsdk.CtyunClient) *Apis {
 		EipAssociateApi:                   NewEipAssociateApi(client),
 		EipDisassociateApi:                NewEipDisassociateApi(client),
 		EipShowApi:                        NewEipShowApi(client),
+		SecurityGroupQueryApi:             NewSecurityGroupQueryApi(client),
 		SecurityGroupCreateApi:            NewSecurityGroupCreateApi(client),
 		SecurityGroupModifyAttributionApi: NewSecurityGroupModifyAttributionApi(client),
 		SecurityGroupDeleteApi:            NewSecurityGroupDeleteApi(client),
