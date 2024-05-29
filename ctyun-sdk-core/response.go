@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"strconv"
 	"strings"
@@ -91,11 +92,13 @@ func (c CtyunResponse) Parse(obj interface{}) CtyunRequestError {
 	defer func(Body io.ReadCloser) {
 		_ = Body.Close()
 	}(c.Response.Body)
-	respBody, err := io.ReadAll(c.Response.Body)
+	//respBody, err := io.ReadAll(c.Response.Body)
+	respBody, err := ioutil.ReadAll(c.Response.Body)
 	if err != nil {
 		return WrapError(err, &c)
 	}
-	c.Response.Body = io.NopCloser(bytes.NewBuffer(respBody))
+	//c.Response.Body = io.NopCloser(bytes.NewBuffer(respBody))
+	c.Response.Body = ioutil.NopCloser(bytes.NewBuffer(respBody))
 	err = json.Unmarshal(respBody, obj)
 	if err != nil {
 		return WrapError(err, &c)

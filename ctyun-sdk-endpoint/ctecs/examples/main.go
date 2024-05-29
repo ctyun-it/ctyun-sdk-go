@@ -83,7 +83,7 @@ func describeInstances(credential ctyunsdk.Credential) {
 		State:           "active",
 		Keyword:         "ecm-57fd",
 		InstanceName:    "ecm-57fd",
-		InstanceIdList:  "77493826-d038-2a9c-f684-e2f6adabeba3",
+		InstanceIdList:  "0fec78e4-1889-803f-b2a7-515c1c40b788",
 		SecurityGroupId: "sg-tdzefke02r",
 	})
 	if err != nil {
@@ -218,7 +218,7 @@ func stopInstance(credential ctyunsdk.Credential) {
 	apis := ctecs.NewApis(client)
 	response, err := apis.EcsStopInstanceApi.Do(context.Background(), credential, &ctecs.EcsStopInstanceRequest{
 		RegionId:   "bb9fdb42056f11eda1610242ac110002",
-		InstanceId: "77493826-d038-2a9c-f684-e2f6adabeba3",
+		InstanceId: "63afb617-b8f5-d482-9ecd-6d8bb9124d4e",
 		Force:      false,
 	})
 	if err != nil {
@@ -228,7 +228,7 @@ func stopInstance(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func UnsubscribeInstance(credential ctyunsdk.Credential) {
+func unsubscribeInstance(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 	apis := ctecs.NewApis(client)
 	response, err := apis.EcsUnsubscribeInstanceApi.Do(context.Background(), credential, &ctecs.EcsUnsubscribeInstanceRequest{
@@ -243,7 +243,7 @@ func UnsubscribeInstance(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func UpdateFlavorSpec(credential ctyunsdk.Credential) {
+func updateFlavorSpec(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 	apis := ctecs.NewApis(client)
 	response, err := apis.EcsUpdateFlavorSpecApi.Do(context.Background(), credential, &ctecs.EcsUpdateFlavorSpecRequest{
@@ -376,6 +376,98 @@ func keypairDetach(credential ctyunsdk.Credential) {
 	fmt.Printf(string(marshal))
 }
 
+func rebootInstance(credential ctyunsdk.Credential) {
+	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
+	apis := ctecs.NewApis(client)
+	response, err := apis.EcsRebootInstanceApi.Do(context.Background(), credential, &ctecs.EcsRebootInstanceRequest{
+		RegionID:   "bb9fdb42056f11eda1610242ac110002",
+		InstanceID: "0fec78e4-1889-803f-b2a7-515c1c40b788",
+	})
+	if err != nil {
+		fmt.Printf("错误信息为：%s", err)
+		return
+	}
+	jsonstr, _ := json.Marshal(response)
+	fmt.Println(string(jsonstr))
+}
+
+func batchRebootInstances(credential ctyunsdk.Credential) {
+	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
+	apis := ctecs.NewApis(client)
+	response, err := apis.EcsBatchRebootInstancesApi.Do(context.Background(), credential, &ctecs.EcsBatchRebootInstanceRequest{
+		RegionID:       "bb9fdb42056f11eda1610242ac110002",
+		InstanceIDList: "0fec78e4-1889-803f-b2a7-515c1c40b788",
+	})
+	if err != nil {
+		fmt.Printf("错误信息为：%s", err)
+		return
+	}
+	jsonstr, _ := json.Marshal(response)
+	fmt.Println(string(jsonstr))
+}
+
+func rebuildInstance(credential ctyunsdk.Credential) {
+	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
+	apis := ctecs.NewApis(client)
+	response, err := apis.EcsRebuildInstanceApi.Do(context.Background(), credential, &ctecs.EcsRebuildInstanceRequest{
+		RegionID:       "bb9fdb42056f11eda1610242ac110002",
+		InstanceID:     "0fec78e4-1889-803f-b2a7-515c1c40b788",
+		Password:       "rebuildTest195%",
+		ImageID:        "b1d896e1-c977-4fd4-b6c2-5432549977be",
+		UserData:       "UmVidWlsZFRlc3QyMDIyMTEyNDEzMTE=",
+		InstanceName:   "ecm-3300",
+		MonitorService: true,
+	})
+	if err != nil {
+		fmt.Printf("错误信息为：%s", err)
+		return
+	}
+	jsonstr, _ := json.Marshal(response)
+	fmt.Println(string(jsonstr))
+}
+
+func batchRebuildInstances(credential ctyunsdk.Credential) {
+	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
+	apis := ctecs.NewApis(client)
+
+	rebuildInfoList := make([]ctecs.EcsBatchRebuildInstancesRebuildInfoRequest, 0)
+	rebuildInfo := ctecs.EcsBatchRebuildInstancesRebuildInfoRequest{
+		InstanceID:     "63afb617-b8f5-d482-9ecd-6d8bb9124d4e",
+		Password:       "rebuildTest195%",
+		ImageID:        "b1d896e1-c977-4fd4-b6c2-5432549977be",
+		UserData:       "UmVidWlsZFRlc3QyMDIyMTEyNDEzMTE=",
+		InstanceName:   "ecm-3300",
+		MonitorService: true,
+	}
+	rebuildInfoList = append(rebuildInfoList, rebuildInfo)
+	response, err := apis.EcsBatchRebuildInstancesApi.Do(context.Background(), credential, &ctecs.EcsBatchRebuildInstancesRequest{
+		RegionID:    "bb9fdb42056f11eda1610242ac110002",
+		RebuildInfo: rebuildInfoList,
+	})
+	if err != nil {
+		fmt.Printf("错误信息为：%s", err)
+		return
+	}
+	jsonstr, _ := json.Marshal(response)
+	fmt.Println(string(jsonstr))
+}
+
+func batchUnsubscribeInstances(credential ctyunsdk.Credential) {
+	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
+	apis := ctecs.NewApis(client)
+	response, err := apis.EcsBatchUnsubscribeInstancesApi.Do(context.Background(), credential, &ctecs.EcsBatchUnsubscribeInstanceRequest{
+		ClientToken:    "batch-unsubscribe-instance",
+		RegionID:       "bb9fdb42056f11eda1610242ac110002",
+		InstanceIDList: "96b254b1-b472-e72d-eb7f-05b61d973ad4",
+	})
+	if err != nil {
+		fmt.Printf("错误信息为：%s", err)
+		return
+	}
+	jsonstr, _ := json.Marshal(response)
+	fmt.Println(string(jsonstr))
+}
+
 func main() {
 	credential, _ := ctyunsdk.NewCredential("ak", "sk")
 	listFlavors(*credential)
@@ -388,8 +480,8 @@ func main() {
 	resetInstancePassword(*credential)
 	startInstance(*credential)
 	stopInstance(*credential)
-	UnsubscribeInstance(*credential)
-	UpdateFlavorSpec(*credential)
+	unsubscribeInstance(*credential)
+	updateFlavorSpec(*credential)
 	listInstanceVolumes(*credential)
 	keypairCreate(*credential)
 	keypairImport(*credential)
@@ -397,4 +489,9 @@ func main() {
 	keypairAttach(*credential)
 	keypairDetach(*credential)
 	keypairDelete(*credential)
+	rebootInstance(*credential)
+	batchRebootInstances(*credential)
+	rebuildInstance(*credential)
+	batchRebuildInstances(*credential)
+	batchUnsubscribeInstances(*credential)
 }
