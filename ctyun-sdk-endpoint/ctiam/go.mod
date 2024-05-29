@@ -2,5 +2,5 @@ module github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-endpoint/ctiam
 
 go 1.14
 
-require github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core v1.0.2 // indirect
+require github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core v1.0.4 // indirect
 
