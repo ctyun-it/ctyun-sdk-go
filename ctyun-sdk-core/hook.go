@@ -84,7 +84,7 @@ func Wrap(target ApiHandler, builder ApiHookBuilder) ApiHandler {
 
 // ConsoleLogApiHook 打印控制台日志的钩子函数
 func ConsoleLogApiHook(ctx context.Context, credential *Credential, param interface{}, chain ApiDecoratorChain) (interface{}, CtyunRequestError) {
-	startTime := time.Now().UnixMilli()
+	startTime := time.Now().Unix()
 	req, err := json.Marshal(param)
 	id := uuid.NewString()
 	apiName := fmt.Sprintf("%T", param)
@@ -92,7 +92,7 @@ func ConsoleLogApiHook(ctx context.Context, credential *Credential, param interf
 		fmt.Printf("开始执行请求动作，id：%s，请求：%s，内容：%s\n", id, apiName, string(req))
 	}
 	result, ctyunRequestError := chain.Next(ctx, credential, param)
-	endTime := time.Now().UnixMilli()
+	endTime := time.Now().Unix()
 	useTime := endTime - startTime
 	if ctyunRequestError == nil {
 		resp, err := json.Marshal(result)
