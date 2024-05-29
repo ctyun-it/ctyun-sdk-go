@@ -1,5 +1,6 @@
 github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core v1.0.0/go.mod h1:kWHEV7yf5GgM+19ka+mQV7xdWBQsuXPSzdN+3CMyx64=
 github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core v1.0.2 h1:a5WbBYFFD/658tGXY3l/pb+wlJmxoIm1u9F45HO/bpI=
 github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core v1.0.2/go.mod h1:kWHEV7yf5GgM+19ka+mQV7xdWBQsuXPSzdN+3CMyx64=
+github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core v1.0.4/go.mod h1:hvxAoJE+mE7IhhZG4P+HmgNbREIbqJngEE6RDvRXxKU=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
