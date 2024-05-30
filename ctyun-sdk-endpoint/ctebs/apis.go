@@ -1,7 +1,7 @@
 package ctebs
 
 import (
-	"github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core"
+	ctyunsdk "github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core"
 )
 
 // Apis api的接口
@@ -13,6 +13,7 @@ type Apis struct {
 	EbsAssociateApi    *EbsAssociateApi
 	EbsDisassociateApi *EbsDisassociateApi
 	EbsShowApi         *EbsShowApi
+	EbsListApi         *EbsListApi
 }
 
 // NewApis 构建
@@ -32,5 +33,6 @@ func NewApis(client *ctyunsdk.CtyunClient) *Apis {
 		EbsAssociateApi:    NewEbsAssociateApi(client),
 		EbsDisassociateApi: NewEbsDisassociateApi(client),
 		EbsShowApi:         NewEbsShowApi(client),
+		EbsListApi:         NewEbsListApi(client),
 	}
 }
