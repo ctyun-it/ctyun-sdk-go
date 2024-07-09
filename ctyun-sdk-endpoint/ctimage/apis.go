@@ -17,6 +17,7 @@ type Apis struct {
 	ImageShareAcceptApi     *ImageShareAcceptApi
 	ImageShareRejectApi     *ImageShareRejectApi
 	ImageShareListApi       *ImageShareListApi
+	ImageValidateApi        *ImageValidateApi
 }
 
 // NewApis 构建
@@ -36,5 +37,6 @@ func NewApis(client *ctyunsdk.CtyunClient) *Apis {
 		ImageShareAcceptApi:     NewimageShareAcceptApi(client),
 		ImageShareRejectApi:     NewimageShareRejectApi(client),
 		ImageShareListApi:       NewimageShareListApi(client),
+		ImageValidateApi:        NewImageValidateApi(client),
 	}
 }
