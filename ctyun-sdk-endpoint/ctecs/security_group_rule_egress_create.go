@@ -64,21 +64,21 @@ func (this *SecurityGroupRuleEgressCreateApi) Do(ctx context.Context, credential
 }
 
 type securityGroupRuleEgressCreateSecurityGroupRulesRealRequest struct {
-	Direction   string `json:"direction"`
-	Action      string `json:"action"`
-	Priority    int    `json:"priority"`
-	Protocol    string `json:"protocol"`
-	Ethertype   string `json:"ethertype"`
-	DestCidrIp  string `json:"destCidrIp"`
-	Description string `json:"description"`
-	Range       string `json:"range"`
+	Direction   string `json:"direction,omitempty"`
+	Action      string `json:"action,omitempty"`
+	Priority    int    `json:"priority,omitempty"`
+	Protocol    string `json:"protocol,omitempty"`
+	Ethertype   string `json:"ethertype,omitempty"`
+	DestCidrIp  string `json:"destCidrIp,omitempty"`
+	Description string `json:"description,omitempty"`
+	Range       string `json:"range,omitempty"`
 }
 
 type securityGroupRuleEgressCreateRealRequest struct {
-	RegionID           string                                                       `json:"regionID"`
-	SecurityGroupID    string                                                       `json:"securityGroupID"`
-	ClientToken        string                                                       `json:"clientToken"`
-	SecurityGroupRules []securityGroupRuleEgressCreateSecurityGroupRulesRealRequest `json:"securityGroupRules"`
+	RegionID           string                                                       `json:"regionID,omitempty"`
+	SecurityGroupID    string                                                       `json:"securityGroupID,omitempty"`
+	ClientToken        string                                                       `json:"clientToken,omitempty"`
+	SecurityGroupRules []securityGroupRuleEgressCreateSecurityGroupRulesRealRequest `json:"securityGroupRules,omitempty"`
 }
 
 type securityGroupRuleEgressCreateRealResponse struct {

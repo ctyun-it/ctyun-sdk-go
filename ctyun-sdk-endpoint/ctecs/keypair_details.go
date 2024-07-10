@@ -63,12 +63,12 @@ func (this *KeypairDetailApi) Do(ctx context.Context, credential ctyunsdk.Creden
 }
 
 type keypairDetailRealRequest struct {
-	RegionID     string `json:"regionID"`
+	RegionID     string `json:"regionID,omitempty"`
 	ProjectID    string `json:"projectID,omitempty"`
-	KeypairName  string `json:"keyPairName"`
-	QueryContent string `json:"queryContent"`
-	PageNo       int    `json:"pageNo"`
-	PageSize     int    `json:"pageSize"`
+	KeypairName  string `json:"keyPairName,omitempty"`
+	QueryContent string `json:"queryContent,omitempty"`
+	PageNo       int    `json:"pageNo,omitempty"`
+	PageSize     int    `json:"pageSize,omitempty"`
 }
 
 type keypairDetailRealResponse struct {

@@ -22,7 +22,7 @@ func NewQuerySnapshotStatisticsApi(client *ctyunsdk.CtyunClient) *QuerySnapshotS
 	}
 }
 
-func (this *QuerySnapshotStatisticsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *QuerySnapshotStatisticsRequest) (*QuerySnapshotStatisticsResponse, ctyunsdk.CtyunRequestError) {
+func (this *QuerySnapshotStatisticsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *QuerySnapshotStatisticsRequest) (*[]QuerySnapshotStatisticsResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
 	_, err := builder.WriteJson(&QuerySnapshotStatisticsRealRequest{
@@ -39,16 +39,20 @@ func (this *QuerySnapshotStatisticsApi) Do(ctx context.Context, credential ctyun
 		return nil, err
 	}
 
-	var realResponse QuerySnapshotStatisticsRealResponse
+	var realResponse []QuerySnapshotStatisticsResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
+	for _, i := range realResponse {
+		realResponse = append(realResponse, QuerySnapshotStatisticsResponse{
+			InstanceID: i.InstanceID,
+			Count:      i.Count,
+		})
+	}
 
-	return &QuerySnapshotStatisticsResponse{
-		InstanceID: realResponse.InstanceID,
-		Count:      realResponse.Count,
-	}, nil
+	return &realResponse, nil
+
 }
 
 type QuerySnapshotStatisticsRealRequest struct {

@@ -73,8 +73,6 @@ type Apis struct {
 	EcsEipCreateApi                          *EcsEipCreateApi
 	EcsEipDeleteApi                          *EcsEipDeleteApi
 	EcsShareInterfaceAttachApi               *EcsShareInterfaceAttachApi
-	EcsDelegateAttachApi                     *EcsDelegateAttachApi
-	EcsDelegateDeleteApi                     *EcsDelegateDeleteApi
 	EcsBackupCreateInstanceApi               *EcsBackupCreateInstanceApi
 	EcsBatchStopInstancesApi                 *EcsBatchStopInstancesApi
 	EcsUpdateNetworkSpecApi                  *EcsUpdateNetworkSpecApi
@@ -179,8 +177,6 @@ func NewApis(client *ctyunsdk.CtyunClient) *Apis {
 		EcsEipCreateApi:                          NewEcsEipCreateApi(client),
 		EcsEipDeleteApi:                          NewEcsEipDeleteApi(client),
 		EcsShareInterfaceAttachApi:               NewEcsShareInterfaceAttachApi(client),
-		EcsDelegateAttachApi:                     NewEcsDelegateAttachApi(client),
-		EcsDelegateDeleteApi:                     NewEcsDelegateDeleteApi(client),
 		EcsBackupCreateInstanceApi:               NewEcsBackupCreateInstanceApi(client),
 		EcsBatchStopInstancesApi:                 NewEcsBatchStopInstancesApi(client),
 		EcsUpdateNetworkSpecApi:                  NewEcsUpdateNetworkSpecApi(client),

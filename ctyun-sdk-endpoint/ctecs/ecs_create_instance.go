@@ -97,57 +97,57 @@ func (this *EcsCreateInstanceApi) Do(ctx context.Context, credential ctyunsdk.Cr
 }
 
 type ecsCreateInstanceNetworkCardListRealRequest struct {
-	NicName  string `json:"nicName"`
-	FixedIP  string `json:"fixedIP"`
-	IsMaster bool   `json:"isMaster"`
-	SubnetID string `json:"subnetID"`
+	NicName  string `json:"nicName,omitempty"`
+	FixedIP  string `json:"fixedIP,omitempty"`
+	IsMaster bool   `json:"isMaster,omitempty"`
+	SubnetID string `json:"subnetID,omitempty"`
 }
 
 type ecsCreateInstanceDataDiskListRealRequest struct {
-	DiskMode string `json:"diskMode"`
-	DiskName string `json:"diskName"`
-	DiskType string `json:"diskType"`
-	DiskSize int    `json:"diskSize"`
+	DiskMode string `json:"diskMode,omitempty"`
+	DiskName string `json:"diskName,omitempty"`
+	DiskType string `json:"diskType,omitempty"`
+	DiskSize int    `json:"diskSize,omitempty"`
 }
 
 type ecsCreateInstanceLabelListRealRequest struct {
-	LabelKey   string `json:"labelKey"`
-	LabelValue string `json:"labelValue"`
+	LabelKey   string `json:"labelKey,omitempty"`
+	LabelValue string `json:"labelValue,omitempty"`
 }
 
 type ecsCreateInstanceRealRequest struct {
-	ClientToken     string                                        `json:"clientToken"`
-	RegionID        string                                        `json:"regionID"`
-	AzName          string                                        `json:"azName"`
-	InstanceName    string                                        `json:"instanceName"`
-	DisplayName     string                                        `json:"displayName"`
-	FlavorID        string                                        `json:"flavorID"`
-	ImageType       int                                           `json:"imageType"`
-	ImageID         string                                        `json:"imageID"`
-	BootDiskType    string                                        `json:"bootDiskType"`
-	BootDiskSize    int                                           `json:"bootDiskSize"`
-	VpcID           string                                        `json:"vpcID"`
-	OnDemand        bool                                          `json:"onDemand"`
-	NetworkCardList []ecsCreateInstanceNetworkCardListRealRequest `json:"networkCardList"`
-	ExtIP           string                                        `json:"extIP"`
-	ProjectID       string                                        `json:"projectID"`
-	SecGroupList    []string                                      `json:"secGroupList"`
-	DataDiskList    []ecsCreateInstanceDataDiskListRealRequest    `json:"dataDiskList"`
-	IpVersion       string                                        `json:"ipVersion"`
-	Bandwidth       int                                           `json:"bandwidth"`
-	Ipv6AddressID   string                                        `json:"ipv6AddressID"`
-	EipID           string                                        `json:"eipID"`
-	AffinityGroupID string                                        `json:"affinityGroupID"`
-	KeyPairID       string                                        `json:"keyPairID"`
-	UserPassword    string                                        `json:"userPassword"`
-	CycleCount      int                                           `json:"cycleCount"`
-	CycleType       string                                        `json:"cycleType"`
-	AutoRenewStatus int                                           `json:"autoRenewStatus"`
-	UserData        string                                        `json:"userData"`
-	PayVoucherPrice float64                                       `json:"payVoucherPrice"`
-	LabelList       []ecsCreateInstanceLabelListRealRequest       `json:"labelList"`
-	GpuDriverKits   string                                        `json:"gpuDriverKits"`
-	MonitorService  bool                                          `json:"monitorService"`
+	ClientToken     string                                        `json:"clientToken,omitempty"`
+	RegionID        string                                        `json:"regionID,omitempty"`
+	AzName          string                                        `json:"azName,omitempty"`
+	InstanceName    string                                        `json:"instanceName,omitempty"`
+	DisplayName     string                                        `json:"displayName,omitempty"`
+	FlavorID        string                                        `json:"flavorID,omitempty"`
+	ImageType       int                                           `json:"imageType,omitempty"`
+	ImageID         string                                        `json:"imageID,omitempty"`
+	BootDiskType    string                                        `json:"bootDiskType,omitempty"`
+	BootDiskSize    int                                           `json:"bootDiskSize,omitempty"`
+	VpcID           string                                        `json:"vpcID,omitempty"`
+	OnDemand        bool                                          `json:"onDemand,omitempty"`
+	NetworkCardList []ecsCreateInstanceNetworkCardListRealRequest `json:"networkCardList,omitempty"`
+	ExtIP           string                                        `json:"extIP,omitempty"`
+	ProjectID       string                                        `json:"projectID,omitempty"`
+	SecGroupList    []string                                      `json:"secGroupList,omitempty"`
+	DataDiskList    []ecsCreateInstanceDataDiskListRealRequest    `json:"dataDiskList,omitempty"`
+	IpVersion       string                                        `json:"ipVersion,omitempty"`
+	Bandwidth       int                                           `json:"bandwidth,omitempty"`
+	Ipv6AddressID   string                                        `json:"ipv6AddressID,omitempty"`
+	EipID           string                                        `json:"eipID,omitempty"`
+	AffinityGroupID string                                        `json:"affinityGroupID,omitempty"`
+	KeyPairID       string                                        `json:"keyPairID,omitempty"`
+	UserPassword    string                                        `json:"userPassword,omitempty"`
+	CycleCount      int                                           `json:"cycleCount,omitempty"`
+	CycleType       string                                        `json:"cycleType,omitempty"`
+	AutoRenewStatus int                                           `json:"autoRenewStatus,omitempty"`
+	UserData        string                                        `json:"userData,omitempty"`
+	PayVoucherPrice float64                                       `json:"payVoucherPrice,omitempty"`
+	LabelList       []ecsCreateInstanceLabelListRealRequest       `json:"labelList,omitempty"`
+	GpuDriverKits   string                                        `json:"gpuDriverKits,omitempty"`
+	MonitorService  bool                                          `json:"monitorService,omitempty"`
 }
 
 type ecsCreateInstanceRealResponse struct {
