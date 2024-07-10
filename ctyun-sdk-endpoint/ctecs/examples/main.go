@@ -1730,41 +1730,6 @@ func ecsShareInterfaceAttach(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func ecsDelegateAttach(credential ctyunsdk.Credential) {
-	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
-
-	apis := ctecs.NewApis(client)
-	response, err := apis.EcsDelegateAttachApi.Do(context.Background(), credential, &ctecs.EcsDelegateAttachRequest{
-		RegionID:     "bb9fdb42056f11eda1610242ac110002",
-		InstanceID:   "4bde19ee-1e3a-bb84-9ee2-0e55de396a8e",
-		DelegateName: "testdelegate01",
-	})
-
-	if err != nil {
-		fmt.Printf("错误信息为：%s", err)
-		return
-	}
-
-	jsonstr, _ := json.Marshal(response)
-	fmt.Println(string(jsonstr))
-}
-func ecsDelegateDelete(credential ctyunsdk.Credential) {
-	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
-
-	apis := ctecs.NewApis(client)
-	response, err := apis.EcsDelegateDeleteApi.Do(context.Background(), credential, &ctecs.EcsDelegateDeleteRequest{
-		RegionID:   "88f8888888dd88ec888888888d888d8b",
-		InstanceID: "8d8e8888-8ed8-88b8-88cb-888f8b8cf8fa",
-	})
-
-	if err != nil {
-		fmt.Printf("错误信息为：%s", err)
-		return
-	}
-
-	jsonstr, _ := json.Marshal(response)
-	fmt.Println(string(jsonstr))
-}
 
 func ecsBackupCreateInstance(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
@@ -1852,8 +1817,6 @@ func main() {
 	ecsUpdateNetworkSpec(*credential)
 	ecsBatchStopInstances(*credential)
 	ecsBackupCreateInstance(*credential)
-	ecsDelegateDelete(*credential)
-	ecsDelegateAttach(*credential)
 	ecsShareInterfaceAttach(*credential)
 	ecsEipDelete(*credential)
 	ecsEipCreate(*credential)

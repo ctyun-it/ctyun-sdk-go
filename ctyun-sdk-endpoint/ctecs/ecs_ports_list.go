@@ -23,7 +23,7 @@ func NewEcsPortsListApi(client *ctyunsdk.CtyunClient) *EcsPortsListApi {
 	}
 }
 
-func (this *EcsPortsListApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsPortsListRequest) (*EcsPortsListResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsPortsListApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsPortsListRequest) (*[]EcsPortsListResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
 	builder.
@@ -40,38 +40,36 @@ func (this *EcsPortsListApi) Do(ctx context.Context, credential ctyunsdk.Credent
 		return nil, err
 	}
 
-	var realResponse EcsPortsListRealResponse
+	var realResponse []EcsPortsListResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	var associatedEip []EcsPortsListAssociatedEipResponse
-	for _, res := range realResponse.AssociatedEip {
-		associatedEip = append(associatedEip, EcsPortsListAssociatedEipResponse{
-			Id:   res.Id,
-			Name: res.Name,
-			Ip:   res.Ip,
+	for _, i := range realResponse {
+		realResponse = append(realResponse, EcsPortsListResponse{
+			NetworkInterfaceName: i.NetworkInterfaceName,
+			NetworkInterfaceID:   i.NetworkInterfaceID,
+			VpcID:                i.VpcID,
+			SubnetID:             i.SubnetID,
+			Role:                 i.Role,
+			MacAddress:           i.MacAddress,
+			PrimaryPrivateIp:     i.PrimaryPrivateIp,
+			Ipv6Addresses:        i.Ipv6Addresses,
+			InstanceID:           i.InstanceID,
+			InstanceType:         i.InstanceType,
+			Description:          i.Description,
+			SecurityGroupIds:     i.SecurityGroupIds,
+			SecondaryPrivateIps:  i.SecondaryPrivateIps,
+			AdminStatus:          i.AdminStatus,
+			AssociatedEip: EcsPortsListAssociatedEipResponse{
+				Id:   i.AssociatedEip.Id,
+				Name: i.AssociatedEip.Name,
+				Ip:   i.AssociatedEip.Ip,
+			},
 		})
 	}
-
-	return &EcsPortsListResponse{
-		NetworkInterfaceName: realResponse.NetworkInterfaceName,
-		NetworkInterfaceID:   realResponse.NetworkInterfaceID,
-		VpcID:                realResponse.VpcID,
-		SubnetID:             realResponse.SubnetID,
-		Role:                 realResponse.Role,
-		MacAddress:           realResponse.MacAddress,
-		PrimaryPrivateIp:     realResponse.PrimaryPrivateIp,
-		Ipv6Addresses:        realResponse.Ipv6Addresses,
-		InstanceID:           realResponse.InstanceID,
-		InstanceType:         realResponse.InstanceType,
-		Description:          realResponse.Description,
-		SecurityGroupIds:     realResponse.SecurityGroupIds,
-		SecondaryPrivateIps:  realResponse.SecondaryPrivateIps,
-		AdminStatus:          realResponse.AdminStatus,
-		AssociatedEip:        associatedEip,
-	}, nil
+	return &realResponse, nil
 }
 
 type EcsPortsListRealRequest struct {
@@ -101,21 +99,21 @@ type EcsPortsListAssociatedEipRealResponse struct {
 }
 
 type EcsPortsListRealResponse struct {
-	NetworkInterfaceName string                                  `json:"networkInterfaceName,omitempty"`
-	NetworkInterfaceID   string                                  `json:"networkInterfaceID,omitempty"`
-	VpcID                string                                  `json:"vpcID,omitempty"`
-	SubnetID             string                                  `json:"subnetID,omitempty"`
-	Role                 int                                     `json:"role,omitempty"`
-	MacAddress           string                                  `json:"macAddress,omitempty"`
-	PrimaryPrivateIp     string                                  `json:"primaryPrivateIp,omitempty"`
-	Ipv6Addresses        []string                                `json:"ipv6Addresses,omitempty"`
-	InstanceID           string                                  `json:"instanceID,omitempty"`
-	InstanceType         string                                  `json:"instanceType,omitempty"`
-	Description          string                                  `json:"description,omitempty"`
-	SecurityGroupIds     []string                                `json:"securityGroupIds,omitempty"`
-	SecondaryPrivateIps  []string                                `json:"secondaryPrivateIps,omitempty"`
-	AdminStatus          string                                  `json:"adminStatus,omitempty"`
-	AssociatedEip        []EcsPortsListAssociatedEipRealResponse `json:"associatedEip,omitempty"`
+	NetworkInterfaceName string                                `json:"networkInterfaceName,omitempty"`
+	NetworkInterfaceID   string                                `json:"networkInterfaceID,omitempty"`
+	VpcID                string                                `json:"vpcID,omitempty"`
+	SubnetID             string                                `json:"subnetID,omitempty"`
+	Role                 int                                   `json:"role,omitempty"`
+	MacAddress           string                                `json:"macAddress,omitempty"`
+	PrimaryPrivateIp     string                                `json:"primaryPrivateIp,omitempty"`
+	Ipv6Addresses        []string                              `json:"ipv6Addresses,omitempty"`
+	InstanceID           string                                `json:"instanceID,omitempty"`
+	InstanceType         string                                `json:"instanceType,omitempty"`
+	Description          string                                `json:"description,omitempty"`
+	SecurityGroupIds     []string                              `json:"securityGroupIds,omitempty"`
+	SecondaryPrivateIps  []string                              `json:"secondaryPrivateIps,omitempty"`
+	AdminStatus          string                                `json:"adminStatus,omitempty"`
+	AssociatedEip        EcsPortsListAssociatedEipRealResponse `json:"associatedEip,omitempty"`
 }
 
 type EcsPortsListAssociatedEipResponse struct {
@@ -139,5 +137,5 @@ type EcsPortsListResponse struct {
 	SecurityGroupIds     []string
 	SecondaryPrivateIps  []string
 	AdminStatus          string
-	AssociatedEip        []EcsPortsListAssociatedEipResponse
+	AssociatedEip        EcsPortsListAssociatedEipResponse
 }

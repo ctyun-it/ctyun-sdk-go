@@ -54,13 +54,13 @@ func (this *EcsRebuildInstanceApi) Do(ctx context.Context, credential ctyunsdk.C
 }
 
 type ecsRebuildInstanceRealRequest struct {
-	RegionID       string `json:"regionID"`
-	InstanceID     string `json:"instanceID"`
-	Password       string `json:"password"`
-	ImageID        string `json:"imageID"`
-	UserData       string `json:"userData"`
-	InstanceName   string `json:"instanceName"`
-	MonitorService bool   `json:"monitorService"`
+	RegionID       string `json:"regionID,omitempty"`
+	InstanceID     string `json:"instanceID,omitempty"`
+	Password       string `json:"password,omitempty"`
+	ImageID        string `json:"imageID,omitempty"`
+	UserData       string `json:"userData,omitempty"`
+	InstanceName   string `json:"instanceName,omitempty"`
+	MonitorService bool   `json:"monitorService,omitempty"`
 }
 
 type EcsRebuildInstanceRequest struct {

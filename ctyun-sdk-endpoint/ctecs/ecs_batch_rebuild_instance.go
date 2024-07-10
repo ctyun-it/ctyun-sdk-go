@@ -67,12 +67,12 @@ func (this *EcsBatchRebuildInstancesApi) Do(ctx context.Context, credential ctyu
 }
 
 type ecsBatchRebuildInstancesRebuildInfoRealRequest struct {
-	InstanceID     string `json:"instanceID"`
-	Password       string `json:"password"`
-	ImageID        string `json:"imageID"`
-	UserData       string `json:"userData"`
-	InstanceName   string `json:"instanceName"`
-	MonitorService bool   `json:"monitorService"`
+	InstanceID     string `json:"instanceID,omitempty"`
+	Password       string `json:"password,omitempty"`
+	ImageID        string `json:"imageID,omitempty"`
+	UserData       string `json:"userData,omitempty"`
+	InstanceName   string `json:"instanceName,omitempty"`
+	MonitorService bool   `json:"monitorService,omitempty"`
 }
 
 type ecsBatchRebuildInstancesRealRequest struct {
