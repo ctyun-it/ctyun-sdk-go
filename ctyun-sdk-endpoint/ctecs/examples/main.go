@@ -53,7 +53,7 @@ func createInstance(credential ctyunsdk.Credential) {
 		DataDiskList:    dataDiskList,
 		IpVersion:       "ipv4",
 		Bandwidth:       50,
-		UserPassword:    "qyo84!*ymd",
+		UserPassword:    "******",
 		CycleCount:      1,
 		CycleType:       "MONTH",
 		AutoRenewStatus: 0,
@@ -117,7 +117,7 @@ func ecsBatchCreateInstance(credential ctyunsdk.Credential) {
 		DataDiskList:    dataDiskList,
 		IpVersion:       "ipv4",
 		Bandwidth:       1,
-		UserPassword:    "qyo84!*ymd",
+		UserPassword:    "******",
 		CycleCount:      1,
 		CycleType:       "MONTH",
 		AutoRenewStatus: 0,
@@ -289,7 +289,7 @@ func resetInstancePassword(credential ctyunsdk.Credential) {
 	response, err := apis.EcsResetPasswordApi.Do(context.Background(), credential, &ctecs.EcsResetPasswordRequest{
 		RegionId:    "bb9fdb42056f11eda1610242ac110002",
 		InstanceId:  "77493826-d038-2a9c-f684-e2f6adabeba3",
-		NewPassword: "test-test-test-960",
+		NewPassword: "******",
 	})
 	if err != nil {
 		fmt.Printf("错误信息为：%s", err)
@@ -513,7 +513,7 @@ func rebuildInstance(credential ctyunsdk.Credential) {
 	response, err := apis.EcsRebuildInstanceApi.Do(context.Background(), credential, &ctecs.EcsRebuildInstanceRequest{
 		RegionID:       "bb9fdb42056f11eda1610242ac110002",
 		InstanceID:     "0fec78e4-1889-803f-b2a7-515c1c40b788",
-		Password:       "rebuildTest195%",
+		Password:       "******",
 		ImageID:        "b1d896e1-c977-4fd4-b6c2-5432549977be",
 		UserData:       "UmVidWlsZFRlc3QyMDIyMTEyNDEzMTE=",
 		InstanceName:   "ecm-3300",
@@ -534,7 +534,7 @@ func batchRebuildInstances(credential ctyunsdk.Credential) {
 	rebuildInfoList := make([]ctecs.EcsBatchRebuildInstancesRebuildInfoRequest, 0)
 	rebuildInfo := ctecs.EcsBatchRebuildInstancesRebuildInfoRequest{
 		InstanceID:     "63afb617-b8f5-d482-9ecd-6d8bb9124d4e",
-		Password:       "rebuildTest195%",
+		Password:       "******",
 		ImageID:        "b1d896e1-c977-4fd4-b6c2-5432549977be",
 		UserData:       "UmVidWlsZFRlc3QyMDIyMTEyNDEzMTE=",
 		InstanceName:   "ecm-3300",
@@ -757,7 +757,7 @@ func ecsBatchResetPassword(credential ctyunsdk.Credential) {
 	UpdatePwdInfo := make([]ctecs.EcsBatchResetPasswordUpdatePwdInfoRequest, 0)
 	updatePwdInfo := ctecs.EcsBatchResetPasswordUpdatePwdInfoRequest{
 		InstanceID:  "cfe4d576-4e2c-efd0-e823-250664d95d8f",
-		NewPassword: "Ctyun_GoSDK_2",
+		NewPassword: "******",
 	}
 
 	UpdatePwdInfo = append(UpdatePwdInfo, updatePwdInfo)
@@ -1768,7 +1768,7 @@ func ecsBackupCreateInstance(credential ctyunsdk.Credential) {
 		EipID:            "",
 		AffinityGroupID:  "",
 		KeyPairID:        "",
-		UserPassword:     "qyo84!*ymd",
+		UserPassword:     "******",
 		CycleCount:       1,
 		CycleType:        "MONTH",
 		AutoRenewStatus:  0,
