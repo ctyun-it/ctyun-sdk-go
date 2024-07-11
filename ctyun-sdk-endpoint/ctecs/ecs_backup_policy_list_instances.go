@@ -6,14 +6,14 @@ import (
 	"net/http"
 )
 
-// ListInstanceBackupPolicyBindInstancesApi
-type ListInstanceBackupPolicyBindInstancesApi struct {
+// EcsBackupPolicyListInstancesApi
+type EcsBackupPolicyListInstancesApi struct {
 	ctyunsdk.CtyunRequestBuilder
 	client *ctyunsdk.CtyunClient
 }
 
-func NewListInstanceBackupPolicyBindInstancesApi(client *ctyunsdk.CtyunClient) *ListInstanceBackupPolicyBindInstancesApi {
-	return &ListInstanceBackupPolicyBindInstancesApi{
+func NewEcsBackupPolicyListInstancesApi(client *ctyunsdk.CtyunClient) *EcsBackupPolicyListInstancesApi {
+	return &EcsBackupPolicyListInstancesApi{
 		client: client,
 		CtyunRequestBuilder: ctyunsdk.CtyunRequestBuilder{
 			Method:  http.MethodGet,
@@ -22,10 +22,10 @@ func NewListInstanceBackupPolicyBindInstancesApi(client *ctyunsdk.CtyunClient) *
 	}
 }
 
-func (this *ListInstanceBackupPolicyBindInstancesApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *ListInstanceBackupPolicyBindInstancesRequest) (*ListInstanceBackupPolicyBindInstancesResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsBackupPolicyListInstancesApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsBackupPolicyListInstancesRequest) (*EcsBackupPolicyListInstancesResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&ListInstanceBackupPolicyBindInstancesRealRequest{
+	_, err := builder.WriteJson(&EcsBackupPolicyListInstancesRealRequest{
 		RegionID:     req.RegionID,
 		PolicyID:     req.PolicyID,
 		InstanceName: req.InstanceName,
@@ -42,15 +42,15 @@ func (this *ListInstanceBackupPolicyBindInstancesApi) Do(ctx context.Context, cr
 		return nil, err
 	}
 
-	var realResponse ListInstanceBackupPolicyBindInstancesRealResponse
+	var realResponse EcsBackupPolicyListInstancesRealResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	var instancePolicies []ListInstanceBackupPolicyBindInstancesInstancePoliciesResponse
+	var instancePolicies []EcsBackupPolicyListInstancesInstancePoliciesResponse
 	for _, res := range realResponse.InstancePolicies {
-		instancePolicies = append(instancePolicies, ListInstanceBackupPolicyBindInstancesInstancePoliciesResponse{
+		instancePolicies = append(instancePolicies, EcsBackupPolicyListInstancesInstancePoliciesResponse{
 			Status:          res.Status,
 			AttachedVolumes: res.AttachedVolumes,
 			DisplayName:     res.DisplayName,
@@ -62,7 +62,7 @@ func (this *ListInstanceBackupPolicyBindInstancesApi) Do(ctx context.Context, cr
 		})
 	}
 
-	return &ListInstanceBackupPolicyBindInstancesResponse{
+	return &EcsBackupPolicyListInstancesResponse{
 		CurrentCount:     realResponse.CurrentCount,
 		CurrentPage:      realResponse.CurrentPage,
 		TotalCount:       realResponse.TotalCount,
@@ -71,7 +71,7 @@ func (this *ListInstanceBackupPolicyBindInstancesApi) Do(ctx context.Context, cr
 	}, nil
 }
 
-type ListInstanceBackupPolicyBindInstancesRealRequest struct {
+type EcsBackupPolicyListInstancesRealRequest struct {
 	RegionID     string `json:"regionID,omitempty"`
 	PolicyID     string `json:"policyID,omitempty"`
 	InstanceName string `json:"instanceName,omitempty"`
@@ -79,7 +79,7 @@ type ListInstanceBackupPolicyBindInstancesRealRequest struct {
 	PageSize     int    `json:"pageSize,omitempty"`
 }
 
-type ListInstanceBackupPolicyBindInstancesRequest struct {
+type EcsBackupPolicyListInstancesRequest struct {
 	RegionID     string
 	PolicyID     string
 	InstanceName string
@@ -87,7 +87,7 @@ type ListInstanceBackupPolicyBindInstancesRequest struct {
 	PageSize     int
 }
 
-type ListInstanceBackupPolicyBindInstancesInstancePoliciesRealResponse struct {
+type EcsBackupPolicyListInstancesInstancePoliciesRealResponse struct {
 	Status          string   `json:"status,omitempty"`
 	AttachedVolumes []string `json:"attachedVolumes,omitempty"`
 	DisplayName     string   `json:"displayName,omitempty"`
@@ -98,15 +98,15 @@ type ListInstanceBackupPolicyBindInstancesInstancePoliciesRealResponse struct {
 	UpdateTime      string   `json:"updateTime,omitempty"`
 }
 
-type ListInstanceBackupPolicyBindInstancesRealResponse struct {
-	CurrentCount     int                                                                 `json:"currentCount,omitempty"`
-	CurrentPage      int                                                                 `json:"currentPage,omitempty"`
-	TotalCount       int                                                                 `json:"totalCount,omitempty"`
-	TotalPage        int                                                                 `json:"totalPage,omitempty"`
-	InstancePolicies []ListInstanceBackupPolicyBindInstancesInstancePoliciesRealResponse `json:"instancePolicies,omitempty"`
+type EcsBackupPolicyListInstancesRealResponse struct {
+	CurrentCount     int                                                        `json:"currentCount,omitempty"`
+	CurrentPage      int                                                        `json:"currentPage,omitempty"`
+	TotalCount       int                                                        `json:"totalCount,omitempty"`
+	TotalPage        int                                                        `json:"totalPage,omitempty"`
+	InstancePolicies []EcsBackupPolicyListInstancesInstancePoliciesRealResponse `json:"instancePolicies,omitempty"`
 }
 
-type ListInstanceBackupPolicyBindInstancesInstancePoliciesResponse struct {
+type EcsBackupPolicyListInstancesInstancePoliciesResponse struct {
 	Status          string
 	AttachedVolumes []string
 	DisplayName     string
@@ -117,10 +117,10 @@ type ListInstanceBackupPolicyBindInstancesInstancePoliciesResponse struct {
 	UpdateTime      string
 }
 
-type ListInstanceBackupPolicyBindInstancesResponse struct {
+type EcsBackupPolicyListInstancesResponse struct {
 	CurrentCount     int
 	CurrentPage      int
 	TotalCount       int
 	TotalPage        int
-	InstancePolicies []ListInstanceBackupPolicyBindInstancesInstancePoliciesResponse
+	InstancePolicies []EcsBackupPolicyListInstancesInstancePoliciesResponse
 }

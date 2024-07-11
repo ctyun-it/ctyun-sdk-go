@@ -6,14 +6,14 @@ import (
 	"net/http"
 )
 
-// BatchUpdateSnapshotApi
-type BatchUpdateSnapshotApi struct {
+// EcsSnapshotBatchUpdateApi
+type EcsSnapshotBatchUpdateApi struct {
 	ctyunsdk.CtyunRequestBuilder
 	client *ctyunsdk.CtyunClient
 }
 
-func NewBatchUpdateSnapshotApi(client *ctyunsdk.CtyunClient) *BatchUpdateSnapshotApi {
-	return &BatchUpdateSnapshotApi{
+func NewEcsSnapshotBatchUpdateApi(client *ctyunsdk.CtyunClient) *EcsSnapshotBatchUpdateApi {
+	return &EcsSnapshotBatchUpdateApi{
 		client: client,
 		CtyunRequestBuilder: ctyunsdk.CtyunRequestBuilder{
 			Method:  http.MethodPost,
@@ -22,19 +22,19 @@ func NewBatchUpdateSnapshotApi(client *ctyunsdk.CtyunClient) *BatchUpdateSnapsho
 	}
 }
 
-func (this *BatchUpdateSnapshotApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *BatchUpdateSnapshotRequest) (*BatchUpdateSnapshotResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsSnapshotBatchUpdateApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsSnapshotBatchUpdateRequest) (*EcsSnapshotBatchUpdateResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	var updateInfo []BatchUpdateSnapshotUpdateInfoRealRequest
+	var updateInfo []EcsSnapshotBatchUpdateUpdateInfoRealRequest
 	for _, request := range req.UpdateInfo {
-		updateInfo = append(updateInfo, BatchUpdateSnapshotUpdateInfoRealRequest{
+		updateInfo = append(updateInfo, EcsSnapshotBatchUpdateUpdateInfoRealRequest{
 			SnapshotID:          request.SnapshotID,
 			SnapshotName:        request.SnapshotName,
 			SnapshotDescription: request.SnapshotDescription,
 		})
 	}
 
-	_, err := builder.WriteJson(&BatchUpdateSnapshotRealRequest{
+	_, err := builder.WriteJson(&EcsSnapshotBatchUpdateRealRequest{
 		RegionID:   req.RegionID,
 		UpdateInfo: updateInfo,
 	})
@@ -48,43 +48,43 @@ func (this *BatchUpdateSnapshotApi) Do(ctx context.Context, credential ctyunsdk.
 		return nil, err
 	}
 
-	var realResponse BatchUpdateSnapshotRealResponse
+	var realResponse EcsSnapshotBatchUpdateRealResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	return &BatchUpdateSnapshotResponse{
+	return &EcsSnapshotBatchUpdateResponse{
 		SnapshotIDList: realResponse.SnapshotIDList,
 	}, nil
 }
 
-type BatchUpdateSnapshotUpdateInfoRealRequest struct {
+type EcsSnapshotBatchUpdateUpdateInfoRealRequest struct {
 	SnapshotID          string `json:"snapshotID,omitempty"`
 	SnapshotName        string `json:"snapshotName,omitempty"`
 	SnapshotDescription string `json:"snapshotDescription,omitempty"`
 }
 
-type BatchUpdateSnapshotRealRequest struct {
-	RegionID   string                                     `json:"regionID,omitempty"`
-	UpdateInfo []BatchUpdateSnapshotUpdateInfoRealRequest `json:"updateInfo,omitempty"`
+type EcsSnapshotBatchUpdateRealRequest struct {
+	RegionID   string                                        `json:"regionID,omitempty"`
+	UpdateInfo []EcsSnapshotBatchUpdateUpdateInfoRealRequest `json:"updateInfo,omitempty"`
 }
 
-type BatchUpdateSnapshotUpdateInfoRequest struct {
+type EcsSnapshotBatchUpdateUpdateInfoRequest struct {
 	SnapshotID          string
 	SnapshotName        string
 	SnapshotDescription string
 }
 
-type BatchUpdateSnapshotRequest struct {
+type EcsSnapshotBatchUpdateRequest struct {
 	RegionID   string
-	UpdateInfo []BatchUpdateSnapshotUpdateInfoRequest
+	UpdateInfo []EcsSnapshotBatchUpdateUpdateInfoRequest
 }
 
-type BatchUpdateSnapshotRealResponse struct {
+type EcsSnapshotBatchUpdateRealResponse struct {
 	SnapshotIDList []string `json:"snapshotIDList,omitempty"`
 }
 
-type BatchUpdateSnapshotResponse struct {
+type EcsSnapshotBatchUpdateResponse struct {
 	SnapshotIDList []string
 }

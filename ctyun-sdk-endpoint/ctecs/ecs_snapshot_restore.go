@@ -6,26 +6,26 @@ import (
 	"net/http"
 )
 
-// DeleteSnapshotApi
-type DeleteSnapshotApi struct {
+// EcsRestoreSnapshotApi
+type EcsRestoreSnapshotApi struct {
 	ctyunsdk.CtyunRequestBuilder
 	client *ctyunsdk.CtyunClient
 }
 
-func NewDeleteSnapshotApi(client *ctyunsdk.CtyunClient) *DeleteSnapshotApi {
-	return &DeleteSnapshotApi{
+func NewEcsRestoreSnapshotApi(client *ctyunsdk.CtyunClient) *EcsRestoreSnapshotApi {
+	return &EcsRestoreSnapshotApi{
 		client: client,
 		CtyunRequestBuilder: ctyunsdk.CtyunRequestBuilder{
 			Method:  http.MethodPost,
-			UrlPath: "/v4/ecs/snapshot-delete",
+			UrlPath: "/v4/ecs/snapshot-restore",
 		},
 	}
 }
 
-func (this *DeleteSnapshotApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *DeleteSnapshotRequest) (*DeleteSnapshotResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsRestoreSnapshotApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsRestoreSnapshotRequest) (*EcsRestoreSnapshotResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&DeleteSnapshotRealRequest{
+	_, err := builder.WriteJson(&EcsRestoreSnapshotRealRequest{
 		RegionID:   req.RegionID,
 		SnapshotID: req.SnapshotID,
 	})
@@ -39,31 +39,31 @@ func (this *DeleteSnapshotApi) Do(ctx context.Context, credential ctyunsdk.Crede
 		return nil, err
 	}
 
-	var realResponse DeleteSnapshotRealResponse
+	var realResponse EcsRestoreSnapshotRealResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	return &DeleteSnapshotResponse{
+	return &EcsRestoreSnapshotResponse{
 		SnapshotID: realResponse.SnapshotID,
 	}, nil
 }
 
-type DeleteSnapshotRealRequest struct {
+type EcsRestoreSnapshotRealRequest struct {
 	RegionID   string `json:"regionID,omitempty"`
 	SnapshotID string `json:"snapshotID,omitempty"`
 }
 
-type DeleteSnapshotRequest struct {
+type EcsRestoreSnapshotRequest struct {
 	RegionID   string
 	SnapshotID string
 }
 
-type DeleteSnapshotRealResponse struct {
+type EcsRestoreSnapshotRealResponse struct {
 	SnapshotID string `json:"snapshotID,omitempty"`
 }
 
-type DeleteSnapshotResponse struct {
+type EcsRestoreSnapshotResponse struct {
 	SnapshotID string
 }

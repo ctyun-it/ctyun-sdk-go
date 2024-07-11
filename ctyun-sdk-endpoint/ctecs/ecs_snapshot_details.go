@@ -6,14 +6,14 @@ import (
 	"net/http"
 )
 
-// QuerySnapshotDetailsApi
-type QuerySnapshotDetailsApi struct {
+// EcsSnapshotDetailsApi
+type EcsSnapshotDetailsApi struct {
 	ctyunsdk.CtyunRequestBuilder
 	client *ctyunsdk.CtyunClient
 }
 
-func NewQuerySnapshotDetailsApi(client *ctyunsdk.CtyunClient) *QuerySnapshotDetailsApi {
-	return &QuerySnapshotDetailsApi{
+func NewEcsSnapshotDetailsApi(client *ctyunsdk.CtyunClient) *EcsSnapshotDetailsApi {
+	return &EcsSnapshotDetailsApi{
 		client: client,
 		CtyunRequestBuilder: ctyunsdk.CtyunRequestBuilder{
 			Method:  http.MethodGet,
@@ -22,10 +22,10 @@ func NewQuerySnapshotDetailsApi(client *ctyunsdk.CtyunClient) *QuerySnapshotDeta
 	}
 }
 
-func (this *QuerySnapshotDetailsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *QuerySnapshotDetailsRequest) (*QuerySnapshotDetailsResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsSnapshotDetailsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsSnapshotDetailsRequest) (*EcsSnapshotDetailsResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&QuerySnapshotDetailsRealRequest{
+	_, err := builder.WriteJson(&EcsSnapshotDetailsRealRequest{
 		RegionID:   req.RegionID,
 		SnapshotID: req.SnapshotID,
 	})
@@ -39,17 +39,17 @@ func (this *QuerySnapshotDetailsApi) Do(ctx context.Context, credential ctyunsdk
 		return nil, err
 	}
 
-	var realResponse QuerySnapshotDetailsRealResponse
+	var realResponse EcsSnapshotDetailsRealResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	var results []QuerySnapshotDetailsResultsResponse
+	var results []EcsSnapshotDetailsResultsResponse
 	for _, res := range realResponse.Results {
-		var members []QuerySnapshotDetailsMembersResponse
+		var members []EcsSnapshotDetailsMembersResponse
 		for _, member := range res.Members {
-			members = append(members, QuerySnapshotDetailsMembersResponse{
+			members = append(members, EcsSnapshotDetailsMembersResponse{
 				DiskType:           member.DiskType,
 				DiskID:             member.DiskID,
 				DiskName:           member.DiskName,
@@ -60,7 +60,7 @@ func (this *QuerySnapshotDetailsApi) Do(ctx context.Context, credential ctyunsdk
 				DiskSnapshotStatus: member.DiskSnapshotStatus,
 			})
 		}
-		results = append(results, QuerySnapshotDetailsResultsResponse{
+		results = append(results, EcsSnapshotDetailsResultsResponse{
 			SnapshotID:          res.SnapshotID,
 			InstanceID:          res.InstanceID,
 			InstanceName:        res.InstanceName,
@@ -80,22 +80,22 @@ func (this *QuerySnapshotDetailsApi) Do(ctx context.Context, credential ctyunsdk
 		})
 	}
 
-	return &QuerySnapshotDetailsResponse{
+	return &EcsSnapshotDetailsResponse{
 		Results: results,
 	}, nil
 }
 
-type QuerySnapshotDetailsRealRequest struct {
+type EcsSnapshotDetailsRealRequest struct {
 	RegionID   string `json:"regionID,omitempty"`
 	SnapshotID string `json:"snapshotID,omitempty"`
 }
 
-type QuerySnapshotDetailsRequest struct {
+type EcsSnapshotDetailsRequest struct {
 	RegionID   string
 	SnapshotID string
 }
 
-type QuerySnapshotDetailsMembersRealResponse struct {
+type EcsSnapshotDetailsMembersRealResponse struct {
 	DiskType           string `json:"diskType,omitempty"`
 	DiskID             string `json:"diskID,omitempty"`
 	DiskName           string `json:"diskName,omitempty"`
@@ -106,30 +106,30 @@ type QuerySnapshotDetailsMembersRealResponse struct {
 	DiskSnapshotStatus string `json:"diskSnapshotStatus,omitempty"`
 }
 
-type QuerySnapshotDetailsResultsRealResponse struct {
-	SnapshotID          string                                    `json:"snapshotID,omitempty"`
-	InstanceID          string                                    `json:"instanceID,omitempty"`
-	InstanceName        string                                    `json:"instanceName,omitempty"`
-	AzName              string                                    `json:"azName,omitempty"`
-	SnapshotName        string                                    `json:"snapshotName,omitempty"`
-	InstanceStatus      string                                    `json:"instanceStatus,omitempty"`
-	SnapshotStatus      string                                    `json:"snapshotStatus,omitempty"`
-	SnapshotDescription string                                    `json:"snapshotDescription,omitempty"`
-	ProjectID           string                                    `json:"projectID,omitempty"`
-	CreatedTime         string                                    `json:"createdTime,omitempty"`
-	UpdatedTime         string                                    `json:"updatedTime,omitempty"`
-	ImageID             string                                    `json:"imageID,omitempty"`
-	Memory              int                                       `json:"memory,omitempty"`
-	Cpu                 int                                       `json:"cpu,omitempty"`
-	FlavorID            string                                    `json:"flavorID,omitempty"`
-	Members             []QuerySnapshotDetailsMembersRealResponse `json:"members,omitempty"`
+type EcsSnapshotDetailsResultsRealResponse struct {
+	SnapshotID          string                                  `json:"snapshotID,omitempty"`
+	InstanceID          string                                  `json:"instanceID,omitempty"`
+	InstanceName        string                                  `json:"instanceName,omitempty"`
+	AzName              string                                  `json:"azName,omitempty"`
+	SnapshotName        string                                  `json:"snapshotName,omitempty"`
+	InstanceStatus      string                                  `json:"instanceStatus,omitempty"`
+	SnapshotStatus      string                                  `json:"snapshotStatus,omitempty"`
+	SnapshotDescription string                                  `json:"snapshotDescription,omitempty"`
+	ProjectID           string                                  `json:"projectID,omitempty"`
+	CreatedTime         string                                  `json:"createdTime,omitempty"`
+	UpdatedTime         string                                  `json:"updatedTime,omitempty"`
+	ImageID             string                                  `json:"imageID,omitempty"`
+	Memory              int                                     `json:"memory,omitempty"`
+	Cpu                 int                                     `json:"cpu,omitempty"`
+	FlavorID            string                                  `json:"flavorID,omitempty"`
+	Members             []EcsSnapshotDetailsMembersRealResponse `json:"members,omitempty"`
 }
 
-type QuerySnapshotDetailsRealResponse struct {
-	Results []QuerySnapshotDetailsResultsRealResponse `json:"results,omitempty"`
+type EcsSnapshotDetailsRealResponse struct {
+	Results []EcsSnapshotDetailsResultsRealResponse `json:"results,omitempty"`
 }
 
-type QuerySnapshotDetailsMembersResponse struct {
+type EcsSnapshotDetailsMembersResponse struct {
 	DiskType           string
 	DiskID             string
 	DiskName           string
@@ -140,7 +140,7 @@ type QuerySnapshotDetailsMembersResponse struct {
 	DiskSnapshotStatus string
 }
 
-type QuerySnapshotDetailsResultsResponse struct {
+type EcsSnapshotDetailsResultsResponse struct {
 	SnapshotID          string
 	InstanceID          string
 	InstanceName        string
@@ -156,9 +156,9 @@ type QuerySnapshotDetailsResultsResponse struct {
 	Memory              int
 	Cpu                 int
 	FlavorID            string
-	Members             []QuerySnapshotDetailsMembersResponse
+	Members             []EcsSnapshotDetailsMembersResponse
 }
 
-type QuerySnapshotDetailsResponse struct {
-	Results []QuerySnapshotDetailsResultsResponse
+type EcsSnapshotDetailsResponse struct {
+	Results []EcsSnapshotDetailsResultsResponse
 }

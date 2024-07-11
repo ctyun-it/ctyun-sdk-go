@@ -6,14 +6,14 @@ import (
 	"net/http"
 )
 
-// UpdateSnapshotApi
-type UpdateSnapshotApi struct {
+// EcsUpdateSnapshotApi
+type EcsUpdateSnapshotApi struct {
 	ctyunsdk.CtyunRequestBuilder
 	client *ctyunsdk.CtyunClient
 }
 
-func NewUpdateSnapshotApi(client *ctyunsdk.CtyunClient) *UpdateSnapshotApi {
-	return &UpdateSnapshotApi{
+func NewEcsUpdateSnapshotApi(client *ctyunsdk.CtyunClient) *EcsUpdateSnapshotApi {
+	return &EcsUpdateSnapshotApi{
 		client: client,
 		CtyunRequestBuilder: ctyunsdk.CtyunRequestBuilder{
 			Method:  http.MethodPost,
@@ -22,10 +22,10 @@ func NewUpdateSnapshotApi(client *ctyunsdk.CtyunClient) *UpdateSnapshotApi {
 	}
 }
 
-func (this *UpdateSnapshotApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *UpdateSnapshotRequest) (*UpdateSnapshotResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsUpdateSnapshotApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsUpdateSnapshotRequest) (*EcsUpdateSnapshotResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&UpdateSnapshotRealRequest{
+	_, err := builder.WriteJson(&EcsUpdateSnapshotRealRequest{
 		RegionID:            req.RegionID,
 		SnapshotID:          req.SnapshotID,
 		SnapshotName:        req.SnapshotName,
@@ -41,35 +41,35 @@ func (this *UpdateSnapshotApi) Do(ctx context.Context, credential ctyunsdk.Crede
 		return nil, err
 	}
 
-	var realResponse UpdateSnapshotRealResponse
+	var realResponse EcsUpdateSnapshotRealResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	return &UpdateSnapshotResponse{
+	return &EcsUpdateSnapshotResponse{
 		SnapshotID: realResponse.SnapshotID,
 	}, nil
 }
 
-type UpdateSnapshotRealRequest struct {
+type EcsUpdateSnapshotRealRequest struct {
 	RegionID            string `json:"regionID,omitempty"`
 	SnapshotID          string `json:"snapshotID,omitempty"`
 	SnapshotName        string `json:"snapshotName,omitempty"`
 	SnapshotDescription string `json:"snapshotDescription,omitempty"`
 }
 
-type UpdateSnapshotRequest struct {
+type EcsUpdateSnapshotRequest struct {
 	RegionID            string
 	SnapshotID          string
 	SnapshotName        string
 	SnapshotDescription string
 }
 
-type UpdateSnapshotRealResponse struct {
+type EcsUpdateSnapshotRealResponse struct {
 	SnapshotID string `json:"snapshotID,omitempty"`
 }
 
-type UpdateSnapshotResponse struct {
+type EcsUpdateSnapshotResponse struct {
 	SnapshotID string
 }

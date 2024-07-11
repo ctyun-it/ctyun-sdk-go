@@ -6,26 +6,26 @@ import (
 	"net/http"
 )
 
-// InstanceBackupPolicyUnbindInstancesApi
-type InstanceBackupPolicyUnbindInstancesApi struct {
+// EcsBackupPolicyBindInstancesApi
+type EcsBackupPolicyBindInstancesApi struct {
 	ctyunsdk.CtyunRequestBuilder
 	client *ctyunsdk.CtyunClient
 }
 
-func NewInstanceBackupPolicyUnbindInstancesApi(client *ctyunsdk.CtyunClient) *InstanceBackupPolicyUnbindInstancesApi {
-	return &InstanceBackupPolicyUnbindInstancesApi{
+func NewEcsBackupPolicyBindInstancesApi(client *ctyunsdk.CtyunClient) *EcsBackupPolicyBindInstancesApi {
+	return &EcsBackupPolicyBindInstancesApi{
 		client: client,
 		CtyunRequestBuilder: ctyunsdk.CtyunRequestBuilder{
 			Method:  http.MethodPost,
-			UrlPath: "/v4/ecs/backup-policy/unbind-instances",
+			UrlPath: "/v4/ecs/backup-policy/bind-instances",
 		},
 	}
 }
 
-func (this *InstanceBackupPolicyUnbindInstancesApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *InstanceBackupPolicyUnbindInstancesRequest) (*InstanceBackupPolicyUnbindInstancesResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsBackupPolicyBindInstancesApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsBackupPolicyBindInstancesRequest) (*EcsBackupPolicyBindInstancesResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&InstanceBackupPolicyUnbindInstancesRealRequest{
+	_, err := builder.WriteJson(&EcsBackupPolicyBindInstancesRealRequest{
 		RegionID:       req.RegionID,
 		PolicyID:       req.PolicyID,
 		InstanceIDList: req.InstanceIDList,
@@ -40,36 +40,36 @@ func (this *InstanceBackupPolicyUnbindInstancesApi) Do(ctx context.Context, cred
 		return nil, err
 	}
 
-	var realResponse InstanceBackupPolicyUnbindInstancesRealResponse
+	var realResponse EcsBackupPolicyBindInstancesRealResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	return &InstanceBackupPolicyUnbindInstancesResponse{
+	return &EcsBackupPolicyBindInstancesResponse{
 		PolicyID:       realResponse.PolicyID,
 		InstanceIDList: realResponse.InstanceIDList,
 	}, nil
 }
 
-type InstanceBackupPolicyUnbindInstancesRealRequest struct {
+type EcsBackupPolicyBindInstancesRealRequest struct {
 	RegionID       string `json:"regionID,omitempty"`
 	PolicyID       string `json:"policyID,omitempty"`
 	InstanceIDList string `json:"instanceIDList,omitempty"`
 }
 
-type InstanceBackupPolicyUnbindInstancesRequest struct {
+type EcsBackupPolicyBindInstancesRequest struct {
 	RegionID       string
 	PolicyID       string
 	InstanceIDList string
 }
 
-type InstanceBackupPolicyUnbindInstancesRealResponse struct {
+type EcsBackupPolicyBindInstancesRealResponse struct {
 	PolicyID       string `json:"policyID,omitempty"`
 	InstanceIDList string `json:"instanceIDList,omitempty"`
 }
 
-type InstanceBackupPolicyUnbindInstancesResponse struct {
+type EcsBackupPolicyBindInstancesResponse struct {
 	PolicyID       string
 	InstanceIDList string
 }
