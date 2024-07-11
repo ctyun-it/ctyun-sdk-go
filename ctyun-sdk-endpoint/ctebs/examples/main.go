@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+
 	ctyunsdk "github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core"
 	"github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-endpoint/ctebs"
 )
@@ -14,7 +15,7 @@ func ebsShow(credential ctyunsdk.Credential) {
 	ctx := context.TODO()
 	createRes, err := apis.EbsShowApi.Do(ctx, credential, &ctebs.EbsShowRequest{
 		RegionId: "bb9fdb42056f11eda1610242ac110002",
-		DiskId:   "83783d88-76fa-48dc-9bd4-00e1994b361d",
+		DiskId:   "21cb3822-9083-482d-95a0-fa5d33892ad8",
 	})
 
 	if err != nil {
@@ -129,9 +130,25 @@ func ebsDelete(credential ctyunsdk.Credential) {
 	fmt.Printf(string(marshal))
 }
 
+func ebsList(credential ctyunsdk.Credential) {
+	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
+	apis := ctebs.NewApis(client)
+	ctx := context.TODO()
+	createRes, err := apis.EbsListApi.Do(ctx, credential, &ctebs.EbsListRequest{
+		RegionID: "bb9fdb42056f11eda1610242ac110002",
+	})
+
+	if err != nil {
+		panic(err)
+	}
+	marshal, _ := json.Marshal(createRes)
+	fmt.Printf(string(marshal))
+}
+
 func main() {
 	credential, _ := ctyunsdk.NewCredential("ak", "sk")
 	ebsCreate(*credential)
+	ebsList(*credential)
 	ebsShow(*credential)
 	ebsChangeName(*credential)
 	ebsChangeSize(*credential)
