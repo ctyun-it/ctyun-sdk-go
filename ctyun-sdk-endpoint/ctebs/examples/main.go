@@ -146,7 +146,7 @@ func ebsList(credential ctyunsdk.Credential) {
 }
 
 func main() {
-	credential, _ := ctyunsdk.NewCredential("3dd8e284f31e4a01ba24b700a049edcb", "c5b3891475b34e3a902f1676124802e0")
+	credential, _ := ctyunsdk.NewCredential("ak", "sk")
 	ebsCreate(*credential)
 	ebsList(*credential)
 	ebsShow(*credential)
