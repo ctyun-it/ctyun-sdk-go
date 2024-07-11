@@ -698,14 +698,14 @@ func ecsFlavorFamiliesList(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func updateInstance(credential ctyunsdk.Credential) {
+func ecsUpdateInstance(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.UpdateInstanceApi.Do(context.Background(), credential, &ctecs.UpdateInstanceRequest{
+	response, err := apis.EcsUpdateInstanceApi.Do(context.Background(), credential, &ctecs.EcsUpdateInstanceRequest{
 		RegionID:    "bb9fdb42056f11eda1610242ac110002",
 		InstanceID:  "cfe4d576-4e2c-efd0-e823-250664d95d8f",
-		DisplayName: "java-sdk-ecm-1447",
+		DisplayName: "java-sdk-ecm-1448",
 	})
 
 	if err != nil {
@@ -716,11 +716,11 @@ func updateInstance(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func queryVncDetails(credential ctyunsdk.Credential) {
+func ecsVncDetails(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.QueryVncDetailsApi.Do(context.Background(), credential, &ctecs.QueryVncDetailsRequest{
+	response, err := apis.EcsVncDetailsApi.Do(context.Background(), credential, &ctecs.EcsVncDetailsRequest{
 		RegionID:   "bb9fdb42056f11eda1610242ac110002",
 		InstanceID: "cfe4d576-4e2c-efd0-e823-250664d95d8f",
 	})
@@ -733,11 +733,11 @@ func queryVncDetails(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func getVolumeStatistics(credential ctyunsdk.Credential) {
+func ecsVolumeStatistics(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.GetVolumeStatisticsApi.Do(context.Background(), credential, &ctecs.GetVolumeStatisticsRequest{
+	response, err := apis.EcsVolumeStatisticsApi.Do(context.Background(), credential, &ctecs.EcsVolumeStatisticsRequest{
 		RegionID:  "bb9fdb42056f11eda1610242ac110002",
 		ProjectID: "0",
 	})
@@ -750,19 +750,19 @@ func getVolumeStatistics(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func batchUpdateInstancesPassword(credential ctyunsdk.Credential) {
+func ecsBatchResetPassword(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	UpdatePwdInfo := make([]ctecs.BatchUpdateInstancesPasswordUpdatePwdInfoRequest, 0)
-	updatePwdInfo := ctecs.BatchUpdateInstancesPasswordUpdatePwdInfoRequest{
+	UpdatePwdInfo := make([]ctecs.EcsBatchResetPasswordUpdatePwdInfoRequest, 0)
+	updatePwdInfo := ctecs.EcsBatchResetPasswordUpdatePwdInfoRequest{
 		InstanceID:  "cfe4d576-4e2c-efd0-e823-250664d95d8f",
-		NewPassword: "Ctyun_GoSDK_1",
+		NewPassword: "Ctyun_GoSDK_2",
 	}
 
 	UpdatePwdInfo = append(UpdatePwdInfo, updatePwdInfo)
 
-	response, err := apis.BatchUpdateInstancesPasswordApi.Do(context.Background(), credential, &ctecs.BatchUpdateInstancesPasswordRequest{
+	response, err := apis.EcsBatchResetPasswordApi.Do(context.Background(), credential, &ctecs.EcsBatchResetPasswordRequest{
 		RegionID:      "bb9fdb42056f11eda1610242ac110002",
 		UpdatePwdInfo: UpdatePwdInfo,
 	})
@@ -775,11 +775,11 @@ func batchUpdateInstancesPassword(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func listInstanceBackupPolicy(credential ctyunsdk.Credential) {
+func ecsBackupPolicyListApi(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.ListInstanceBackupPolicyApi.Do(context.Background(), credential, &ctecs.ListInstanceBackupPolicyRequest{
+	response, err := apis.EcsBackupPolicyListApi.Do(context.Background(), credential, &ctecs.EcsBackupPolicyListRequest{
 		RegionID:   "bb9fdb42056f11eda1610242ac110002",
 		PolicyID:   "3e251bce0d1411efb0a10242ac110002",
 		PolicyName: "policy_test_0508",
@@ -796,11 +796,11 @@ func listInstanceBackupPolicy(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func listInstanceBackupPolicyBindInstances(credential ctyunsdk.Credential) {
+func ecsBackupPolicyListInstances(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.ListInstanceBackupPolicyBindInstancesApi.Do(context.Background(), credential, &ctecs.ListInstanceBackupPolicyBindInstancesRequest{
+	response, err := apis.EcsBackupPolicyListInstancesApi.Do(context.Background(), credential, &ctecs.EcsBackupPolicyListInstancesRequest{
 		RegionID:     "bb9fdb42056f11eda1610242ac110002",
 		PolicyID:     "3e251bce0d1411efb0a10242ac110002",
 		InstanceName: "",
@@ -816,11 +816,11 @@ func listInstanceBackupPolicyBindInstances(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func instanceBackupPolicyBindInstances(credential ctyunsdk.Credential) {
+func ecsBackupPolicyBindInstances(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.InstanceBackupPolicyBindInstancesApi.Do(context.Background(), credential, &ctecs.InstanceBackupPolicyBindInstancesRequest{
+	response, err := apis.EcsBackupPolicyBindInstancesApi.Do(context.Background(), credential, &ctecs.EcsBackupPolicyBindInstancesRequest{
 		RegionID:       "bb9fdb42056f11eda1610242ac110002",
 		PolicyID:       "3e251bce0d1411efb0a10242ac110002",
 		InstanceIDList: "4bde19ee-1e3a-bb84-9ee2-0e55de396a8e",
@@ -834,11 +834,11 @@ func instanceBackupPolicyBindInstances(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func instanceBackupPolicyUnbindInstances(credential ctyunsdk.Credential) {
+func ecsBackupPolicyUnbindInstances(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.InstanceBackupPolicyUnbindInstancesApi.Do(context.Background(), credential, &ctecs.InstanceBackupPolicyUnbindInstancesRequest{
+	response, err := apis.EcsBackupPolicyUnbindInstancesApi.Do(context.Background(), credential, &ctecs.EcsBackupPolicyUnbindInstancesRequest{
 		RegionID:       "bb9fdb42056f11eda1610242ac110002",
 		PolicyID:       "3e251bce0d1411efb0a10242ac110002",
 		InstanceIDList: "4bde19ee-1e3a-bb84-9ee2-0e55de396a8e",
@@ -852,11 +852,11 @@ func instanceBackupPolicyUnbindInstances(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func instanceBackupPolicyBindRepo(credential ctyunsdk.Credential) {
+func ecsBackupPolicyBindRepo(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.InstanceBackupPolicyBindRepoApi.Do(context.Background(), credential, &ctecs.InstanceBackupPolicyBindRepoRequest{
+	response, err := apis.EcsBackupPolicyBindRepoApi.Do(context.Background(), credential, &ctecs.EcsBackupPolicyBindRepoRequest{
 		RegionID:     "bb9fdb42056f11eda1610242ac110002",
 		RepositoryID: "98658ed6-e699-426c-af3a-f6b6343a9829",
 		PolicyID:     "3e251bce0d1411efb0a10242ac110002",
@@ -870,11 +870,11 @@ func instanceBackupPolicyBindRepo(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func instanceBackupPolicyUnbindRepo(credential ctyunsdk.Credential) {
+func ecsBackupPolicyUnbindRepo(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.InstanceBackupPolicyUnbindRepoApi.Do(context.Background(), credential, &ctecs.InstanceBackupPolicyUnbindRepoRequest{
+	response, err := apis.EcsBackupPolicyUnbindRepoApi.Do(context.Background(), credential, &ctecs.EcsBackupPolicyUnbindRepoRequest{
 		RegionID: "bb9fdb42056f11eda1610242ac110002",
 		PolicyID: "3e251bce0d1411efb0a10242ac110002",
 	})
@@ -887,11 +887,11 @@ func instanceBackupPolicyUnbindRepo(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func createSnapshot(credential ctyunsdk.Credential) {
+func ecsCreateSnapshot(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.CreateSnapshotApi.Do(context.Background(), credential, &ctecs.CreateSnapshotRequest{
+	response, err := apis.EcsCreateSnapshotApi.Do(context.Background(), credential, &ctecs.EcsCreateSnapshotRequest{
 		RegionID:     "bb9fdb42056f11eda1610242ac110002",
 		InstanceID:   "4bde19ee-1e3a-bb84-9ee2-0e55de396a8e",
 		SnapshotName: "test-go-sdk",
@@ -905,13 +905,13 @@ func createSnapshot(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func restoreSnapshot(credential ctyunsdk.Credential) {
+func ecsRestoreSnapshot(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.RestoreSnapshotApi.Do(context.Background(), credential, &ctecs.RestoreSnapshotRequest{
+	response, err := apis.EcsRestoreSnapshotApi.Do(context.Background(), credential, &ctecs.EcsRestoreSnapshotRequest{
 		RegionID:   "bb9fdb42056f11eda1610242ac110002",
-		SnapshotID: "a2c7ef3c-4290-15ed-bb6e-a03d67a46394",
+		SnapshotID: "965e8afd-8ebb-9fcd-ebf7-1c41e46f8433",
 	})
 
 	if err != nil {
@@ -922,13 +922,13 @@ func restoreSnapshot(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func updateSnapshot(credential ctyunsdk.Credential) {
+func ecsUpdateSnapshot(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.UpdateSnapshotApi.Do(context.Background(), credential, &ctecs.UpdateSnapshotRequest{
+	response, err := apis.EcsUpdateSnapshotApi.Do(context.Background(), credential, &ctecs.EcsUpdateSnapshotRequest{
 		RegionID:            "bb9fdb42056f11eda1610242ac110002",
-		SnapshotID:          "a2c7ef3c-4290-15ed-bb6e-a03d67a46394",
+		SnapshotID:          "965e8afd-8ebb-9fcd-ebf7-1c41e46f8433",
 		SnapshotName:        "napshot_update_01",
 		SnapshotDescription: "snapshot_des",
 	})
@@ -941,12 +941,12 @@ func updateSnapshot(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func batchUpdateSnapshot(credential ctyunsdk.Credential) {
+func ecsSnapshotBatchUpdate(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	UpdateInfo := make([]ctecs.BatchUpdateSnapshotUpdateInfoRequest, 0)
-	updateInfo := ctecs.BatchUpdateSnapshotUpdateInfoRequest{
+	UpdateInfo := make([]ctecs.EcsSnapshotBatchUpdateUpdateInfoRequest, 0)
+	updateInfo := ctecs.EcsSnapshotBatchUpdateUpdateInfoRequest{
 		SnapshotID:          "a2c7ef3c-4290-15ed-bb6e-a03d67a46394",
 		SnapshotName:        "snapshot_update_batch01",
 		SnapshotDescription: "snapshot_update_des",
@@ -954,7 +954,7 @@ func batchUpdateSnapshot(credential ctyunsdk.Credential) {
 
 	UpdateInfo = append(UpdateInfo, updateInfo)
 
-	response, err := apis.BatchUpdateSnapshotApi.Do(context.Background(), credential, &ctecs.BatchUpdateSnapshotRequest{
+	response, err := apis.EcsSnapshotBatchUpdateApi.Do(context.Background(), credential, &ctecs.EcsSnapshotBatchUpdateRequest{
 		RegionID:   "bb9fdb42056f11eda1610242ac110002",
 		UpdateInfo: UpdateInfo,
 	})
@@ -967,11 +967,11 @@ func batchUpdateSnapshot(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func querySnapshotList(credential ctyunsdk.Credential) {
+func ecsSnapshotList(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.QuerySnapshotListApi.Do(context.Background(), credential, &ctecs.QuerySnapshotListRequest{
+	response, err := apis.EcsSnapshotListApi.Do(context.Background(), credential, &ctecs.EcsSnapshotListRequest{
 		RegionID:       "bb9fdb42056f11eda1610242ac110002",
 		ProjectID:      "0",
 		PageNo:         1,
@@ -991,13 +991,13 @@ func querySnapshotList(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func querySnapshotDetails(credential ctyunsdk.Credential) {
+func ecsSnapshotDetails(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.QuerySnapshotDetailsApi.Do(context.Background(), credential, &ctecs.QuerySnapshotDetailsRequest{
+	response, err := apis.EcsSnapshotDetailsApi.Do(context.Background(), credential, &ctecs.EcsSnapshotDetailsRequest{
 		RegionID:   "bb9fdb42056f11eda1610242ac110002",
-		SnapshotID: "a2c7ef3c-4290-15ed-bb6e-a03d67a46394",
+		SnapshotID: "965e8afd-8ebb-9fcd-ebf7-1c41e46f8433",
 	})
 
 	if err != nil {
@@ -1008,13 +1008,13 @@ func querySnapshotDetails(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func querySnapshotStatistics(credential ctyunsdk.Credential) {
+func ecsSnapshotStatistics(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.QuerySnapshotStatisticsApi.Do(context.Background(), credential, &ctecs.QuerySnapshotStatisticsRequest{
+	response, err := apis.EcsSnapshotStatisticsApi.Do(context.Background(), credential, &ctecs.EcsSnapshotStatisticsRequest{
 		RegionID:       "bb9fdb42056f11eda1610242ac110002",
-		InstanceIDList: "a2c7ef3c-4290-15ed-bb6e-a03d67a46394",
+		InstanceIDList: "4bde19ee-1e3a-bb84-9ee2-0e55de396a8e",
 	})
 
 	if err != nil {
@@ -1025,13 +1025,13 @@ func querySnapshotStatistics(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func querySnapshotStatus(credential ctyunsdk.Credential) {
+func ecsSnapshotStatus(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.QuerySnapshotStatusApi.Do(context.Background(), credential, &ctecs.QuerySnapshotStatusRequest{
+	response, err := apis.EcsSnapshotStatusApi.Do(context.Background(), credential, &ctecs.EcsSnapshotStatusRequest{
 		RegionID:   "bb9fdb42056f11eda1610242ac110002",
-		SnapshotID: "a2c7ef3c-4290-15ed-bb6e-a03d67a46394",
+		SnapshotID: "965e8afd-8ebb-9fcd-ebf7-1c41e46f8433",
 	})
 
 	if err != nil {
@@ -1042,11 +1042,11 @@ func querySnapshotStatus(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func deleteSnapshot(credential ctyunsdk.Credential) {
+func ecsSnapshotDelete(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
-	response, err := apis.DeleteSnapshotApi.Do(context.Background(), credential, &ctecs.DeleteSnapshotRequest{
+	response, err := apis.EcsSnapshotDeleteApi.Do(context.Background(), credential, &ctecs.EcsSnapshotDeleteRequest{
 		RegionID:   "bb9fdb42056f11eda1610242ac110002",
 		SnapshotID: "a2c7ef3c-4290-15ed-bb6e-a03d67a46394",
 	})
@@ -1730,41 +1730,6 @@ func ecsShareInterfaceAttach(credential ctyunsdk.Credential) {
 	jsonstr, _ := json.Marshal(response)
 	fmt.Println(string(jsonstr))
 }
-func ecsDelegateAttach(credential ctyunsdk.Credential) {
-	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
-
-	apis := ctecs.NewApis(client)
-	response, err := apis.EcsDelegateAttachApi.Do(context.Background(), credential, &ctecs.EcsDelegateAttachRequest{
-		RegionID:     "bb9fdb42056f11eda1610242ac110002",
-		InstanceID:   "4bde19ee-1e3a-bb84-9ee2-0e55de396a8e",
-		DelegateName: "testdelegate01",
-	})
-
-	if err != nil {
-		fmt.Printf("错误信息为：%s", err)
-		return
-	}
-
-	jsonstr, _ := json.Marshal(response)
-	fmt.Println(string(jsonstr))
-}
-func ecsDelegateDelete(credential ctyunsdk.Credential) {
-	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
-
-	apis := ctecs.NewApis(client)
-	response, err := apis.EcsDelegateDeleteApi.Do(context.Background(), credential, &ctecs.EcsDelegateDeleteRequest{
-		RegionID:   "88f8888888dd88ec888888888d888d8b",
-		InstanceID: "8d8e8888-8ed8-88b8-88cb-888f8b8cf8fa",
-	})
-
-	if err != nil {
-		fmt.Printf("错误信息为：%s", err)
-		return
-	}
-
-	jsonstr, _ := json.Marshal(response)
-	fmt.Println(string(jsonstr))
-}
 
 func ecsBackupCreateInstance(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
@@ -1823,25 +1788,25 @@ func ecsBackupCreateInstance(credential ctyunsdk.Credential) {
 
 func main() {
 	credential, _ := ctyunsdk.NewCredential("ak", "sk")
-	deleteSnapshot(*credential)
-	querySnapshotStatus(*credential)
-	querySnapshotStatistics(*credential)
-	querySnapshotDetails(*credential)
-	querySnapshotList(*credential)
-	batchUpdateSnapshot(*credential)
-	updateSnapshot(*credential)
-	restoreSnapshot(*credential)
-	createSnapshot(*credential)
-	instanceBackupPolicyUnbindRepo(*credential)
-	instanceBackupPolicyBindRepo(*credential)
-	instanceBackupPolicyUnbindInstances(*credential)
-	instanceBackupPolicyBindInstances(*credential)
-	listInstanceBackupPolicyBindInstances(*credential)
-	listInstanceBackupPolicy(*credential)
-	batchUpdateInstancesPassword(*credential)
-	getVolumeStatistics(*credential)
-	queryVncDetails(*credential)
-	updateInstance(*credential)
+	ecsSnapshotDelete(*credential)
+	ecsSnapshotStatus(*credential)
+	ecsSnapshotStatistics(*credential)
+	ecsSnapshotDetails(*credential)
+	ecsSnapshotList(*credential)
+	ecsSnapshotBatchUpdate(*credential)
+	ecsUpdateSnapshot(*credential)
+	ecsRestoreSnapshot(*credential)
+	ecsCreateSnapshot(*credential)
+	ecsBackupPolicyUnbindRepo(*credential)
+	ecsBackupPolicyBindRepo(*credential)
+	ecsBackupPolicyUnbindInstances(*credential)
+	ecsBackupPolicyBindInstances(*credential)
+	ecsBackupPolicyListInstances(*credential)
+	ecsBackupPolicyListApi(*credential)
+	ecsBatchResetPassword(*credential)
+	ecsVolumeStatistics(*credential)
+	ecsVncDetails(*credential)
+	ecsUpdateInstance(*credential)
 	ecsFlavorFamiliesList(*credential)
 	ecsAvailabilityZonesDetails(*credential)
 	ecsListInstances(*credential)
@@ -1852,8 +1817,6 @@ func main() {
 	ecsUpdateNetworkSpec(*credential)
 	ecsBatchStopInstances(*credential)
 	ecsBackupCreateInstance(*credential)
-	ecsDelegateDelete(*credential)
-	ecsDelegateAttach(*credential)
 	ecsShareInterfaceAttach(*credential)
 	ecsEipDelete(*credential)
 	ecsEipCreate(*credential)

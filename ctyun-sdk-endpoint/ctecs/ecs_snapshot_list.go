@@ -6,14 +6,14 @@ import (
 	"net/http"
 )
 
-// QuerySnapshotListApi
-type QuerySnapshotListApi struct {
+// EcsSnapshotListApi
+type EcsSnapshotListApi struct {
 	ctyunsdk.CtyunRequestBuilder
 	client *ctyunsdk.CtyunClient
 }
 
-func NewQuerySnapshotListApi(client *ctyunsdk.CtyunClient) *QuerySnapshotListApi {
-	return &QuerySnapshotListApi{
+func NewEcsSnapshotListApi(client *ctyunsdk.CtyunClient) *EcsSnapshotListApi {
+	return &EcsSnapshotListApi{
 		client: client,
 		CtyunRequestBuilder: ctyunsdk.CtyunRequestBuilder{
 			Method:  http.MethodPost,
@@ -22,10 +22,10 @@ func NewQuerySnapshotListApi(client *ctyunsdk.CtyunClient) *QuerySnapshotListApi
 	}
 }
 
-func (this *QuerySnapshotListApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *QuerySnapshotListRequest) (*QuerySnapshotListResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsSnapshotListApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsSnapshotListRequest) (*EcsSnapshotListResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&QuerySnapshotListRealRequest{
+	_, err := builder.WriteJson(&EcsSnapshotListRealRequest{
 		RegionID:       req.RegionID,
 		ProjectID:      req.ProjectID,
 		PageNo:         req.PageNo,
@@ -46,17 +46,17 @@ func (this *QuerySnapshotListApi) Do(ctx context.Context, credential ctyunsdk.Cr
 		return nil, err
 	}
 
-	var realResponse QuerySnapshotListRealResponse
+	var realResponse EcsSnapshotListRealResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	var results []QuerySnapshotListResultsResponse
+	var results []EcsSnapshotListResultsResponse
 	for _, res := range realResponse.Results {
-		var members []QuerySnapshotListMembersResponse
+		var members []EcsSnapshotListMembersResponse
 		for _, member := range res.Members {
-			members = append(members, QuerySnapshotListMembersResponse{
+			members = append(members, EcsSnapshotListMembersResponse{
 				DiskType:           member.DiskType,
 				DiskID:             member.DiskID,
 				DiskName:           member.DiskName,
@@ -67,7 +67,7 @@ func (this *QuerySnapshotListApi) Do(ctx context.Context, credential ctyunsdk.Cr
 				DiskSnapshotStatus: member.DiskSnapshotStatus,
 			})
 		}
-		results = append(results, QuerySnapshotListResultsResponse{
+		results = append(results, EcsSnapshotListResultsResponse{
 			SnapshotID:          res.SnapshotID,
 			InstanceID:          res.InstanceID,
 			InstanceName:        res.InstanceName,
@@ -87,7 +87,7 @@ func (this *QuerySnapshotListApi) Do(ctx context.Context, credential ctyunsdk.Cr
 		})
 	}
 
-	return &QuerySnapshotListResponse{
+	return &EcsSnapshotListResponse{
 		CurrentCount: realResponse.CurrentCount,
 		TotalCount:   realResponse.TotalCount,
 		TotalPage:    realResponse.TotalPage,
@@ -95,7 +95,7 @@ func (this *QuerySnapshotListApi) Do(ctx context.Context, credential ctyunsdk.Cr
 	}, nil
 }
 
-type QuerySnapshotListRealRequest struct {
+type EcsSnapshotListRealRequest struct {
 	RegionID       string `json:"regionID,omitempty"`
 	ProjectID      string `json:"projectID,omitempty"`
 	PageNo         int    `json:"pageNo,omitempty"`
@@ -107,7 +107,7 @@ type QuerySnapshotListRealRequest struct {
 	SnapshotName   string `json:"snapshotName,omitempty"`
 }
 
-type QuerySnapshotListRequest struct {
+type EcsSnapshotListRequest struct {
 	RegionID       string
 	ProjectID      string
 	PageNo         int
@@ -119,7 +119,7 @@ type QuerySnapshotListRequest struct {
 	SnapshotName   string
 }
 
-type QuerySnapshotListMembersRealResponse struct {
+type EcsSnapshotListMembersRealResponse struct {
 	DiskType           string `json:"diskType,omitempty"`
 	DiskID             string `json:"diskID,omitempty"`
 	DiskName           string `json:"diskName,omitempty"`
@@ -130,33 +130,33 @@ type QuerySnapshotListMembersRealResponse struct {
 	DiskSnapshotStatus string `json:"diskSnapshotStatus,omitempty"`
 }
 
-type QuerySnapshotListResultsRealResponse struct {
-	SnapshotID          string                                 `json:"snapshotID,omitempty"`
-	InstanceID          string                                 `json:"instanceID,omitempty"`
-	InstanceName        string                                 `json:"instanceName,omitempty"`
-	AzName              string                                 `json:"azName,omitempty"`
-	SnapshotName        string                                 `json:"snapshotName,omitempty"`
-	InstanceStatus      string                                 `json:"instanceStatus,omitempty"`
-	SnapshotStatus      string                                 `json:"snapshotStatus,omitempty"`
-	SnapshotDescription string                                 `json:"snapshotDescription,omitempty"`
-	ProjectID           string                                 `json:"projectID,omitempty"`
-	CreatedTime         string                                 `json:"createdTime,omitempty"`
-	UpdatedTime         string                                 `json:"updatedTime,omitempty"`
-	ImageID             string                                 `json:"imageID,omitempty"`
-	Memory              int                                    `json:"memory,omitempty"`
-	Cpu                 int                                    `json:"cpu,omitempty"`
-	FlavorID            string                                 `json:"flavorID,omitempty"`
-	Members             []QuerySnapshotListMembersRealResponse `json:"members,omitempty"`
+type EcsSnapshotListResultsRealResponse struct {
+	SnapshotID          string                               `json:"snapshotID,omitempty"`
+	InstanceID          string                               `json:"instanceID,omitempty"`
+	InstanceName        string                               `json:"instanceName,omitempty"`
+	AzName              string                               `json:"azName,omitempty"`
+	SnapshotName        string                               `json:"snapshotName,omitempty"`
+	InstanceStatus      string                               `json:"instanceStatus,omitempty"`
+	SnapshotStatus      string                               `json:"snapshotStatus,omitempty"`
+	SnapshotDescription string                               `json:"snapshotDescription,omitempty"`
+	ProjectID           string                               `json:"projectID,omitempty"`
+	CreatedTime         string                               `json:"createdTime,omitempty"`
+	UpdatedTime         string                               `json:"updatedTime,omitempty"`
+	ImageID             string                               `json:"imageID,omitempty"`
+	Memory              int                                  `json:"memory,omitempty"`
+	Cpu                 int                                  `json:"cpu,omitempty"`
+	FlavorID            string                               `json:"flavorID,omitempty"`
+	Members             []EcsSnapshotListMembersRealResponse `json:"members,omitempty"`
 }
 
-type QuerySnapshotListRealResponse struct {
-	CurrentCount int                                    `json:"currentCount,omitempty"`
-	TotalCount   int                                    `json:"totalCount,omitempty"`
-	TotalPage    int                                    `json:"totalPage,omitempty"`
-	Results      []QuerySnapshotListResultsRealResponse `json:"results,omitempty"`
+type EcsSnapshotListRealResponse struct {
+	CurrentCount int                                  `json:"currentCount,omitempty"`
+	TotalCount   int                                  `json:"totalCount,omitempty"`
+	TotalPage    int                                  `json:"totalPage,omitempty"`
+	Results      []EcsSnapshotListResultsRealResponse `json:"results,omitempty"`
 }
 
-type QuerySnapshotListMembersResponse struct {
+type EcsSnapshotListMembersResponse struct {
 	DiskType           string
 	DiskID             string
 	DiskName           string
@@ -167,7 +167,7 @@ type QuerySnapshotListMembersResponse struct {
 	DiskSnapshotStatus string
 }
 
-type QuerySnapshotListResultsResponse struct {
+type EcsSnapshotListResultsResponse struct {
 	SnapshotID          string
 	InstanceID          string
 	InstanceName        string
@@ -183,12 +183,12 @@ type QuerySnapshotListResultsResponse struct {
 	Memory              int
 	Cpu                 int
 	FlavorID            string
-	Members             []QuerySnapshotListMembersResponse
+	Members             []EcsSnapshotListMembersResponse
 }
 
-type QuerySnapshotListResponse struct {
+type EcsSnapshotListResponse struct {
 	CurrentCount int
 	TotalCount   int
 	TotalPage    int
-	Results      []QuerySnapshotListResultsResponse
+	Results      []EcsSnapshotListResultsResponse
 }

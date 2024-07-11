@@ -6,14 +6,14 @@ import (
 	"net/http"
 )
 
-// QuerySnapshotStatisticsApi
-type QuerySnapshotStatisticsApi struct {
+// EcsSnapshotStatisticsApi
+type EcsSnapshotStatisticsApi struct {
 	ctyunsdk.CtyunRequestBuilder
 	client *ctyunsdk.CtyunClient
 }
 
-func NewQuerySnapshotStatisticsApi(client *ctyunsdk.CtyunClient) *QuerySnapshotStatisticsApi {
-	return &QuerySnapshotStatisticsApi{
+func NewEcsSnapshotStatisticsApi(client *ctyunsdk.CtyunClient) *EcsSnapshotStatisticsApi {
+	return &EcsSnapshotStatisticsApi{
 		client: client,
 		CtyunRequestBuilder: ctyunsdk.CtyunRequestBuilder{
 			Method:  http.MethodPost,
@@ -22,10 +22,10 @@ func NewQuerySnapshotStatisticsApi(client *ctyunsdk.CtyunClient) *QuerySnapshotS
 	}
 }
 
-func (this *QuerySnapshotStatisticsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *QuerySnapshotStatisticsRequest) (*QuerySnapshotStatisticsResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsSnapshotStatisticsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsSnapshotStatisticsRequest) (*[]EcsSnapshotStatisticsResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&QuerySnapshotStatisticsRealRequest{
+	_, err := builder.WriteJson(&EcsSnapshotStatisticsRealRequest{
 		RegionID:       req.RegionID,
 		InstanceIDList: req.InstanceIDList,
 	})
@@ -39,34 +39,38 @@ func (this *QuerySnapshotStatisticsApi) Do(ctx context.Context, credential ctyun
 		return nil, err
 	}
 
-	var realResponse QuerySnapshotStatisticsRealResponse
+	var realResponse []EcsSnapshotStatisticsResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
+	for _, i := range realResponse {
+		realResponse = append(realResponse, EcsSnapshotStatisticsResponse{
+			InstanceID: i.InstanceID,
+			Count:      i.Count,
+		})
+	}
 
-	return &QuerySnapshotStatisticsResponse{
-		InstanceID: realResponse.InstanceID,
-		Count:      realResponse.Count,
-	}, nil
+	return &realResponse, nil
+
 }
 
-type QuerySnapshotStatisticsRealRequest struct {
+type EcsSnapshotStatisticsRealRequest struct {
 	RegionID       string `json:"regionID,omitempty"`
 	InstanceIDList string `json:"instanceIDList,omitempty"`
 }
 
-type QuerySnapshotStatisticsRequest struct {
+type EcsSnapshotStatisticsRequest struct {
 	RegionID       string
 	InstanceIDList string
 }
 
-type QuerySnapshotStatisticsRealResponse struct {
+type EcsSnapshotStatisticsRealResponse struct {
 	InstanceID string `json:"instanceID,omitempty"`
 	Count      int    `json:"count,omitempty"`
 }
 
-type QuerySnapshotStatisticsResponse struct {
+type EcsSnapshotStatisticsResponse struct {
 	InstanceID string
 	Count      int
 }

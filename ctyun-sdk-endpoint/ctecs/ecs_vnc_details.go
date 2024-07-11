@@ -6,14 +6,14 @@ import (
 	"net/http"
 )
 
-// QueryVncDetailsApi
-type QueryVncDetailsApi struct {
+// EcsVncDetailsApi
+type EcsVncDetailsApi struct {
 	ctyunsdk.CtyunRequestBuilder
 	client *ctyunsdk.CtyunClient
 }
 
-func NewQueryVncDetailsApi(client *ctyunsdk.CtyunClient) *QueryVncDetailsApi {
-	return &QueryVncDetailsApi{
+func NewEcsVncDetailsApi(client *ctyunsdk.CtyunClient) *EcsVncDetailsApi {
+	return &EcsVncDetailsApi{
 		client: client,
 		CtyunRequestBuilder: ctyunsdk.CtyunRequestBuilder{
 			Method:  http.MethodGet,
@@ -22,10 +22,10 @@ func NewQueryVncDetailsApi(client *ctyunsdk.CtyunClient) *QueryVncDetailsApi {
 	}
 }
 
-func (this *QueryVncDetailsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *QueryVncDetailsRequest) (*QueryVncDetailsResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsVncDetailsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsVncDetailsRequest) (*EcsVncDetailsResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&QueryVncDetailsRealRequest{
+	_, err := builder.WriteJson(&EcsVncDetailsRealRequest{
 		RegionID:   req.RegionID,
 		InstanceID: req.InstanceID,
 	})
@@ -39,31 +39,31 @@ func (this *QueryVncDetailsApi) Do(ctx context.Context, credential ctyunsdk.Cred
 		return nil, err
 	}
 
-	var realResponse QueryVncDetailsRealResponse
+	var realResponse EcsVncDetailsRealResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	return &QueryVncDetailsResponse{
+	return &EcsVncDetailsResponse{
 		Token: realResponse.Token,
 	}, nil
 }
 
-type QueryVncDetailsRealRequest struct {
+type EcsVncDetailsRealRequest struct {
 	RegionID   string `json:"regionID,omitempty"`
 	InstanceID string `json:"instanceID,omitempty"`
 }
 
-type QueryVncDetailsRequest struct {
+type EcsVncDetailsRequest struct {
 	RegionID   string
 	InstanceID string
 }
 
-type QueryVncDetailsRealResponse struct {
+type EcsVncDetailsRealResponse struct {
 	Token string `json:"token,omitempty"`
 }
 
-type QueryVncDetailsResponse struct {
+type EcsVncDetailsResponse struct {
 	Token string
 }
