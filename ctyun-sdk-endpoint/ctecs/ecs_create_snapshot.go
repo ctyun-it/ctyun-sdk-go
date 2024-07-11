@@ -6,14 +6,14 @@ import (
 	"net/http"
 )
 
-// CreateSnapshotApi
-type CreateSnapshotApi struct {
+// EcsCreateSnapshotApi
+type EcsCreateSnapshotApi struct {
 	ctyunsdk.CtyunRequestBuilder
 	client *ctyunsdk.CtyunClient
 }
 
-func NewCreateSnapshotApi(client *ctyunsdk.CtyunClient) *CreateSnapshotApi {
-	return &CreateSnapshotApi{
+func NewEcsCreateSnapshotApi(client *ctyunsdk.CtyunClient) *EcsCreateSnapshotApi {
+	return &EcsCreateSnapshotApi{
 		client: client,
 		CtyunRequestBuilder: ctyunsdk.CtyunRequestBuilder{
 			Method:  http.MethodPost,
@@ -22,10 +22,10 @@ func NewCreateSnapshotApi(client *ctyunsdk.CtyunClient) *CreateSnapshotApi {
 	}
 }
 
-func (this *CreateSnapshotApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *CreateSnapshotRequest) (*CreateSnapshotResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsCreateSnapshotApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsCreateSnapshotRequest) (*EcsCreateSnapshotResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&CreateSnapshotRealRequest{
+	_, err := builder.WriteJson(&EcsCreateSnapshotRealRequest{
 		RegionID:     req.RegionID,
 		InstanceID:   req.InstanceID,
 		SnapshotName: req.SnapshotName,
@@ -40,13 +40,13 @@ func (this *CreateSnapshotApi) Do(ctx context.Context, credential ctyunsdk.Crede
 		return nil, err
 	}
 
-	var realResponse CreateSnapshotRealResponse
+	var realResponse EcsCreateSnapshotRealResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	return &CreateSnapshotResponse{
+	return &EcsCreateSnapshotResponse{
 		JobID:          realResponse.JobID,
 		SnapshotStatus: realResponse.SnapshotStatus,
 		InstanceID:     realResponse.InstanceID,
@@ -57,19 +57,19 @@ func (this *CreateSnapshotApi) Do(ctx context.Context, credential ctyunsdk.Crede
 	}, nil
 }
 
-type CreateSnapshotRealRequest struct {
+type EcsCreateSnapshotRealRequest struct {
 	RegionID     string `json:"regionID,omitempty"`
 	InstanceID   string `json:"instanceID,omitempty"`
 	SnapshotName string `json:"snapshotName,omitempty"`
 }
 
-type CreateSnapshotRequest struct {
+type EcsCreateSnapshotRequest struct {
 	RegionID     string
 	InstanceID   string
 	SnapshotName string
 }
 
-type CreateSnapshotRealResponse struct {
+type EcsCreateSnapshotRealResponse struct {
 	JobID          string `json:"jobID,omitempty"`
 	SnapshotStatus string `json:"snapshotStatus,omitempty"`
 	InstanceID     string `json:"instanceID,omitempty"`
@@ -79,7 +79,7 @@ type CreateSnapshotRealResponse struct {
 	SnapshotName   string `json:"snapshotName,omitempty"`
 }
 
-type CreateSnapshotResponse struct {
+type EcsCreateSnapshotResponse struct {
 	JobID          string
 	SnapshotStatus string
 	InstanceID     string

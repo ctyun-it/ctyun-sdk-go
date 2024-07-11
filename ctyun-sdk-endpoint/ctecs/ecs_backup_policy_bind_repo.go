@@ -6,14 +6,14 @@ import (
 	"net/http"
 )
 
-// InstanceBackupPolicyBindRepoApi
-type InstanceBackupPolicyBindRepoApi struct {
+// EcsBackupPolicyBindRepoApi
+type EcsBackupPolicyBindRepoApi struct {
 	ctyunsdk.CtyunRequestBuilder
 	client *ctyunsdk.CtyunClient
 }
 
-func NewInstanceBackupPolicyBindRepoApi(client *ctyunsdk.CtyunClient) *InstanceBackupPolicyBindRepoApi {
-	return &InstanceBackupPolicyBindRepoApi{
+func NewEcsBackupPolicyBindRepoApi(client *ctyunsdk.CtyunClient) *EcsBackupPolicyBindRepoApi {
+	return &EcsBackupPolicyBindRepoApi{
 		client: client,
 		CtyunRequestBuilder: ctyunsdk.CtyunRequestBuilder{
 			Method:  http.MethodPost,
@@ -22,10 +22,10 @@ func NewInstanceBackupPolicyBindRepoApi(client *ctyunsdk.CtyunClient) *InstanceB
 	}
 }
 
-func (this *InstanceBackupPolicyBindRepoApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *InstanceBackupPolicyBindRepoRequest) (*InstanceBackupPolicyBindRepoResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsBackupPolicyBindRepoApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsBackupPolicyBindRepoRequest) (*EcsBackupPolicyBindRepoResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&InstanceBackupPolicyBindRepoRealRequest{
+	_, err := builder.WriteJson(&EcsBackupPolicyBindRepoRealRequest{
 		RegionID:     req.RegionID,
 		RepositoryID: req.RepositoryID,
 		PolicyID:     req.PolicyID,
@@ -40,36 +40,36 @@ func (this *InstanceBackupPolicyBindRepoApi) Do(ctx context.Context, credential 
 		return nil, err
 	}
 
-	var realResponse InstanceBackupPolicyBindRepoRealResponse
+	var realResponse EcsBackupPolicyBindRepoRealResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	return &InstanceBackupPolicyBindRepoResponse{
+	return &EcsBackupPolicyBindRepoResponse{
 		RepositoryID: realResponse.RepositoryID,
 		PolicyID:     realResponse.PolicyID,
 	}, nil
 }
 
-type InstanceBackupPolicyBindRepoRealRequest struct {
+type EcsBackupPolicyBindRepoRealRequest struct {
 	RegionID     string `json:"regionID,omitempty"`
 	RepositoryID string `json:"repositoryID,omitempty"`
 	PolicyID     string `json:"policyID,omitempty"`
 }
 
-type InstanceBackupPolicyBindRepoRequest struct {
+type EcsBackupPolicyBindRepoRequest struct {
 	RegionID     string
 	RepositoryID string
 	PolicyID     string
 }
 
-type InstanceBackupPolicyBindRepoRealResponse struct {
+type EcsBackupPolicyBindRepoRealResponse struct {
 	RepositoryID string `json:"repositoryID,omitempty"`
 	PolicyID     string `json:"policyID,omitempty"`
 }
 
-type InstanceBackupPolicyBindRepoResponse struct {
+type EcsBackupPolicyBindRepoResponse struct {
 	RepositoryID string
 	PolicyID     string
 }

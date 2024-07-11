@@ -6,14 +6,14 @@ import (
 	"net/http"
 )
 
-// GetVolumeStatisticsApi
-type GetVolumeStatisticsApi struct {
+// EcsVolumeStatisticsApi
+type EcsVolumeStatisticsApi struct {
 	ctyunsdk.CtyunRequestBuilder
 	client *ctyunsdk.CtyunClient
 }
 
-func NewGetVolumeStatisticsApi(client *ctyunsdk.CtyunClient) *GetVolumeStatisticsApi {
-	return &GetVolumeStatisticsApi{
+func NewEcsVolumeStatisticsApi(client *ctyunsdk.CtyunClient) *EcsVolumeStatisticsApi {
+	return &EcsVolumeStatisticsApi{
 		client: client,
 		CtyunRequestBuilder: ctyunsdk.CtyunRequestBuilder{
 			Method:  http.MethodGet,
@@ -22,10 +22,10 @@ func NewGetVolumeStatisticsApi(client *ctyunsdk.CtyunClient) *GetVolumeStatistic
 	}
 }
 
-func (this *GetVolumeStatisticsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *GetVolumeStatisticsRequest) (*GetVolumeStatisticsResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsVolumeStatisticsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsVolumeStatisticsRequest) (*EcsVolumeStatisticsResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&GetVolumeStatisticsRealRequest{
+	_, err := builder.WriteJson(&EcsVolumeStatisticsRealRequest{
 		RegionID:  req.RegionID,
 		ProjectID: req.ProjectID,
 	})
@@ -39,14 +39,14 @@ func (this *GetVolumeStatisticsApi) Do(ctx context.Context, credential ctyunsdk.
 		return nil, err
 	}
 
-	var realResponse GetVolumeStatisticsRealResponse
+	var realResponse EcsVolumeStatisticsRealResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	return &GetVolumeStatisticsResponse{
-		VolumeStatistics: GetVolumeStatisticsVolumeStatisticsResponse{
+	return &EcsVolumeStatisticsResponse{
+		VolumeStatistics: EcsVolumeStatisticsVolumeStatisticsResponse{
 			TotalCount:    realResponse.VolumeStatistics.TotalCount,
 			RootDiskCount: realResponse.VolumeStatistics.RootDiskCount,
 			DataDiskCount: realResponse.VolumeStatistics.DataDiskCount,
@@ -57,17 +57,17 @@ func (this *GetVolumeStatisticsApi) Do(ctx context.Context, credential ctyunsdk.
 	}, nil
 }
 
-type GetVolumeStatisticsRealRequest struct {
+type EcsVolumeStatisticsRealRequest struct {
 	RegionID  string `json:"regionID,omitempty"`
 	ProjectID string `json:"projectID,omitempty"`
 }
 
-type GetVolumeStatisticsRequest struct {
+type EcsVolumeStatisticsRequest struct {
 	RegionID  string
 	ProjectID string
 }
 
-type GetVolumeStatisticsVolumeStatisticsRealResponse struct {
+type EcsVolumeStatisticsVolumeStatisticsRealResponse struct {
 	TotalCount    int `json:"totalCount,omitempty"`
 	RootDiskCount int `json:"rootDiskCount,omitempty"`
 	DataDiskCount int `json:"dataDiskCount,omitempty"`
@@ -76,11 +76,11 @@ type GetVolumeStatisticsVolumeStatisticsRealResponse struct {
 	DataDiskSize  int `json:"dataDiskSize,omitempty"`
 }
 
-type GetVolumeStatisticsRealResponse struct {
-	VolumeStatistics GetVolumeStatisticsVolumeStatisticsRealResponse `json:"volumeStatistics,omitempty"`
+type EcsVolumeStatisticsRealResponse struct {
+	VolumeStatistics EcsVolumeStatisticsVolumeStatisticsRealResponse `json:"volumeStatistics,omitempty"`
 }
 
-type GetVolumeStatisticsVolumeStatisticsResponse struct {
+type EcsVolumeStatisticsVolumeStatisticsResponse struct {
 	TotalCount    int
 	RootDiskCount int
 	DataDiskCount int
@@ -89,6 +89,6 @@ type GetVolumeStatisticsVolumeStatisticsResponse struct {
 	DataDiskSize  int
 }
 
-type GetVolumeStatisticsResponse struct {
-	VolumeStatistics GetVolumeStatisticsVolumeStatisticsResponse
+type EcsVolumeStatisticsResponse struct {
+	VolumeStatistics EcsVolumeStatisticsVolumeStatisticsResponse
 }

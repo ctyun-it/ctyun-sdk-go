@@ -6,14 +6,14 @@ import (
 	"net/http"
 )
 
-// QuerySnapshotStatusApi
-type QuerySnapshotStatusApi struct {
+// EcsSnapshotStatusApi
+type EcsSnapshotStatusApi struct {
 	ctyunsdk.CtyunRequestBuilder
 	client *ctyunsdk.CtyunClient
 }
 
-func NewQuerySnapshotStatusApi(client *ctyunsdk.CtyunClient) *QuerySnapshotStatusApi {
-	return &QuerySnapshotStatusApi{
+func NewEcsSnapshotStatusApi(client *ctyunsdk.CtyunClient) *EcsSnapshotStatusApi {
+	return &EcsSnapshotStatusApi{
 		client: client,
 		CtyunRequestBuilder: ctyunsdk.CtyunRequestBuilder{
 			Method:  http.MethodGet,
@@ -22,10 +22,10 @@ func NewQuerySnapshotStatusApi(client *ctyunsdk.CtyunClient) *QuerySnapshotStatu
 	}
 }
 
-func (this *QuerySnapshotStatusApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *QuerySnapshotStatusRequest) (*QuerySnapshotStatusResponse, ctyunsdk.CtyunRequestError) {
+func (this *EcsSnapshotStatusApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsSnapshotStatusRequest) (*EcsSnapshotStatusResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&QuerySnapshotStatusRealRequest{
+	_, err := builder.WriteJson(&EcsSnapshotStatusRealRequest{
 		RegionID:   req.RegionID,
 		SnapshotID: req.SnapshotID,
 	})
@@ -39,31 +39,31 @@ func (this *QuerySnapshotStatusApi) Do(ctx context.Context, credential ctyunsdk.
 		return nil, err
 	}
 
-	var realResponse QuerySnapshotStatusRealResponse
+	var realResponse EcsSnapshotStatusRealResponse
 	err = response.ParseByStandardModelWithCheck(&realResponse)
 	if err != nil {
 		return nil, err
 	}
 
-	return &QuerySnapshotStatusResponse{
+	return &EcsSnapshotStatusResponse{
 		SnapshotStatus: realResponse.SnapshotStatus,
 	}, nil
 }
 
-type QuerySnapshotStatusRealRequest struct {
+type EcsSnapshotStatusRealRequest struct {
 	RegionID   string `json:"regionID,omitempty"`
 	SnapshotID string `json:"snapshotID,omitempty"`
 }
 
-type QuerySnapshotStatusRequest struct {
+type EcsSnapshotStatusRequest struct {
 	RegionID   string
 	SnapshotID string
 }
 
-type QuerySnapshotStatusRealResponse struct {
+type EcsSnapshotStatusRealResponse struct {
 	SnapshotStatus string `json:"snapshotStatus,omitempty"`
 }
 
-type QuerySnapshotStatusResponse struct {
+type EcsSnapshotStatusResponse struct {
 	SnapshotStatus string
 }
