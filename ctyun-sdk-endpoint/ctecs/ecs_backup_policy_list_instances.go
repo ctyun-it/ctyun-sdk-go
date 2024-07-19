@@ -75,16 +75,16 @@ type EcsBackupPolicyListInstancesRealRequest struct {
 	RegionID     string `json:"regionID,omitempty"`
 	PolicyID     string `json:"policyID,omitempty"`
 	InstanceName string `json:"instanceName,omitempty"`
-	PageNo       int    `json:"pageNo,omitempty"`
-	PageSize     int    `json:"pageSize,omitempty"`
+	PageNo       *int   `json:"pageNo,omitempty"`
+	PageSize     *int   `json:"pageSize,omitempty"`
 }
 
 type EcsBackupPolicyListInstancesRequest struct {
 	RegionID     string
 	PolicyID     string
 	InstanceName string
-	PageNo       int
-	PageSize     int
+	PageNo       *int
+	PageSize     *int
 }
 
 type EcsBackupPolicyListInstancesInstancePoliciesRealResponse struct {

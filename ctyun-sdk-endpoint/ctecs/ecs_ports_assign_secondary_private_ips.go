@@ -56,7 +56,7 @@ type EcsPortsAssignSecondaryPrivateIpsRealRequest struct {
 	RegionID                string   `json:"regionID,omitempty"`
 	NetworkInterfaceID      string   `json:"networkInterfaceID,omitempty"`
 	SecondaryPrivateIps     []string `json:"secondaryPrivateIps,omitempty"`
-	SecondaryPrivateIpCount int      `json:"secondaryPrivateIpCount,omitempty"`
+	SecondaryPrivateIpCount *int     `json:"secondaryPrivateIpCount,omitempty"`
 }
 
 type EcsPortsAssignSecondaryPrivateIpsRequest struct {
@@ -64,7 +64,7 @@ type EcsPortsAssignSecondaryPrivateIpsRequest struct {
 	RegionID                string
 	NetworkInterfaceID      string
 	SecondaryPrivateIps     []string
-	SecondaryPrivateIpCount int
+	SecondaryPrivateIpCount *int
 }
 
 type EcsPortsAssignSecondaryPrivateIpsRealResponse struct {

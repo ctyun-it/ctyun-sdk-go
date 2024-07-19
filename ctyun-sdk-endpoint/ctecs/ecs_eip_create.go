@@ -67,9 +67,9 @@ type EcsEipCreateRealRequest struct {
 	RegionID          string `json:"regionID,omitempty"`
 	ProjectID         string `json:"projectID,omitempty"`
 	CycleType         string `json:"cycleType,omitempty"`
-	CycleCount        int    `json:"cycleCount,omitempty"`
+	CycleCount        *int   `json:"cycleCount,omitempty"`
 	Name              string `json:"name,omitempty"`
-	Bandwidth         int    `json:"bandwidth,omitempty"`
+	Bandwidth         *int   `json:"bandwidth,omitempty"`
 	BandwidthID       string `json:"bandwidthID,omitempty"`
 	DemandBillingType string `json:"demandBillingType,omitempty"`
 }
@@ -79,9 +79,9 @@ type EcsEipCreateRequest struct {
 	RegionID          string
 	ProjectID         string
 	CycleType         string
-	CycleCount        int
+	CycleCount        *int
 	Name              string
-	Bandwidth         int
+	Bandwidth         *int
 	BandwidthID       string
 	DemandBillingType string
 }

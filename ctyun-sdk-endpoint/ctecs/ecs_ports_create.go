@@ -77,7 +77,7 @@ type EcsPortsCreateRealRequest struct {
 	PrimaryPrivateIp        string   `json:"primaryPrivateIp,omitempty"`
 	Ipv6Addresses           []string `json:"ipv6Addresses,omitempty"`
 	SecurityGroupIds        []string `json:"securityGroupIds,omitempty"`
-	SecondaryPrivateIpCount int      `json:"secondaryPrivateIpCount,omitempty"`
+	SecondaryPrivateIpCount *int     `json:"secondaryPrivateIpCount,omitempty"`
 	SecondaryPrivateIps     []string `json:"secondaryPrivateIps,omitempty"`
 	Name                    string   `json:"name,omitempty"`
 	Description             string   `json:"description,omitempty"`
@@ -90,7 +90,7 @@ type EcsPortsCreateRequest struct {
 	PrimaryPrivateIp        string
 	Ipv6Addresses           []string
 	SecurityGroupIds        []string
-	SecondaryPrivateIpCount int
+	SecondaryPrivateIpCount *int
 	SecondaryPrivateIps     []string
 	Name                    string
 	Description             string

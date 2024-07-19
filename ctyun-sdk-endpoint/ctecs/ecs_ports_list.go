@@ -31,9 +31,9 @@ func (this *EcsPortsListApi) Do(ctx context.Context, credential ctyunsdk.Credent
 		AddParam("vpcID", req.VpcID).
 		AddParam("deviceID", req.DeviceID).
 		AddParam("subnetID", req.SubnetID).
-		AddParam("pageNumber", strconv.Itoa(req.PageNumber)).
-		AddParam("pageNo", strconv.Itoa(req.PageNo)).
-		AddParam("pageSize", strconv.Itoa(req.PageSize))
+		AddParam("pageNumber", strconv.Itoa(*req.PageNumber)).
+		AddParam("pageNo", strconv.Itoa(*req.PageNo)).
+		AddParam("pageSize", strconv.Itoa(*req.PageSize))
 
 	response, err := this.client.RequestToEndpoint(ctx, EndpointNameCtecs, builder)
 	if err != nil {
@@ -77,9 +77,9 @@ type EcsPortsListRealRequest struct {
 	VpcID      string `json:"vpcID,omitempty"`
 	DeviceID   string `json:"deviceID,omitempty"`
 	SubnetID   string `json:"subnetID,omitempty"`
-	PageNumber int    `json:"pageNumber,omitempty"`
-	PageSize   int    `json:"pageSize,omitempty"`
-	PageNo     int    `json:"pageNo,omitempty"`
+	PageNumber *int   `json:"pageNumber,omitempty"`
+	PageSize   *int   `json:"pageSize,omitempty"`
+	PageNo     *int   `json:"pageNo,omitempty"`
 }
 
 type EcsPortsListRequest struct {
@@ -87,9 +87,9 @@ type EcsPortsListRequest struct {
 	VpcID      string
 	DeviceID   string
 	SubnetID   string
-	PageNumber int
-	PageSize   int
-	PageNo     int
+	PageNumber *int
+	PageSize   *int
+	PageNo     *int
 }
 
 type EcsPortsListAssociatedEipRealResponse struct {

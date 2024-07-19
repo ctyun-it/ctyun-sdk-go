@@ -59,14 +59,14 @@ func (this *EcsUpdateNetworkSpecApi) Do(ctx context.Context, credential ctyunsdk
 type EcsUpdateNetworkSpecRealRequest struct {
 	RegionID    string `json:"regionID,omitempty"`
 	InstanceID  string `json:"instanceID,omitempty"`
-	Bandwidth   int    `json:"bandwidth,omitempty"`
+	Bandwidth   *int   `json:"bandwidth,omitempty"`
 	ClientToken string `json:"clientToken,omitempty"`
 }
 
 type EcsUpdateNetworkSpecRequest struct {
 	RegionID    string
 	InstanceID  string
-	Bandwidth   int
+	Bandwidth   *int
 	ClientToken string
 }
 
