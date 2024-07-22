@@ -78,16 +78,16 @@ type EcsFlavorListByFamiliesRealRequest struct {
 	RegionID     string `json:"regionID,omitempty"`
 	AzName       string `json:"azName,omitempty"`
 	FlavorFamily string `json:"flavorFamily,omitempty"`
-	PageNo       int    `json:"pageNo,omitempty"`
-	PageSize     int    `json:"pageSize,omitempty"`
+	PageNo       *int   `json:"pageNo,omitempty"`
+	PageSize     *int   `json:"pageSize,omitempty"`
 }
 
 type EcsFlavorListByFamiliesRequest struct {
 	RegionID     string
 	AzName       string
 	FlavorFamily string
-	PageNo       int
-	PageSize     int
+	PageNo       *int
+	PageSize     *int
 }
 
 type EcsFlavorListByFamiliesFlavorRealResponse struct {

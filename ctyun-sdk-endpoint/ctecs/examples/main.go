@@ -75,11 +75,23 @@ func ecsBatchCreateInstance(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 	apis := ctecs.NewApis(client)
 
+	nic_is_master := true
+	data_disk_size1 := 20
+	image_type := 1
+	boot_disk_size := 40
+	on_demand := false
+	bandwidth := 1
+	cycle_count := 1
+	auto_renew_status := 0
+	pay_voucher_price := 114.00
+	monitor_service := true
+	order_count := 2
+
 	networkCardList := make([]ctecs.EcsBatchCreateInstancesNetworkCardListRequest, 0)
 	network_card := ctecs.EcsBatchCreateInstancesNetworkCardListRequest{
 		NicName:  "nic-test",
-		IsMaster: true,
-		SubnetID: "subnet-4c4333pc67",
+		IsMaster: &nic_is_master,
+		SubnetID: "subnet-ps8hjw16vt",
 		FixedIP:  "192.168.0.26",
 	}
 	networkCardList = append(networkCardList, network_card)
@@ -88,7 +100,7 @@ func ecsBatchCreateInstance(credential ctyunsdk.Credential) {
 		DiskMode: "VBD",
 		DiskName: "data-disk-test",
 		DiskType: "SATA",
-		DiskSize: 20,
+		DiskSize: &data_disk_size1,
 	}
 	dataDiskList = append(dataDiskList, data_disk)
 	labelList := make([]ctecs.EcsBatchCreateInstancesLabelListRequest, 0)
@@ -103,29 +115,29 @@ func ecsBatchCreateInstance(credential ctyunsdk.Credential) {
 		AzName:          "cn-huadong1-jsnj1A-public-ctcloud",
 		InstanceName:    "go-sdk-test",
 		DisplayName:     "go-sdk-test",
-		FlavorID:        "b6779240-5649-803b-4a4c-8fc59d310ecf",
-		ImageType:       1,
-		ImageID:         "939c131f-a986-420f-a3b2-57feb9995e47",
+		FlavorID:        "5622ce59-da34-cb43-ca0d-eef2a51475b3",
+		ImageType:       &image_type,
+		ImageID:         "b78812b0-ff50-4816-b58f-5c4fbc230b08",
 		BootDiskType:    "SATA",
-		BootDiskSize:    40,
-		VpcID:           "vpc-chz0ilszsp",
-		OnDemand:        false,
+		BootDiskSize:    &boot_disk_size,
+		VpcID:           "vpc-riwxr5wpju",
+		OnDemand:        &on_demand,
 		NetworkCardList: networkCardList,
 		ExtIP:           "1",
 		ProjectID:       "0",
 		SecGroupList:    []string{"sg-bqv0t629h6", "sg-bqv0t629h6"},
 		DataDiskList:    dataDiskList,
 		IpVersion:       "ipv4",
-		Bandwidth:       1,
+		Bandwidth:       &bandwidth,
 		UserPassword:    "******",
-		CycleCount:      1,
+		CycleCount:      &cycle_count,
 		CycleType:       "MONTH",
-		AutoRenewStatus: 0,
+		AutoRenewStatus: &auto_renew_status,
 		UserData:        "YmF0Y2hDcmVhdGVUZXN0MDgwMw==",
-		PayVoucherPrice: 114.00,
+		PayVoucherPrice: &pay_voucher_price,
 		LabelList:       labelList,
-		MonitorService:  true,
-		OrderCount:      1,
+		MonitorService:  &monitor_service,
+		OrderCount:      &order_count,
 	})
 	if err != nil {
 		fmt.Printf("错误信息为：%s", err)
@@ -163,6 +175,10 @@ func ecsListInstances(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 	apis := ctecs.NewApis(client)
 
+	page_no := 1
+	page_size := 10
+	asc := true
+
 	labelList := make([]ctecs.EcsListInstancesLabelListRequest, 0)
 	label_list := ctecs.EcsListInstancesLabelListRequest{
 		LabelKey:   "label-key-test",
@@ -174,18 +190,18 @@ func ecsListInstances(credential ctyunsdk.Credential) {
 		RegionID:        "bb9fdb42056f11eda1610242ac110002",
 		AzName:          "cn-huadong1-jsnj1A-public-ctcloud",
 		ProjectID:       "0",
-		PageNo:          1,
-		PageSize:        10,
+		PageNo:          &page_no,
+		PageSize:        &page_size,
 		State:           "active",
 		Keyword:         "ecm-57fd",
 		InstanceName:    "ecm-57fd",
 		InstanceIDList:  "0fec78e4-1889-803f-b2a7-515c1c40b788",
 		SecurityGroupID: "sg-tdzefke02r",
 		VpcID:           "vpc-chz0ilszsp",
-		//ResourceID:      "d57ec586da6c497ea1e1b04e08ad9a8b",
-		//LabelList:       labelList,
-		Sort: "expiredTime",
-		Asc:  true,
+		ResourceID:      "d57ec586da6c497ea1e1b04e08ad9a8b",
+		LabelList:       labelList,
+		Sort:            "expiredTime",
+		Asc:             &asc,
 	})
 	if err != nil {
 		fmt.Printf("错误信息为：%s", err)
@@ -572,11 +588,12 @@ func batchUnsubscribeInstances(credential ctyunsdk.Credential) {
 func ecsBatchStopInstances(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
+	force := false
 	apis := ctecs.NewApis(client)
 	response, err := apis.EcsBatchStopInstancesApi.Do(context.Background(), credential, &ctecs.EcsBatchStopInstancesRequest{
-		RegionID:       "bb9fdb42056f11eda1610242ac110002",
-		InstanceIDList: "adc614e0-e838-d73f-0618-a6d51d09070a,5ae83d07-0389-22fd-def8-995090ee3d5a",
-		Force:          true,
+		RegionID:       "81f7728662dd11ec810800155d307d5b",
+		InstanceIDList: "ede48d23-12b7-ac5d-be29-5286313e4408",
+		Force:          &force,
 	})
 
 	if err != nil {
@@ -591,11 +608,12 @@ func ecsBatchStopInstances(credential ctyunsdk.Credential) {
 func ecsUpdateNetworkSpec(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
+	bandwidth := 12
 	apis := ctecs.NewApis(client)
 	response, err := apis.EcsUpdateNetworkSpecApi.Do(context.Background(), credential, &ctecs.EcsUpdateNetworkSpecRequest{
-		RegionID:    "bb9fdb42056f11eda1610242ac110002",
-		InstanceID:  "93366056-b08f-4b9b-8e47-c50d92f2d4fd",
-		Bandwidth:   100,
+		RegionID:    "81f7728662dd11ec810800155d307d5b",
+		InstanceID:  "0eaf32fc-2644-5055-caaf-d8a584257dca",
+		Bandwidth:   &bandwidth,
 		ClientToken: "ea1b9004-f450-11ec-8d4f-00155de3fd73",
 	})
 
@@ -611,12 +629,13 @@ func ecsUpdateNetworkSpec(credential ctyunsdk.Credential) {
 func ecsUpdateInstanceSpec(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
+	bandwidth := 2
 	apis := ctecs.NewApis(client)
 	response, err := apis.EcsUpdateInstanceSpecApi.Do(context.Background(), credential, &ctecs.EcsUpdateInstanceSpecRequest{
-		RegionID:   "bb9fdb42056f11eda1610242ac110002",
-		InstanceID: "93366056-b08f-4b9b-8e47-c50d92f2d4fd",
-		Bandwidth:  2,
-		//FlavorID:    "00ebe3aa-aac0-1d99-0b9e-4d391c5e06d5",
+		RegionID:    "bb9fdb42056f11eda1610242ac110002",
+		InstanceID:  "93366056-b08f-4b9b-8e47-c50d92f2d4fd",
+		Bandwidth:   &bandwidth,
+		FlavorID:    "00ebe3aa-aac0-1d99-0b9e-4d391c5e06d5",
 		ClientToken: "bdfse888-8ed8-88b8-88cb-888f8b8cf8fa",
 	})
 
@@ -650,13 +669,15 @@ func ecsGpuDriverList(credential ctyunsdk.Credential) {
 func ecsFlavorListByFamilies(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
+	page_no := 1
+	page_size := 10
 	apis := ctecs.NewApis(client)
 	response, err := apis.EcsFlavorListByFamiliesApi.Do(context.Background(), credential, &ctecs.EcsFlavorListByFamiliesRequest{
 		RegionID:     "bb9fdb42056f11eda1610242ac110002",
 		AzName:       "cn-huadong1-jsnj1A-public-ctcloud",
 		FlavorFamily: "s7",
-		PageNo:       1,
-		PageSize:     10,
+		PageNo:       &page_no,
+		PageSize:     &page_size,
 	})
 
 	if err != nil {
@@ -777,15 +798,16 @@ func ecsBatchResetPassword(credential ctyunsdk.Credential) {
 }
 func ecsBackupPolicyListApi(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
-
+	page_no := 1
+	page_size := 10
 	apis := ctecs.NewApis(client)
 	response, err := apis.EcsBackupPolicyListApi.Do(context.Background(), credential, &ctecs.EcsBackupPolicyListRequest{
 		RegionID:   "bb9fdb42056f11eda1610242ac110002",
 		PolicyID:   "3e251bce0d1411efb0a10242ac110002",
 		PolicyName: "policy_test_0508",
 		ProjectID:  "0",
-		PageNo:     1,
-		PageSize:   10,
+		PageNo:     &page_no,
+		PageSize:   &page_size,
 	})
 
 	if err != nil {
@@ -798,14 +820,15 @@ func ecsBackupPolicyListApi(credential ctyunsdk.Credential) {
 }
 func ecsBackupPolicyListInstances(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
-
+	page_no := 1
+	page_size := 10
 	apis := ctecs.NewApis(client)
 	response, err := apis.EcsBackupPolicyListInstancesApi.Do(context.Background(), credential, &ctecs.EcsBackupPolicyListInstancesRequest{
 		RegionID:     "bb9fdb42056f11eda1610242ac110002",
 		PolicyID:     "3e251bce0d1411efb0a10242ac110002",
 		InstanceName: "",
-		PageNo:       1,
-		PageSize:     10,
+		PageNo:       &page_no,
+		PageSize:     &page_size,
 	})
 
 	if err != nil {
@@ -969,13 +992,14 @@ func ecsSnapshotBatchUpdate(credential ctyunsdk.Credential) {
 }
 func ecsSnapshotList(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
-
+	page_no := 1
+	page_size := 10
 	apis := ctecs.NewApis(client)
 	response, err := apis.EcsSnapshotListApi.Do(context.Background(), credential, &ctecs.EcsSnapshotListRequest{
 		RegionID:       "bb9fdb42056f11eda1610242ac110002",
 		ProjectID:      "0",
-		PageNo:         1,
-		PageSize:       10,
+		PageNo:         &page_no,
+		PageSize:       &page_size,
 		InstanceID:     "4bde19ee-1e3a-bb84-9ee2-0e55de396a8e",
 		SnapshotStatus: "",
 		SnapshotID:     "",
@@ -1064,12 +1088,15 @@ func ecsVmDiskLatestMetricData(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
+	page_no := 1
+	page := 1
+	page_size := 10
 	response, err := apis.EcsVmDiskLatestMetricDataApi.Do(context.Background(), credential, &ctecs.EcsVmDiskLatestMetricDataRequest{
 		RegionID:     "bb9fdb42056f11eda1610242ac110002",
 		DeviceIDList: []string{"0fec78e4-1889-803f-b2a7-515c1c40b788"},
-		PageNo:       1,
-		Page:         1,
-		PageSize:     10,
+		PageNo:       &page_no,
+		Page:         &page,
+		PageSize:     &page_size,
 	})
 
 	if err != nil {
@@ -1085,12 +1112,15 @@ func ecsVmCpuLatestMetricData(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
+	page_no := 1
+	page := 1
+	page_size := 10
 	response, err := apis.EcsVmCpuLatestMetricDataApi.Do(context.Background(), credential, &ctecs.EcsVmCpuLatestMetricDataRequest{
 		RegionID:     "bb9fdb42056f11eda1610242ac110002",
 		DeviceIDList: []string{"0fec78e4-1889-803f-b2a7-515c1c40b788"},
-		PageNo:       1,
-		Page:         1,
-		PageSize:     10,
+		PageNo:       &page_no,
+		Page:         &page,
+		PageSize:     &page_size,
 	})
 
 	if err != nil {
@@ -1106,15 +1136,19 @@ func ecsVmNetworkHistoryMetricData(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
+	period := 14400
+	page_no := 1
+	page := 1
+	page_size := 10
 	response, err := apis.EcsVmNetworkHistoryMetricDataApi.Do(context.Background(), credential, &ctecs.EcsVmNetworkHistoryMetricDataRequest{
 		RegionID:     "bb9fdb42056f11eda1610242ac110002",
-		DeviceIDList: []string{"e2a016ec-543b-08f1-38c4-13d9dac55b5a"},
-		Period:       14400,
+		DeviceIDList: []string{"0fec78e4-1889-803f-b2a7-515c1c40b788"},
+		Period:       &period,
 		StartTime:    "1717402682",
 		EndTime:      "1717575482",
-		PageNo:       1,
-		Page:         1,
-		PageSize:     10,
+		PageNo:       &page_no,
+		Page:         &page,
+		PageSize:     &page_size,
 	})
 
 	if err != nil {
@@ -1130,15 +1164,19 @@ func ecsVmMemHistoryMetricData(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
+	period := 14400
+	page_no := 1
+	page := 1
+	page_size := 10
 	response, err := apis.EcsVmMemHistoryMetricDataApi.Do(context.Background(), credential, &ctecs.EcsVmMemHistoryMetricDataRequest{
 		RegionID:     "bb9fdb42056f11eda1610242ac110002",
-		DeviceIDList: []string{"e2a016ec-543b-08f1-38c4-13d9dac55b5a"},
-		Period:       14400,
+		DeviceIDList: []string{"0fec78e4-1889-803f-b2a7-515c1c40b788"},
+		Period:       &period,
 		StartTime:    "1717402682",
 		EndTime:      "1717575482",
-		PageNo:       1,
-		Page:         1,
-		PageSize:     10,
+		PageNo:       &page_no,
+		Page:         &page,
+		PageSize:     &page_size,
 	})
 
 	if err != nil {
@@ -1153,15 +1191,19 @@ func ecsVmDiskHistoryMetricData(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
+	period := 14400
+	page_no := 1
+	page := 1
+	page_size := 10
 	response, err := apis.EcsVmDiskHistoryMetricDataApi.Do(context.Background(), credential, &ctecs.EcsVmDiskHistoryMetricDataRequest{
 		RegionID:     "bb9fdb42056f11eda1610242ac110002",
 		DeviceIDList: []string{"e2a016ec-543b-08f1-38c4-13d9dac55b5a"},
-		Period:       14400,
+		Period:       &period,
 		StartTime:    "1717402682",
 		EndTime:      "1717575482",
-		PageNo:       1,
-		Page:         1,
-		PageSize:     10,
+		PageNo:       &page_no,
+		Page:         &page,
+		PageSize:     &page_size,
 	})
 
 	if err != nil {
@@ -1176,15 +1218,19 @@ func ecsVmCpuHistoryMetricData(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
+	period := 14400
+	page_no := 1
+	page := 1
+	page_size := 10
 	response, err := apis.EcsVmCpuHistoryMetricDataApi.Do(context.Background(), credential, &ctecs.EcsVmCpuHistoryMetricDataRequest{
 		RegionID:     "bb9fdb42056f11eda1610242ac110002",
 		DeviceIDList: []string{"e2a016ec-543b-08f1-38c4-13d9dac55b5a"},
-		Period:       14400,
+		Period:       &period,
 		StartTime:    "1717402682",
 		EndTime:      "1717575482",
-		PageNo:       1,
-		Page:         1,
-		PageSize:     10,
+		PageNo:       &page_no,
+		Page:         &page,
+		PageSize:     &page_size,
 	})
 
 	if err != nil {
@@ -1314,10 +1360,12 @@ func ecsBackupList(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
+	page_no := 1
+	page_size := 10
 	response, err := apis.EcsBackupListApi.Do(context.Background(), credential, &ctecs.EcsBackupListRequest{
 		RegionID:             "bb9fdb42056f11eda1610242ac110002",
-		PageNo:               1,
-		PageSize:             10,
+		PageNo:               &page_no,
+		PageSize:             &page_size,
 		InstanceID:           "de70ef00-1ea0-459a-b74d-b06272561a32",
 		RepositoryID:         "de70ef00-1ea0-459a-b74d-b06272561a32",
 		InstanceBackupID:     "ed48dc25-d6bb-48e6-b202-3e36ee6321a3",
@@ -1451,6 +1499,7 @@ func ecsPortsCreate(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
+	secondary_private_ip_count := 1
 	response, err := apis.EcsPortsCreateApi.Do(context.Background(), credential, &ctecs.EcsPortsCreateRequest{
 		ClientToken:             "ports_create061801",
 		RegionID:                "bb9fdb42056f11eda1610242ac110002",
@@ -1458,7 +1507,7 @@ func ecsPortsCreate(credential ctyunsdk.Credential) {
 		PrimaryPrivateIp:        "172.16.0.141",
 		Ipv6Addresses:           []string{"240e:978:497c:ec00:cd74:fd9d:c45d:4131"},
 		SecurityGroupIds:        []string{"sg-n7nu88xfbq"},
-		SecondaryPrivateIpCount: 1,
+		SecondaryPrivateIpCount: &secondary_private_ip_count,
 		SecondaryPrivateIps:     []string{"172.16.0.210"},
 		Name:                    "nic-test01",
 		Description:             "dec-test",
@@ -1515,14 +1564,17 @@ func ecsPortsList(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
+	page_number := 1
+	page_size := 10
+	page_no := 1
 	response, err := apis.EcsPortsListApi.Do(context.Background(), credential, &ctecs.EcsPortsListRequest{
 		RegionID:   "bb9fdb42056f11eda1610242ac110002",
 		VpcID:      "vpc-r5i4zghgvq",
 		DeviceID:   "a628a7d9-ef97-3b16-8a0a-4a794fcdxxxx",
 		SubnetID:   "subnet-r5i4zghgvq",
-		PageNumber: 1,
-		PageSize:   10,
-		PageNo:     1,
+		PageNumber: &page_number,
+		PageSize:   &page_size,
+		PageNo:     &page_no,
 	})
 
 	if err != nil {
@@ -1554,6 +1606,7 @@ func ecsPortsAttach(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
+	instance_type := 3
 	response, err := apis.EcsPortsAttachApi.Do(context.Background(), credential, &ctecs.EcsPortsAttachRequest{
 		ClientToken:        "attach_test01",
 		RegionID:           "bb9fdb42056f11eda1610242ac110002",
@@ -1561,7 +1614,7 @@ func ecsPortsAttach(credential ctyunsdk.Credential) {
 		ProjectID:          "0",
 		NetworkInterfaceID: "port-vfa9afga2b",
 		InstanceID:         "4bde19ee-1e3a-bb84-9ee2-0e55de396a8e",
-		InstanceType:       3,
+		InstanceType:       &instance_type,
 	})
 
 	if err != nil {
@@ -1595,12 +1648,13 @@ func ecsPortsAssignIpv6(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
+	ipv6_addresses_count := 1
 	response, err := apis.EcsPortsAssignIpv6Api.Do(context.Background(), credential, &ctecs.EcsPortsAssignIpv6Request{
 		ClientToken:        "assign-ipv6-01",
 		RegionID:           "bb9fdb42056f11eda1610242ac110002",
 		NetworkInterfaceID: "port-vfa9afga2b",
-		Ipv6AddressesCount: 1,
-		//Ipv6Addresses:      []string{""},
+		Ipv6AddressesCount: &ipv6_addresses_count,
+		Ipv6Addresses:      []string{""},
 	})
 
 	if err != nil {
@@ -1634,11 +1688,12 @@ func ecsPortsAssignSecondaryPrivateIps(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
+	secondary_private_ip_count := 1
 	response, err := apis.EcsPortsAssignSecondaryPrivateIpsApi.Do(context.Background(), credential, &ctecs.EcsPortsAssignSecondaryPrivateIpsRequest{
 		ClientToken:             "assign-secondary-private-ips-01",
 		RegionID:                "bb9fdb42056f11eda1610242ac110002",
 		NetworkInterfaceID:      "port-vfa9afga2b",
-		SecondaryPrivateIpCount: 1,
+		SecondaryPrivateIpCount: &secondary_private_ip_count,
 	})
 
 	if err != nil {
@@ -1672,14 +1727,16 @@ func ecsEipCreate(credential ctyunsdk.Credential) {
 	client := ctyunsdk.EnvOf(ctyunsdk.EnvironmentProd)
 
 	apis := ctecs.NewApis(client)
+	cycle_count := 1
+	band_width := 5
 	response, err := apis.EcsEipCreateApi.Do(context.Background(), credential, &ctecs.EcsEipCreateRequest{
 		ClientToken:       "create-eip-test",
 		RegionID:          "bb9fdb42056f11eda1610242ac110002",
 		ProjectID:         "0",
 		CycleType:         "month",
-		CycleCount:        1,
+		CycleCount:        &cycle_count,
 		Name:              "eip-name",
-		Bandwidth:         5,
+		Bandwidth:         &band_width,
 		BandwidthID:       "bandwidth-7hzv449r2j",
 		DemandBillingType: "bandwidth",
 	})
@@ -1748,6 +1805,11 @@ func ecsBackupCreateInstance(credential ctyunsdk.Credential) {
 		LabelValue: "label-value-test",
 	}
 	labelList = append(labelList, label)
+	on_demand := false
+	band_width := 50
+	cycle_count := 1
+	auto_renew_status := 0
+	monitor_service := true
 	response, err := apis.EcsBackupCreateInstanceApi.Do(context.Background(), credential, &ctecs.EcsBackupCreateInstanceRequest{
 		ClientToken:      "ecs-backup-create-instance-test-061901",
 		RegionID:         "bb9fdb42056f11eda1610242ac110002",
@@ -1757,11 +1819,11 @@ func ecsBackupCreateInstance(credential ctyunsdk.Credential) {
 		InstanceBackupID: "e718f4b2-0ff2-e486-b322-ea206fbce240",
 		FlavorID:         "34e1b6f6-e974-1575-20b2-172ba0e0bf83",
 		VpcID:            "vpc-chz0ilszsp",
-		OnDemand:         false,
+		OnDemand:         &on_demand,
 		NetworkCardList:  networkCardList,
 		ExtIP:            "1",
 		IpVersion:        "ipv4",
-		Bandwidth:        50,
+		Bandwidth:        &band_width,
 		ProjectID:        "0",
 		Ipv6AddressID:    "",
 		SecGroupList:     []string{"sg-ku5edgbitc"},
@@ -1769,13 +1831,13 @@ func ecsBackupCreateInstance(credential ctyunsdk.Credential) {
 		AffinityGroupID:  "",
 		KeyPairID:        "",
 		UserPassword:     "******",
-		CycleCount:       1,
+		CycleCount:       &cycle_count,
 		CycleType:        "MONTH",
-		AutoRenewStatus:  0,
+		AutoRenewStatus:  &auto_renew_status,
 		UserData:         "YmF0Y2hDcmVhdGVUZXN0MDgwMw==",
 		PayVoucherPrice:  1819.50,
 		LabelList:        labelList,
-		MonitorService:   true,
+		MonitorService:   &monitor_service,
 	})
 	if err != nil {
 		fmt.Printf("错误信息为：%s", err)

@@ -91,8 +91,8 @@ type EcsBackupPolicyListRealRequest struct {
 	PolicyID   string `json:"policyID,omitempty"`
 	PolicyName string `json:"policyName,omitempty"`
 	ProjectID  string `json:"projectID,omitempty"`
-	PageNo     int    `json:"pageNo,omitempty"`
-	PageSize   int    `json:"pageSize,omitempty"`
+	PageNo     *int   `json:"pageNo,omitempty"`
+	PageSize   *int   `json:"pageSize,omitempty"`
 }
 
 type EcsBackupPolicyListRequest struct {
@@ -100,8 +100,8 @@ type EcsBackupPolicyListRequest struct {
 	PolicyID   string
 	PolicyName string
 	ProjectID  string
-	PageNo     int
-	PageSize   int
+	PageNo     *int
+	PageSize   *int
 }
 
 type EcsBackupPolicyListRepositoryListRealResponse struct {

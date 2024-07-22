@@ -92,23 +92,23 @@ func (this *EcsVmNetworkHistoryMetricDataApi) Do(ctx context.Context, credential
 type EcsVmNetworkHistoryMetricDataRealRequest struct {
 	RegionID     string   `json:"regionID,omitempty"`
 	DeviceIDList []string `json:"deviceIDList,omitempty"`
-	Period       int      `json:"period,omitempty"`
+	Period       *int     `json:"period,omitempty"`
 	StartTime    string   `json:"startTime,omitempty"`
 	EndTime      string   `json:"endTime,omitempty"`
-	PageNo       int      `json:"pageNo,omitempty"`
-	Page         int      `json:"page,omitempty"`
-	PageSize     int      `json:"pageSize,omitempty"`
+	PageNo       *int     `json:"pageNo,omitempty"`
+	Page         *int     `json:"page,omitempty"`
+	PageSize     *int     `json:"pageSize,omitempty"`
 }
 
 type EcsVmNetworkHistoryMetricDataRequest struct {
 	RegionID     string
 	DeviceIDList []string
-	Period       int
+	Period       *int
 	StartTime    string
 	EndTime      string
-	PageNo       int
-	Page         int
-	PageSize     int
+	PageNo       *int
+	Page         *int
+	PageSize     *int
 }
 
 type EcsVmNetworkHistoryMetricDataAggregateListItemValueRealResponse struct {

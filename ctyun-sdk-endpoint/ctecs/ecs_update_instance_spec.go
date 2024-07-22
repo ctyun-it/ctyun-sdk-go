@@ -60,7 +60,7 @@ func (this *EcsUpdateInstanceSpecApi) Do(ctx context.Context, credential ctyunsd
 type EcsUpdateInstanceSpecRealRequest struct {
 	RegionID    string `json:"regionID,omitempty"`
 	InstanceID  string `json:"instanceID,omitempty"`
-	Bandwidth   int    `json:"bandwidth,omitempty"`
+	Bandwidth   *int   `json:"bandwidth,omitempty"`
 	FlavorID    string `json:"flavorID,omitempty"`
 	ClientToken string `json:"clientToken,omitempty"`
 }
@@ -68,7 +68,7 @@ type EcsUpdateInstanceSpecRealRequest struct {
 type EcsUpdateInstanceSpecRequest struct {
 	RegionID    string
 	InstanceID  string
-	Bandwidth   int
+	Bandwidth   *int
 	FlavorID    string
 	ClientToken string
 }

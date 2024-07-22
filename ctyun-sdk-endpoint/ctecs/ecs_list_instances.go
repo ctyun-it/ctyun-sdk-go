@@ -124,8 +124,8 @@ type EcsListInstancesRealRequest struct {
 	RegionID        string                                 `json:"regionID"`
 	AzName          string                                 `json:"azName,omitempty"`
 	ProjectID       string                                 `json:"projectID,omitempty"`
-	PageNo          int                                    `json:"pageNo,omitempty"`
-	PageSize        int                                    `json:"pageSize,omitempty"`
+	PageNo          *int                                   `json:"pageNo,omitempty"`
+	PageSize        *int                                   `json:"pageSize,omitempty"`
 	State           string                                 `json:"state,omitempty"`
 	Keyword         string                                 `json:"keyword,omitempty"`
 	InstanceName    string                                 `json:"instanceName,omitempty"`
@@ -135,7 +135,7 @@ type EcsListInstancesRealRequest struct {
 	ResourceID      string                                 `json:"resourceID,omitempty"`
 	LabelList       []EcsListInstancesLabelListRealRequest `json:"labelList,omitempty"`
 	Sort            string                                 `json:"sort,omitempty"`
-	Asc             bool                                   `json:"asc,omitempty"`
+	Asc             *bool                                  `json:"asc,omitempty"`
 }
 
 type EcsListInstancesLabelListRequest struct {
@@ -147,8 +147,8 @@ type EcsListInstancesRequest struct {
 	RegionID        string
 	AzName          string
 	ProjectID       string
-	PageNo          int
-	PageSize        int
+	PageNo          *int
+	PageSize        *int
 	State           string
 	Keyword         string
 	InstanceName    string
@@ -158,7 +158,7 @@ type EcsListInstancesRequest struct {
 	ResourceID      string
 	LabelList       []EcsListInstancesLabelListRequest
 	Sort            string
-	Asc             bool
+	Asc             *bool
 }
 
 type EcsListInstancesAddressListRealResponse struct {

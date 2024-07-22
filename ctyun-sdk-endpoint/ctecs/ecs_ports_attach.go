@@ -60,7 +60,7 @@ type EcsPortsAttachRealRequest struct {
 	ProjectID          string `json:"projectID,omitempty"`
 	NetworkInterfaceID string `json:"networkInterfaceID,omitempty"`
 	InstanceID         string `json:"instanceID,omitempty"`
-	InstanceType       int    `json:"instanceType,omitempty"`
+	InstanceType       *int   `json:"instanceType,omitempty"`
 }
 
 type EcsPortsAttachRequest struct {
@@ -70,7 +70,7 @@ type EcsPortsAttachRequest struct {
 	ProjectID          string
 	NetworkInterfaceID string
 	InstanceID         string
-	InstanceType       int
+	InstanceType       *int
 }
 
 type EcsPortsAttachRealResponse struct {

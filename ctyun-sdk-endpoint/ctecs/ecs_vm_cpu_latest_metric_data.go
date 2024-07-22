@@ -83,17 +83,17 @@ func (this *EcsVmCpuLatestMetricDataApi) Do(ctx context.Context, credential ctyu
 type EcsVmCpuLatestMetricDataRealRequest struct {
 	RegionID     string   `json:"regionID,omitempty"`
 	DeviceIDList []string `json:"deviceIDList,omitempty"`
-	PageNo       int      `json:"pageNo,omitempty"`
-	Page         int      `json:"page,omitempty"`
-	PageSize     int      `json:"pageSize,omitempty"`
+	PageNo       *int     `json:"pageNo,omitempty"`
+	Page         *int     `json:"page,omitempty"`
+	PageSize     *int     `json:"pageSize,omitempty"`
 }
 
 type EcsVmCpuLatestMetricDataRequest struct {
 	RegionID     string
 	DeviceIDList []string
-	PageNo       int
-	Page         int
-	PageSize     int
+	PageNo       *int
+	Page         *int
+	PageSize     *int
 }
 
 type EcsVmCpuLatestMetricDataItemListRealResponse struct {
