@@ -173,29 +173,29 @@ type ecsDescribeInstancesRealResponse struct {
 }
 
 type ecsDescribeInstancesRealRequest struct {
-	RegionID        string `json:"regionID"`
-	AzName          string `json:"azName"`
-	ProjectID       string `json:"projectID,omitempty"`
-	PageNo          int    `json:"pageNo"`
-	PageSize        int    `json:"pageSize"`
-	State           string `json:"state"`
-	Keyword         string `json:"keyword"`
-	InstanceName    string `json:"instanceName"`
-	InstanceIDList  string `json:"instanceIDList"`
-	SecurityGroupID string `json:"securityGroupID"`
+	RegionID        *string `json:"regionID"`
+	AzName          *string `json:"azName,omitempty"`
+	ProjectID       *string `json:"projectID,omitempty"`
+	PageNo          *int    `json:"pageNo,omitempty"`
+	PageSize        *int    `json:"pageSize,omitempty"`
+	State           *string `json:"state,omitempty"`
+	Keyword         *string `json:"keyword,omitempty"`
+	InstanceName    *string `json:"instanceName,omitempty"`
+	InstanceIDList  *string `json:"instanceIDList,omitempty"`
+	SecurityGroupID *string `json:"securityGroupID,omitempty"`
 }
 
 type EcsDescribeInstancesRequest struct {
-	RegionId        string
-	AzName          string
-	ProjectId       string
-	PageNo          int
-	PageSize        int
-	State           string
-	Keyword         string
-	InstanceName    string
-	InstanceIdList  string
-	SecurityGroupId string
+	RegionId        *string
+	AzName          *string
+	ProjectId       *string
+	PageNo          *int
+	PageSize        *int
+	State           *string
+	Keyword         *string
+	InstanceName    *string
+	InstanceIdList  *string
+	SecurityGroupId *string
 }
 
 type EcsDescribeInstancesResultsSecGroupListResponse struct {

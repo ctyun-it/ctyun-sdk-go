@@ -60,14 +60,14 @@ func (this *EcsBatchStopInstancesApi) Do(ctx context.Context, credential ctyunsd
 }
 
 type EcsBatchStopInstancesRealRequest struct {
-	RegionID       string `json:"regionID,omitempty"`
-	InstanceIDList string `json:"instanceIDList,omitempty"`
-	Force          *bool  `json:"force,omitempty"`
+	RegionID       *string `json:"regionID,omitempty"`
+	InstanceIDList *string `json:"instanceIDList,omitempty"`
+	Force          *bool   `json:"force,omitempty"`
 }
 
 type EcsBatchStopInstancesRequest struct {
-	RegionID       string
-	InstanceIDList string
+	RegionID       *string
+	InstanceIDList *string
 	Force          *bool
 }
 

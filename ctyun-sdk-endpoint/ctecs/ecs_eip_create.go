@@ -63,27 +63,27 @@ func (this *EcsEipCreateApi) Do(ctx context.Context, credential ctyunsdk.Credent
 }
 
 type EcsEipCreateRealRequest struct {
-	ClientToken       string `json:"clientToken,omitempty"`
-	RegionID          string `json:"regionID,omitempty"`
-	ProjectID         string `json:"projectID,omitempty"`
-	CycleType         string `json:"cycleType,omitempty"`
-	CycleCount        *int   `json:"cycleCount,omitempty"`
-	Name              string `json:"name,omitempty"`
-	Bandwidth         *int   `json:"bandwidth,omitempty"`
-	BandwidthID       string `json:"bandwidthID,omitempty"`
-	DemandBillingType string `json:"demandBillingType,omitempty"`
+	ClientToken       *string `json:"clientToken,omitempty"`
+	RegionID          *string `json:"regionID,omitempty"`
+	ProjectID         *string `json:"projectID,omitempty"`
+	CycleType         *string `json:"cycleType,omitempty"`
+	CycleCount        *int    `json:"cycleCount,omitempty"`
+	Name              *string `json:"name,omitempty"`
+	Bandwidth         *int    `json:"bandwidth,omitempty"`
+	BandwidthID       *string `json:"bandwidthID,omitempty"`
+	DemandBillingType *string `json:"demandBillingType,omitempty"`
 }
 
 type EcsEipCreateRequest struct {
-	ClientToken       string
-	RegionID          string
-	ProjectID         string
-	CycleType         string
+	ClientToken       *string
+	RegionID          *string
+	ProjectID         *string
+	CycleType         *string
 	CycleCount        *int
-	Name              string
+	Name              *string
 	Bandwidth         *int
-	BandwidthID       string
-	DemandBillingType string
+	BandwidthID       *string
+	DemandBillingType *string
 }
 
 type EcsEipCreateRealResponse struct {

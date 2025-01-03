@@ -24,15 +24,8 @@ func NewEcsVncDetailsApi(client *ctyunsdk.CtyunClient) *EcsVncDetailsApi {
 
 func (this *EcsVncDetailsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsVncDetailsRequest) (*EcsVncDetailsResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
-
-	_, err := builder.WriteJson(&EcsVncDetailsRealRequest{
-		RegionID:   req.RegionID,
-		InstanceID: req.InstanceID,
-	})
-
-	if err != nil {
-		return nil, err
-	}
+	builder.AddParam("regionID", *req.RegionID)
+	builder.AddParam("instanceID", *req.InstanceID)
 
 	response, err := this.client.RequestToEndpoint(ctx, EndpointNameCtecs, builder)
 	if err != nil {
@@ -51,13 +44,13 @@ func (this *EcsVncDetailsApi) Do(ctx context.Context, credential ctyunsdk.Creden
 }
 
 type EcsVncDetailsRealRequest struct {
-	RegionID   string `json:"regionID,omitempty"`
-	InstanceID string `json:"instanceID,omitempty"`
+	RegionID   *string `json:"regionID,omitempty"`
+	InstanceID *string `json:"instanceID,omitempty"`
 }
 
 type EcsVncDetailsRequest struct {
-	RegionID   string
-	InstanceID string
+	RegionID   *string
+	InstanceID *string
 }
 
 type EcsVncDetailsRealResponse struct {

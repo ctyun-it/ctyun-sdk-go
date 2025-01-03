@@ -50,9 +50,9 @@ func (this *EcsStopInstanceApi) Do(ctx context.Context, credential ctyunsdk.Cred
 }
 
 type ecsStopInstanceRealRequest struct {
-	RegionID   string `json:"regionID"`
-	InstanceID string `json:"instanceID"`
-	Force      bool   `json:"force"`
+	RegionID   *string `json:"regionID"`
+	InstanceID *string `json:"instanceID"`
+	Force      *bool   `json:"force"`
 }
 
 type ecsStopInstanceRealResponse struct {
@@ -60,9 +60,9 @@ type ecsStopInstanceRealResponse struct {
 }
 
 type EcsStopInstanceRequest struct {
-	RegionId   string
-	InstanceId string
-	Force      bool
+	RegionId   *string
+	InstanceId *string
+	Force      *bool
 }
 
 type EcsStopInstanceResponse struct {

@@ -28,7 +28,6 @@ func (this *EcsStartInstanceApi) Do(ctx context.Context, credential ctyunsdk.Cre
 	_, err := builder.WriteJson(&ecsStartInstanceRealRequest{
 		RegionID:   req.RegionId,
 		InstanceID: req.InstanceId,
-		Force:      req.Force,
 	})
 	if err != nil {
 		return nil, err
@@ -50,15 +49,13 @@ func (this *EcsStartInstanceApi) Do(ctx context.Context, credential ctyunsdk.Cre
 }
 
 type ecsStartInstanceRealRequest struct {
-	RegionID   string `json:"regionID"`
-	InstanceID string `json:"instanceID"`
-	Force      bool   `json:"force"`
+	RegionID   *string `json:"regionID"`
+	InstanceID *string `json:"instanceID"`
 }
 
 type EcsStartInstanceRequest struct {
-	RegionId   string
-	InstanceId string
-	Force      bool
+	RegionId   *string
+	InstanceId *string
 }
 
 type EcsStartInstanceRealResponse struct {

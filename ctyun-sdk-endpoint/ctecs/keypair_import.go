@@ -54,10 +54,10 @@ func (this *KeypairImportApi) Do(ctx context.Context, credential ctyunsdk.Creden
 }
 
 type keypairImportRealRequest struct {
-	RegionID    string `json:"regionID"`
-	KeypairName string `json:"keyPairName"`
-	PublicKey   string `json:"publicKey"`
-	ProjectID   string `json:"projectID,omitempty"`
+	RegionID    *string `json:"regionID"`
+	KeypairName *string `json:"keyPairName"`
+	PublicKey   *string `json:"publicKey"`
+	ProjectID   *string `json:"projectID,omitempty"`
 }
 
 type keypairImportRealResponse struct {
@@ -68,10 +68,10 @@ type keypairImportRealResponse struct {
 }
 
 type KeypairImportRequest struct {
-	RegionId    string // 资源池ID
-	KeyPairName string // 密钥对名称。只能由数字、字母、-组成,不能以数字和-开头、以-结尾,且长度为2-63字符
-	PublicKey   string // 公钥
-	ProjectId   string // 企业项目id
+	RegionId    *string // 资源池ID
+	KeyPairName *string // 密钥对名称。只能由数字、字母、-组成,不能以数字和-开头、以-结尾,且长度为2-63字符
+	PublicKey   *string // 公钥
+	ProjectId   *string // 企业项目id
 }
 
 type KeypairImportResponse struct {

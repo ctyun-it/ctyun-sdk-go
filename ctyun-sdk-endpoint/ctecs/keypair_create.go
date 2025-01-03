@@ -54,9 +54,9 @@ func (this *KeypairCreateApi) Do(ctx context.Context, credential ctyunsdk.Creden
 }
 
 type keypairCreateRealRequest struct {
-	RegionID    string `json:"regionID"`
-	KeypairName string `json:"keypairName"`
-	ProjectID   string `json:"projectID,omitempty"`
+	RegionID    *string `json:"regionID"`
+	KeypairName *string `json:"keypairName"`
+	ProjectID   *string `json:"projectID,omitempty"`
 }
 
 type KeypairCreateRealResponse struct {
@@ -68,9 +68,9 @@ type KeypairCreateRealResponse struct {
 }
 
 type KeypairCreateRequest struct {
-	RegionId    string // 资源池ID
-	KeyPairName string // 密钥对名称。只能由数字、字母、-组成,不能以数字和-开头、以-结尾,且长度为2-63字符
-	ProjectId   string // 企业项目id
+	RegionId    *string // 资源池ID
+	KeyPairName *string // 密钥对名称。只能由数字、字母、-组成,不能以数字和-开头、以-结尾,且长度为2-63字符
+	ProjectId   *string // 企业项目id
 }
 
 type KeypairCreateResponse struct {

@@ -49,13 +49,13 @@ func (this *EcsQueryAsyncResultApi) Do(ctx context.Context, credential ctyunsdk.
 }
 
 type ecsQueryAsyncResultRealRequest struct {
-	RegionID string `json:"regionID"`
-	JobID    string `json:"jobID"`
+	RegionID *string `json:"regionID"`
+	JobID    *string `json:"jobID"`
 }
 
 type EcsQueryAsyncResultRequest struct {
-	RegionId string
-	JobId    string
+	RegionId *string
+	JobId    *string
 }
 
 type EcsQueryAsyncResultRealResponse struct {

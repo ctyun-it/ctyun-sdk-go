@@ -25,14 +25,8 @@ func NewEcsVolumeStatisticsApi(client *ctyunsdk.CtyunClient) *EcsVolumeStatistic
 func (this *EcsVolumeStatisticsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsVolumeStatisticsRequest) (*EcsVolumeStatisticsResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&EcsVolumeStatisticsRealRequest{
-		RegionID:  req.RegionID,
-		ProjectID: req.ProjectID,
-	})
-
-	if err != nil {
-		return nil, err
-	}
+	builder.AddParam("regionID", *req.RegionID)
+	builder.AddParam("projectID", *req.ProjectID)
 
 	response, err := this.client.RequestToEndpoint(ctx, EndpointNameCtecs, builder)
 	if err != nil {
@@ -58,13 +52,13 @@ func (this *EcsVolumeStatisticsApi) Do(ctx context.Context, credential ctyunsdk.
 }
 
 type EcsVolumeStatisticsRealRequest struct {
-	RegionID  string `json:"regionID,omitempty"`
-	ProjectID string `json:"projectID,omitempty"`
+	RegionID  *string `json:"regionID,omitempty"`
+	ProjectID *string `json:"projectID,omitempty"`
 }
 
 type EcsVolumeStatisticsRequest struct {
-	RegionID  string
-	ProjectID string
+	RegionID  *string
+	ProjectID *string
 }
 
 type EcsVolumeStatisticsVolumeStatisticsRealResponse struct {

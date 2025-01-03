@@ -49,13 +49,13 @@ func (this *EcsRebootInstanceApi) Do(ctx context.Context, credential ctyunsdk.Cr
 }
 
 type ecsRebootInstanceRealRequest struct {
-	RegionID   string `json:"regionID"`
-	InstanceID string `json:"instanceID"`
+	RegionID   *string `json:"regionID"`
+	InstanceID *string `json:"instanceID"`
 }
 
 type EcsRebootInstanceRequest struct {
-	RegionID   string
-	InstanceID string
+	RegionID   *string
+	InstanceID *string
 }
 
 type EcsRebootInstanceRealResponse struct {

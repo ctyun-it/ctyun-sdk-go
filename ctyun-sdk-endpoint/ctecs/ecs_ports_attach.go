@@ -54,22 +54,22 @@ func (this *EcsPortsAttachApi) Do(ctx context.Context, credential ctyunsdk.Crede
 }
 
 type EcsPortsAttachRealRequest struct {
-	ClientToken        string `json:"clientToken,omitempty"`
-	RegionID           string `json:"regionID,omitempty"`
-	AzName             string `json:"azName,omitempty"`
-	ProjectID          string `json:"projectID,omitempty"`
-	NetworkInterfaceID string `json:"networkInterfaceID,omitempty"`
-	InstanceID         string `json:"instanceID,omitempty"`
-	InstanceType       *int   `json:"instanceType,omitempty"`
+	ClientToken        *string `json:"clientToken,omitempty"`
+	RegionID           *string `json:"regionID,omitempty"`
+	AzName             *string `json:"azName,omitempty"`
+	ProjectID          *string `json:"projectID,omitempty"`
+	NetworkInterfaceID *string `json:"networkInterfaceID,omitempty"`
+	InstanceID         *string `json:"instanceID,omitempty"`
+	InstanceType       *int    `json:"instanceType,omitempty"`
 }
 
 type EcsPortsAttachRequest struct {
-	ClientToken        string
-	RegionID           string
-	AzName             string
-	ProjectID          string
-	NetworkInterfaceID string
-	InstanceID         string
+	ClientToken        *string
+	RegionID           *string
+	AzName             *string
+	ProjectID          *string
+	NetworkInterfaceID *string
+	InstanceID         *string
 	InstanceType       *int
 }
 

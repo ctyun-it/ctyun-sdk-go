@@ -53,15 +53,15 @@ func (this *EcsUpdateInstanceApi) Do(ctx context.Context, credential ctyunsdk.Cr
 }
 
 type EcsUpdateInstanceRealRequest struct {
-	RegionID    string `json:"regionID,omitempty"`
-	InstanceID  string `json:"instanceID,omitempty"`
-	DisplayName string `json:"displayName,omitempty"`
+	RegionID    *string `json:"regionID,omitempty"`
+	InstanceID  *string `json:"instanceID,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
 }
 
 type EcsUpdateInstanceRequest struct {
-	RegionID    string
-	InstanceID  string
-	DisplayName string
+	RegionID    *string
+	InstanceID  *string
+	DisplayName *string
 }
 
 type EcsUpdateInstanceRealResponse struct {

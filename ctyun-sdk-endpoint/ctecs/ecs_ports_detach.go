@@ -51,17 +51,17 @@ func (this *EcsPortsDetachApi) Do(ctx context.Context, credential ctyunsdk.Crede
 }
 
 type EcsPortsDetachRealRequest struct {
-	ClientToken        string `json:"clientToken,omitempty"`
-	RegionID           string `json:"regionID,omitempty"`
-	NetworkInterfaceID string `json:"networkInterfaceID,omitempty"`
-	InstanceID         string `json:"instanceID,omitempty"`
+	ClientToken        *string `json:"clientToken,omitempty"`
+	RegionID           *string `json:"regionID,omitempty"`
+	NetworkInterfaceID *string `json:"networkInterfaceID,omitempty"`
+	InstanceID         *string `json:"instanceID,omitempty"`
 }
 
 type EcsPortsDetachRequest struct {
-	ClientToken        string
-	RegionID           string
-	NetworkInterfaceID string
-	InstanceID         string
+	ClientToken        *string
+	RegionID           *string
+	NetworkInterfaceID *string
+	InstanceID         *string
 }
 
 type EcsPortsDetachRealResponse struct {

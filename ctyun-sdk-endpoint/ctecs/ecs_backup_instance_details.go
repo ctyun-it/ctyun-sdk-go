@@ -159,13 +159,13 @@ func (this *EcsBackupInstanceDetailsApi) Do(ctx context.Context, credential ctyu
 }
 
 type EcsBackupInstanceDetailsRealRequest struct {
-	RegionID   string `json:"regionID,omitempty"`
-	InstanceID string `json:"instanceID,omitempty"`
+	RegionID   *string `json:"regionID,omitempty"`
+	InstanceID *string `json:"instanceID,omitempty"`
 }
 
 type EcsBackupInstanceDetailsRequest struct {
-	RegionID   string
-	InstanceID string
+	RegionID   *string
+	InstanceID *string
 }
 
 type EcsBackupInstanceDetailsVolumesRealResponse struct {

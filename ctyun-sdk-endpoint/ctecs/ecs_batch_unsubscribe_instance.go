@@ -52,15 +52,15 @@ func (this *EcsBatchUnsubscribeInstancesApi) Do(ctx context.Context, credential 
 }
 
 type ecsBatchUnsubscribeInstanceRealRequest struct {
-	ClientToken    string `json:"clientToken,omitempty"`
-	RegionID       string `json:"regionID,omitempty"`
-	InstanceIDList string `json:"instanceIDList,omitempty"`
+	ClientToken    *string `json:"clientToken,omitempty"`
+	RegionID       *string `json:"regionID,omitempty"`
+	InstanceIDList *string `json:"instanceIDList,omitempty"`
 }
 
 type EcsBatchUnsubscribeInstanceRequest struct {
-	ClientToken    string
-	RegionID       string
-	InstanceIDList string
+	ClientToken    *string
+	RegionID       *string
+	InstanceIDList *string
 }
 
 type ecsBatchUnsubscribeInstanceRealResponse struct {

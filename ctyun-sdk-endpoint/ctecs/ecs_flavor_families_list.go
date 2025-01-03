@@ -25,8 +25,8 @@ func NewEcsFlavorFamiliesList(client *ctyunsdk.CtyunClient) *EcsFlavorFamiliesLi
 
 func (this *EcsFlavorFamiliesListApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsFlavorFamiliesListRequest) (*EcsFlavorFamiliesListResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
-	builder.AddParam("regionID", req.RegionID)
-	builder.AddParam("azName", req.AzName)
+	builder.AddParam("regionID", *req.RegionID)
+	builder.AddParam("azName", *req.AzName)
 	resp, requestError := this.client.RequestToEndpoint(ctx, EndpointNameCtecs, builder)
 	if requestError != nil {
 		return nil, requestError
@@ -44,8 +44,8 @@ func (this *EcsFlavorFamiliesListApi) Do(ctx context.Context, credential ctyunsd
 }
 
 type EcsFlavorFamiliesListRequest struct {
-	RegionID string
-	AzName   string
+	RegionID *string
+	AzName   *string
 }
 
 type EcsFlavorFamiliesListRealResponse struct {

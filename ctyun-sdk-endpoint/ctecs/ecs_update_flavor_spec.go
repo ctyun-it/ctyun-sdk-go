@@ -26,10 +26,11 @@ func NewEcsUpdateFlavorSpecApi(client *ctyunsdk.CtyunClient) *EcsUpdateFlavorSpe
 func (this *EcsUpdateFlavorSpecApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsUpdateFlavorSpecRequest) (*EcsUpdateFlavorSpecResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 	_, err := builder.WriteJson(&ecsUpdateFlavorSpecRealRequest{
-		RegionID:    req.RegionId,
-		InstanceID:  req.InstanceId,
-		FlavorID:    req.FlavorId,
-		ClientToken: req.ClientToken,
+		RegionID:        req.RegionId,
+		InstanceID:      req.InstanceId,
+		FlavorID:        req.FlavorId,
+		ClientToken:     req.ClientToken,
+		PayVoucherPrice: req.PayVoucherPrice,
 	})
 	if err != nil {
 		return nil, err
@@ -53,17 +54,19 @@ func (this *EcsUpdateFlavorSpecApi) Do(ctx context.Context, credential ctyunsdk.
 }
 
 type ecsUpdateFlavorSpecRealRequest struct {
-	RegionID    string `json:"regionID"`
-	InstanceID  string `json:"instanceID"`
-	FlavorID    string `json:"flavorID"`
-	ClientToken string `json:"clientToken"`
+	RegionID        *string  `json:"regionID"`
+	InstanceID      *string  `json:"instanceID"`
+	FlavorID        *string  `json:"flavorID"`
+	ClientToken     *string  `json:"clientToken"`
+	PayVoucherPrice *float64 `json:"payVoucherPrice"`
 }
 
 type EcsUpdateFlavorSpecRequest struct {
-	RegionId    string
-	InstanceId  string
-	FlavorId    string
-	ClientToken string
+	RegionId        *string
+	InstanceId      *string
+	FlavorId        *string
+	ClientToken     *string
+	PayVoucherPrice *float64
 }
 
 type ecsUpdateFlavorSpecRealResponse struct {

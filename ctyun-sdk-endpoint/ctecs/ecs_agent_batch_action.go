@@ -60,28 +60,28 @@ func (this *EcsAgentBatchActionApi) Do(ctx context.Context, credential ctyunsdk.
 }
 
 type EcsAgentBatchActionActionInfoRealRequest struct {
-	InstanceID    string `json:"instanceID,omitempty"`
-	SystemType    string `json:"systemType,omitempty"`
-	SystemArch    string `json:"systemArch,omitempty"`
-	SystemVersion string `json:"systemVersion,omitempty"`
+	InstanceID    *string `json:"instanceID,omitempty"`
+	SystemType    *string `json:"systemType,omitempty"`
+	SystemArch    *string `json:"systemArch,omitempty"`
+	SystemVersion *string `json:"systemVersion,omitempty"`
 }
 
 type EcsAgentBatchActionRealRequest struct {
-	RegionID   string                                     `json:"regionID,omitempty"`
-	Action     string                                     `json:"action,omitempty"`
+	RegionID   *string                                    `json:"regionID,omitempty"`
+	Action     *string                                    `json:"action,omitempty"`
 	ActionInfo []EcsAgentBatchActionActionInfoRealRequest `json:"actionInfo,omitempty"`
 }
 
 type EcsAgentBatchActionActionInfoRequest struct {
-	InstanceID    string
-	SystemType    string
-	SystemArch    string
-	SystemVersion string
+	InstanceID    *string
+	SystemType    *string
+	SystemArch    *string
+	SystemVersion *string
 }
 
 type EcsAgentBatchActionRequest struct {
-	RegionID   string
-	Action     string
+	RegionID   *string
+	Action     *string
 	ActionInfo []EcsAgentBatchActionActionInfoRequest
 }
 

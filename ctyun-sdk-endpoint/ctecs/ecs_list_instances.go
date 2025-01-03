@@ -78,33 +78,95 @@ func (this *EcsListInstancesApi) Do(ctx context.Context, credential ctyunsdk.Cre
 			})
 		}
 
+		var vip_info []EcsListInstancesVipInfoListResponse
+		for _, vip_info_list := range result.VipInfoList {
+			vip_info = append(vip_info, EcsListInstancesVipInfoListResponse{
+				VipID:          vip_info_list.VipID,
+				VipAddress:     vip_info_list.VipAddress,
+				VipBindNicIP:   vip_info_list.VipBindNicIP,
+				VipBindNicIPv6: vip_info_list.VipBindNicIPv6,
+				NicID:          vip_info_list.NicID,
+			})
+		}
+
+		var addresses []EcsListInstancesAddressesResponse
+		for _, addr := range result.Addresses {
+			var add_list []EcsListInstancesAddressListResponse
+			for _, add := range addr.AddressList {
+				add_list = append(add_list, EcsListInstancesAddressListResponse{
+					Addr:    add.Addr,
+					Version: add.Version,
+					Type:    add.Type,
+				})
+			}
+
+			addresses = append(addresses, EcsListInstancesAddressesResponse{
+				VpcName:     addr.VpcName,
+				AddressList: add_list,
+			})
+		}
+
+		var nic []EcsListInstancesNetworkCardListResponse
+		for _, nic_info := range result.NetworkCardList {
+			nic = append(nic, EcsListInstancesNetworkCardListResponse{
+				IPv4Address:   nic_info.IPv4Address,
+				IPv6Address:   nic_info.IPv6Address,
+				SubnetID:      nic_info.SubnetID,
+				SubnetCidr:    nic_info.SubnetCidr,
+				IsMaster:      nic_info.IsMaster,
+				Gateway:       nic_info.Gateway,
+				NetworkCardID: nic_info.NetworkCardID,
+				SecurityGroup: nic_info.SecurityGroup,
+			})
+		}
+
 		results = append(results, EcsListInstancesResultsResponse{
-			AzName:         result.AzName,
-			ExpiredTime:    result.ExpiredTime,
-			CreatedTime:    result.CreatedTime,
-			ProjectID:      result.ProjectID,
-			InstanceID:     result.InstanceID,
-			DisplayName:    result.DisplayName,
-			InstanceName:   result.InstanceName,
-			OsType:         result.OsType,
-			InstanceStatus: result.InstanceStatus,
-			OnDemand:       result.OnDemand,
-			KeypairName:    result.KeypairName,
-			SecGroupList:   sgs,
+			Addresses: addresses,
+			AffinityGroup: EcsListInstancesAffinityGroupResponse{
+				AffinityGroupID:   result.AffinityGroup.AffinityGroupID,
+				AffinityGroupName: result.AffinityGroup.AffinityGroupName,
+				Policy:            result.AffinityGroup.Policy,
+			},
+			AvailableDay: result.AvailableDay,
+			AzName:       result.AzName,
+			CreatedTime:  result.CreatedTime,
+			DelegateName: result.DelegateName,
+			DisplayName:  result.DisplayName,
+			ExpiredTime:  result.ExpiredTime,
+			Flavor: EcsListInstancesFlavorResponse{
+				FlavorCPU:    result.Flavor.FlavorCPU,
+				FlavorID:     result.Flavor.FlavorID,
+				FlavorName:   result.Flavor.FlavorName,
+				FlavorRAM:    result.Flavor.FlavorRAM,
+				GpuCount:     result.Flavor.GpuCount,
+				GpuType:      result.Flavor.GpuType,
+				GpuVendor:    result.Flavor.GpuVendor,
+				VideoMemSize: result.Flavor.VideoMemSize,
+			},
+			FixedIPList: result.FixedIPList,
+			FloatingIP:  result.FloatingIP,
 			Image: EcsListInstancesImageResponse{
 				ImageID:   result.Image.ImageID,
 				ImageName: result.Image.ImageName,
 			},
-			Flavor: EcsListInstancesFlavorResponse{
-				FlavorID:     result.Flavor.FlavorID,
-				FlavorName:   result.Flavor.FlavorName,
-				FlavorCPU:    result.Flavor.FlavorCPU,
-				FlavorRAM:    result.Flavor.FlavorRAM,
-				GpuType:      result.Flavor.GpuType,
-				GpuCount:     result.Flavor.GpuCount,
-				GpuVendor:    result.Flavor.GpuVendor,
-				VideoMemSize: result.Flavor.VideoMemSize,
-			},
+			InstanceID:      result.InstanceID,
+			InstanceName:    result.InstanceName,
+			InstanceStatus:  result.InstanceStatus,
+			KeypairName:     result.KeypairName,
+			NetworkCardList: nic,
+			OnDemand:        result.OnDemand,
+			OsType:          result.OsType,
+			PrivateIP:       result.PrivateIP,
+			PrivateIPv6:     result.PrivateIPv6,
+			ProjectID:       result.ProjectID,
+			ResourceID:      result.ResourceID,
+			SecGroupList:    sgs,
+			SubnetIDList:    result.SubnetIDList,
+			UpdatedTime:     result.UpdatedTime,
+			VipCount:        result.VipCount,
+			VipInfoList:     vip_info,
+			VpcID:           result.VpcID,
+			ZabbixName:      result.ZabbixName,
 		})
 	}
 	return &EcsListInstancesResponse{
@@ -116,90 +178,90 @@ func (this *EcsListInstancesApi) Do(ctx context.Context, credential ctyunsdk.Cre
 }
 
 type EcsListInstancesLabelListRealRequest struct {
-	LabelKey   string `json:"labelKey,omitempty"`
-	LableValue string `json:"labelValue,omitempty"`
+	LabelKey   *string `json:"labelKey,omitempty"`
+	LableValue *string `json:"labelValue,omitempty"`
 }
 
 type EcsListInstancesRealRequest struct {
-	RegionID        string                                 `json:"regionID"`
-	AzName          string                                 `json:"azName,omitempty"`
-	ProjectID       string                                 `json:"projectID,omitempty"`
+	RegionID        *string                                `json:"regionID"`
+	AzName          *string                                `json:"azName,omitempty"`
+	ProjectID       *string                                `json:"projectID,omitempty"`
 	PageNo          *int                                   `json:"pageNo,omitempty"`
 	PageSize        *int                                   `json:"pageSize,omitempty"`
-	State           string                                 `json:"state,omitempty"`
-	Keyword         string                                 `json:"keyword,omitempty"`
-	InstanceName    string                                 `json:"instanceName,omitempty"`
-	InstanceIDList  string                                 `json:"instanceIDList,omitempty"`
-	SecurityGroupID string                                 `json:"securityGroupID,omitempty"`
-	VpcID           string                                 `json:"vpcID,omitempty"`
-	ResourceID      string                                 `json:"resourceID,omitempty"`
+	State           *string                                `json:"state,omitempty"`
+	Keyword         *string                                `json:"keyword,omitempty"`
+	InstanceName    *string                                `json:"instanceName,omitempty"`
+	InstanceIDList  *string                                `json:"instanceIDList,omitempty"`
+	SecurityGroupID *string                                `json:"securityGroupID,omitempty"`
+	VpcID           *string                                `json:"vpcID,omitempty"`
+	ResourceID      *string                                `json:"resourceID,omitempty"`
 	LabelList       []EcsListInstancesLabelListRealRequest `json:"labelList,omitempty"`
-	Sort            string                                 `json:"sort,omitempty"`
+	Sort            *string                                `json:"sort,omitempty"`
 	Asc             *bool                                  `json:"asc,omitempty"`
 }
 
 type EcsListInstancesLabelListRequest struct {
-	LabelKey   string
-	LabelValue string
+	LabelKey   *string
+	LabelValue *string
 }
 
 type EcsListInstancesRequest struct {
-	RegionID        string
-	AzName          string
-	ProjectID       string
+	RegionID        *string
+	AzName          *string
+	ProjectID       *string
 	PageNo          *int
 	PageSize        *int
-	State           string
-	Keyword         string
-	InstanceName    string
-	InstanceIDList  string
-	SecurityGroupID string
-	VpcID           string
-	ResourceID      string
+	State           *string
+	Keyword         *string
+	InstanceName    *string
+	InstanceIDList  *string
+	SecurityGroupID *string
+	VpcID           *string
+	ResourceID      *string
 	LabelList       []EcsListInstancesLabelListRequest
-	Sort            string
+	Sort            *string
 	Asc             *bool
 }
 
 type EcsListInstancesAddressListRealResponse struct {
 	Addr    string `json:"addr,omitempty"`
-	Version int    `json:"version,omitempty"`
 	Type    string `json:"type,omitempty"`
+	Version int    `json:"version,omitempty"`
 }
 
 type EcsListInstancesAddressesRealResponse struct {
-	VpcName     string                                    `json:"vpcName,omitempty"`
 	AddressList []EcsListInstancesAddressListRealResponse `json:"addressList,omitempty"`
+	VpcName     string                                    `json:"vpcName,omitempty"`
 }
 
 type EcsListInstancesSecGroupListRealResponse struct {
-	SecurityGroupName string `json:"securityGroupName,omitempty"`
 	SecurityGroupID   string `json:"securityGroupID,omitempty"`
+	SecurityGroupName string `json:"securityGroupName,omitempty"`
 }
 
 type EcsListInstancesNetworkCardListRealResponse struct {
+	Gateway       string   `json:"gateway,omitempty"`
 	IPv4Address   string   `json:"IPv4Address,omitempty"`
 	IPv6Address   []string `json:"IPv6Address,omitempty"`
-	SubnetID      string   `json:"subnetID,omitempty"`
-	SubnetCidr    string   `json:"subnetCidr,omitempty"`
 	IsMaster      bool     `json:"isMaster,omitempty"`
-	Gateway       string   `json:"gateway,omitempty"`
 	NetworkCardID string   `json:"networkCardID,omitempty"`
 	SecurityGroup []string `json:"securityGroup,omitempty"`
+	SubnetID      string   `json:"subnetID,omitempty"`
+	SubnetCidr    string   `json:"subnetCidr,omitempty"`
 }
 
 type EcsListInstancesVipInfoListRealResponse struct {
-	VipID          string `json:"vipID,omitempty"`
+	NicID          string `json:"nicID,omitempty"`
 	VipAddress     string `json:"vipAddress,omitempty"`
 	VipBindNicIP   string `json:"vipBindNicIP,omitempty"`
 	VipBindNicIPv6 string `json:"vipBindNicIPv6,omitempty"`
-	NicID          string `json:"nicID,omitempty"`
+	VipID          string `json:"vipID,omitempty"`
 }
 
 type EcsListInstancesAffinityGroupRealResponse struct {
-	Policy            string `json:"policy,omitempty"`
-	AffinityGroupName string `json:"affinityGroupName,omitempty"`
 	AffinityGroupID   string `json:"affinityGroupID,omitempty"`
+	AffinityGroupName string `json:"affinityGroupName,omitempty"`
+	Policy            string `json:"policy,omitempty"`
 }
 
 type EcsListInstancesImageRealResponse struct {
@@ -208,84 +270,98 @@ type EcsListInstancesImageRealResponse struct {
 }
 
 type EcsListInstancesFlavorRealResponse struct {
+	FlavorCPU    int    `json:"flavorCPU,omitempty"`
 	FlavorID     string `json:"flavorID,omitempty"`
 	FlavorName   string `json:"flavorName,omitempty"`
-	FlavorCPU    string `json:"flavorCPU,omitempty"`
 	FlavorRAM    int    `json:"flavorRAM,omitempty"`
-	GpuType      string `json:"gpuType,omitempty"`
 	GpuCount     int    `json:"gpuCount,omitempty"`
+	GpuType      string `json:"gpuType,omitempty"`
 	GpuVendor    string `json:"gpuVendor,omitempty"`
 	VideoMemSize int    `json:"videoMemSize,omitempty"`
 }
 
 type EcsListInstancesResultsRealResponse struct {
-	ProjectID       string                                        `json:"projectID,omitempty"`
-	AzName          string                                        `json:"azName,omitempty"`
-	Addresses       []EcsListInstancesAddressesRealResponse       `json:"addresses,omitempty"`
-	ResourceID      string                                        `json:"resourceID,omitempty"`
-	InstanceID      string                                        `json:"instanceID,omitempty"`
-	DisplayName     string                                        `json:"displayName,omitempty"`
-	InstanceName    string                                        `json:"instanceName,omitempty"`
-	OsType          int                                           `json:"osType,omitempty"`
-	InstanceStatus  string                                        `json:"instanceStatus,omitempty"`
-	ExpiredTime     string                                        `json:"expiredTime,omitempty"`
-	AvailableDay    string                                        `json:"availableDay,omitempty"`
-	CreatedTime     string                                        `json:"createdTime,omitempty"`
-	UpdatedTime     string                                        `json:"updatedTime,omitempty"`
-	ZabbixName      string                                        `json:"zabbixName,omitempty"`
-	SecGroupList    []EcsListInstancesSecGroupListRealResponse    `json:"secGroupList,omitempty"`
-	PrivateIP       string                                        `json:"privateIP,omitempty"`
-	PrivateIPv6     string                                        `json:"privateIPv6,omitempty"`
-	NetworkCardList []EcsListInstancesNetworkCardListRealResponse `json:"networkCardList,omitempty"`
-	VipInfoList     []EcsListInstancesVipInfoListRealResponse     `json:"vipInfoList,omitempty"`
-	VipCount        int                                           `json:"vipCount,omitempty"`
-	AffinityGroup   []EcsListInstancesAffinityGroupRealResponse   `json:"affinityGroup,omitempty"`
-	Image           EcsListInstancesImageRealResponse             `json:"image,omitempty"`
-	Flavor          EcsListInstancesFlavorRealResponse            `json:"flavor,omitempty"`
-	OnDemand        bool                                          `json:"onDemand,omitempty"`
-	VpcID           string                                        `json:"vpcID,omitempty"`
-	FixedIPList     []string                                      `json:"fixedIpList,omitempty"`
-	FloatingIP      string                                        `json:"floatingIp,omitempty"`
-	SubnetIDList    []string                                      `json:"subnetIDList,omitempty"`
-	KeypairName     string                                        `json:"keypairName,omitempty"`
-	DelegateName    string                                        `json:"delegateName,omitempty"`
+	Addresses          []EcsListInstancesAddressesRealResponse       `json:"addresses,omitempty"`
+	AffinityGroup      EcsListInstancesAffinityGroupRealResponse     `json:"affinityGroup,omitempty"`
+	AvailableDay       int                                           `json:"availableDay,omitempty"`
+	AzName             string                                        `json:"azName,omitempty"`
+	CreatedTime        string                                        `json:"createdTime,omitempty"`
+	DelegateName       string                                        `json:"delegateName,omitempty"`
+	DeletionProtection bool                                          `json:"deletionProtection,omitempty"`
+	DisplayName        string                                        `json:"displayName,omitempty"`
+	ExpiredTime        string                                        `json:"expiredTime,omitempty"`
+	Flavor             EcsListInstancesFlavorRealResponse            `json:"flavor,omitempty"`
+	FixedIPList        []string                                      `json:"fixedIpList,omitempty"`
+	FloatingIP         string                                        `json:"floatingIp,omitempty"`
+	Image              EcsListInstancesImageRealResponse             `json:"image,omitempty"`
+	InstanceID         string                                        `json:"instanceID,omitempty"`
+	InstanceName       string                                        `json:"instanceName,omitempty"`
+	InstanceStatus     string                                        `json:"instanceStatus,omitempty"`
+	KeypairName        string                                        `json:"keypairName,omitempty"`
+	NetworkCardList    []EcsListInstancesNetworkCardListRealResponse `json:"networkCardList,omitempty"`
+	OnDemand           bool                                          `json:"onDemand,omitempty"`
+	OsType             int                                           `json:"osType,omitempty"`
+	PrivateIP          string                                        `json:"privateIP,omitempty"`
+	PrivateIPv6        string                                        `json:"privateIPv6,omitempty"`
+	ProjectID          string                                        `json:"projectID,omitempty"`
+	ReleaseTime        string                                        `json:"releaseTime,omitempty"`
+	RemainingDay       int                                           `json:"remainingDay,omitempty"`
+	ResourceID         string                                        `json:"resourceID,omitempty"`
+	SecGroupList       []EcsListInstancesSecGroupListRealResponse    `json:"secGroupList,omitempty"`
+	SubnetIDList       []string                                      `json:"subnetIDList,omitempty"`
+	UpdatedTime        string                                        `json:"updatedTime,omitempty"`
+	VipCount           int                                           `json:"vipCount,omitempty"`
+	VipInfoList        []EcsListInstancesVipInfoListRealResponse     `json:"vipInfoList,omitempty"`
+	VpcID              string                                        `json:"vpcID,omitempty"`
+	ZabbixName         string                                        `json:"zabbixName,omitempty"`
 }
 
 type EcsListInstancesRealResponse struct {
-	CurrentCount int                                   `json:"currentCount"`
-	TotalCount   int                                   `json:"totalCount"`
-	TotalPage    int                                   `json:"totalPage"`
-	Results      []EcsListInstancesResultsRealResponse `json:"results"`
+	CurrentCount int                                   `json:"currentCount,omitempty"`
+	Results      []EcsListInstancesResultsRealResponse `json:"results,omitempty"`
+	TotalCount   int                                   `json:"totalCount,omitempty"`
+	TotalPage    int                                   `json:"totalPage,omitempty"`
+}
+
+type EcsListInstancesAddressListResponse struct {
+	Addr    string
+	Type    string
+	Version int
+}
+
+type EcsListInstancesAddressesResponse struct {
+	AddressList []EcsListInstancesAddressListResponse
+	VpcName     string
 }
 
 type EcsListInstancesSecGroupListResponse struct {
-	SecurityGroupName string
 	SecurityGroupID   string
+	SecurityGroupName string
 }
 
 type EcsListInstancesNetworkCardListResponse struct {
+	Gateway       string
 	IPv4Address   string
 	IPv6Address   []string
-	SubnetID      string
-	SubnetCidr    string
 	IsMaster      bool
-	Gateway       string
 	NetworkCardID string
 	SecurityGroup []string
+	SubnetCidr    string
+	SubnetID      string
 }
 
 type EcsListInstancesVipInfoListResponse struct {
-	VipID          string
+	NicID          string
 	VipAddress     string
 	VipBindNicIP   string
 	VipBindNicIPv6 string
-	NicID          string
+	VipID          string
 }
 
 type EcsListInstancesAffinityGroupResponse struct {
-	Policy            string
-	AffinityGroupName string
 	AffinityGroupID   string
+	AffinityGroupName string
+	Policy            string
 }
 
 type EcsListInstancesImageResponse struct {
@@ -294,52 +370,55 @@ type EcsListInstancesImageResponse struct {
 }
 
 type EcsListInstancesFlavorResponse struct {
+	FlavorCPU    int
 	FlavorID     string
 	FlavorName   string
-	FlavorCPU    string
 	FlavorRAM    int
-	GpuType      string
 	GpuCount     int
+	GpuType      string
 	GpuVendor    string
 	VideoMemSize int
 }
 
 type EcsListInstancesResultsResponse struct {
-	ProjectID       string
-	AzName          string
-	Addresses       []EcsListInstancesAddressesRealResponse
-	ResourceID      string
-	InstanceID      string
-	DisplayName     string
-	InstanceName    string
-	OsType          int
-	InstanceStatus  string
-	ExpiredTime     string
-	AvailableDay    string
-	CreatedTime     string
-	UpdatedTime     string
-	ZabbixName      string
-	SecGroupList    []EcsListInstancesSecGroupListResponse
-	PrivateIP       string
-	PrivateIPv6     string
-	NetworkCardList []EcsListInstancesNetworkCardListResponse
-	VipInfoList     []EcsListInstancesVipInfoListResponse
-	VipCount        int
-	AffinityGroup   []EcsListInstancesAffinityGroupResponse
-	Image           EcsListInstancesImageResponse
-	Flavor          EcsListInstancesFlavorResponse
-	OnDemand        bool
-	VpcID           string
-	FixedIPList     []string
-	FloatingIP      string
-	SubnetIDList    []string
-	KeypairName     string
-	DelegateName    string
+	Addresses          []EcsListInstancesAddressesResponse
+	AffinityGroup      EcsListInstancesAffinityGroupResponse
+	AvailableDay       int
+	AzName             string
+	CreatedTime        string
+	DelegateName       string
+	DeletionProtection bool
+	DisplayName        string
+	ExpiredTime        string
+	Flavor             EcsListInstancesFlavorResponse
+	FixedIPList        []string
+	FloatingIP         string
+	Image              EcsListInstancesImageResponse
+	InstanceID         string
+	InstanceName       string
+	InstanceStatus     string
+	KeypairName        string
+	NetworkCardList    []EcsListInstancesNetworkCardListResponse
+	OnDemand           bool
+	OsType             int
+	PrivateIP          string
+	PrivateIPv6        string
+	ProjectID          string
+	ReleaseTime        string
+	RemainingDay       int
+	ResourceID         string
+	SecGroupList       []EcsListInstancesSecGroupListResponse
+	SubnetIDList       []string
+	UpdatedTime        string
+	VipCount           int
+	VipInfoList        []EcsListInstancesVipInfoListResponse
+	VpcID              string
+	ZabbixName         string
 }
 
 type EcsListInstancesResponse struct {
 	CurrentCount int
+	Results      []EcsListInstancesResultsResponse
 	TotalCount   int
 	TotalPage    int
-	Results      []EcsListInstancesResultsResponse
 }

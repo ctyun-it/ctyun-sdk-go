@@ -67,19 +67,19 @@ func (this *EcsBackupCreateApi) Do(ctx context.Context, credential ctyunsdk.Cred
 }
 
 type EcsBackupCreateRealRequest struct {
-	RegionID                  string `json:"regionID,omitempty"`
-	InstanceID                string `json:"instanceID,omitempty"`
-	InstanceBackupName        string `json:"instanceBackupName,omitempty"`
-	InstanceBackupDescription string `json:"instanceBackupDescription,omitempty"`
-	RepositoryID              string `json:"repositoryID,omitempty"`
+	RegionID                  *string `json:"regionID,omitempty"`
+	InstanceID                *string `json:"instanceID,omitempty"`
+	InstanceBackupName        *string `json:"instanceBackupName,omitempty"`
+	InstanceBackupDescription *string `json:"instanceBackupDescription,omitempty"`
+	RepositoryID              *string `json:"repositoryID,omitempty"`
 }
 
 type EcsBackupCreateRequest struct {
-	RegionID                  string
-	InstanceID                string
-	InstanceBackupName        string
-	InstanceBackupDescription string
-	RepositoryID              string
+	RegionID                  *string
+	InstanceID                *string
+	InstanceBackupName        *string
+	InstanceBackupDescription *string
+	RepositoryID              *string
 }
 
 type EcsBackupCreateResultsRealResponse struct {

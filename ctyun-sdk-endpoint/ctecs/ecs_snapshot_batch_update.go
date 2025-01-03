@@ -60,24 +60,24 @@ func (this *EcsSnapshotBatchUpdateApi) Do(ctx context.Context, credential ctyuns
 }
 
 type EcsSnapshotBatchUpdateUpdateInfoRealRequest struct {
-	SnapshotID          string `json:"snapshotID,omitempty"`
-	SnapshotName        string `json:"snapshotName,omitempty"`
-	SnapshotDescription string `json:"snapshotDescription,omitempty"`
+	SnapshotID          *string `json:"snapshotID,omitempty"`
+	SnapshotName        *string `json:"snapshotName,omitempty"`
+	SnapshotDescription *string `json:"snapshotDescription,omitempty"`
 }
 
 type EcsSnapshotBatchUpdateRealRequest struct {
-	RegionID   string                                        `json:"regionID,omitempty"`
+	RegionID   *string                                       `json:"regionID,omitempty"`
 	UpdateInfo []EcsSnapshotBatchUpdateUpdateInfoRealRequest `json:"updateInfo,omitempty"`
 }
 
 type EcsSnapshotBatchUpdateUpdateInfoRequest struct {
-	SnapshotID          string
-	SnapshotName        string
-	SnapshotDescription string
+	SnapshotID          *string
+	SnapshotName        *string
+	SnapshotDescription *string
 }
 
 type EcsSnapshotBatchUpdateRequest struct {
-	RegionID   string
+	RegionID   *string
 	UpdateInfo []EcsSnapshotBatchUpdateUpdateInfoRequest
 }
 

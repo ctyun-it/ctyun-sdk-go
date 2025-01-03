@@ -75,17 +75,17 @@ func (this *EcsFlavorListByFamiliesApi) Do(ctx context.Context, credential ctyun
 }
 
 type EcsFlavorListByFamiliesRealRequest struct {
-	RegionID     string `json:"regionID,omitempty"`
-	AzName       string `json:"azName,omitempty"`
-	FlavorFamily string `json:"flavorFamily,omitempty"`
-	PageNo       *int   `json:"pageNo,omitempty"`
-	PageSize     *int   `json:"pageSize,omitempty"`
+	RegionID     *string `json:"regionID,omitempty"`
+	AzName       *string `json:"azName,omitempty"`
+	FlavorFamily *string `json:"flavorFamily,omitempty"`
+	PageNo       *int    `json:"pageNo,omitempty"`
+	PageSize     *int    `json:"pageSize,omitempty"`
 }
 
 type EcsFlavorListByFamiliesRequest struct {
-	RegionID     string
-	AzName       string
-	FlavorFamily string
+	RegionID     *string
+	AzName       *string
+	FlavorFamily *string
 	PageNo       *int
 	PageSize     *int
 }

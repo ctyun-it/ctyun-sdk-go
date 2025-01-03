@@ -78,16 +78,16 @@ func (this *EcsVmDiskLatestMetricDataApi) Do(ctx context.Context, credential cty
 }
 
 type EcsVmDiskLatestMetricDataRealRequest struct {
-	RegionID     string   `json:"regionID,omitempty"`
-	DeviceIDList []string `json:"deviceIDList,omitempty"`
-	PageNo       *int     `json:"pageNo,omitempty"`
-	Page         *int     `json:"page,omitempty"`
-	PageSize     *int     `json:"pageSize,omitempty"`
+	RegionID     *string   `json:"regionID,omitempty"`
+	DeviceIDList *[]string `json:"deviceIDList,omitempty"`
+	PageNo       *int      `json:"pageNo,omitempty"`
+	Page         *int      `json:"page,omitempty"`
+	PageSize     *int      `json:"pageSize,omitempty"`
 }
 
 type EcsVmDiskLatestMetricDataRequest struct {
-	RegionID     string
-	DeviceIDList []string
+	RegionID     *string
+	DeviceIDList *[]string
 	PageNo       *int
 	Page         *int
 	PageSize     *int

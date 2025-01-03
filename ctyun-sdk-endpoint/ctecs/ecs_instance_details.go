@@ -26,8 +26,8 @@ func NewEcsInstanceDetailsApi(client *ctyunsdk.CtyunClient) *EcsInstanceDetailsA
 func (this *EcsInstanceDetailsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsInstanceDetailsRequest) (*EcsInstanceDetailsResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 	builder.
-		AddParam("regionID", req.RegionId).
-		AddParam("instanceID", req.InstanceId)
+		AddParam("regionID", *req.RegionId).
+		AddParam("instanceID", *req.InstanceId)
 
 	response, err := this.client.RequestToEndpoint(ctx, EndpointNameCtecs, builder)
 	if err != nil {
@@ -180,8 +180,8 @@ type ecsInstanceDetailsRealResponse struct {
 }
 
 type EcsInstanceDetailsRequest struct {
-	RegionId   string
-	InstanceId string
+	RegionId   *string
+	InstanceId *string
 }
 
 type EcsInstanceDetailsResultsSecGroupListResponse struct {

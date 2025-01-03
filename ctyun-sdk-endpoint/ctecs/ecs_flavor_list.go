@@ -79,15 +79,15 @@ func (this *EcsFlavorListApi) Do(ctx context.Context, credential ctyunsdk.Creden
 }
 
 type ecsFlavorListRealRequest struct {
-	RegionID     string `json:"regionID,omitempty"`
-	AzName       string `json:"azName,omitempty"`
-	FlavorType   string `json:"flavorType,omitempty"`
-	FlavorName   string `json:"flavorName,omitempty"`
-	FlavorCPU    int    `json:"flavorCPU,omitempty"`
-	FlavorRAM    int    `json:"flavorRAM,omitempty"`
-	FlavorArch   string `json:"flavorArch,omitempty"`
-	FlavorSeries string `json:"flavorSeries,omitempty"`
-	FlavorID     string `json:"flavorID,omitempty"`
+	RegionID     *string `json:"regionID,omitempty"`
+	AzName       *string `json:"azName,omitempty"`
+	FlavorType   *string `json:"flavorType,omitempty"`
+	FlavorName   *string `json:"flavorName,omitempty"`
+	FlavorCPU    *int    `json:"flavorCPU,omitempty"`
+	FlavorRAM    *int    `json:"flavorRAM,omitempty"`
+	FlavorArch   *string `json:"flavorArch,omitempty"`
+	FlavorSeries *string `json:"flavorSeries,omitempty"`
+	FlavorID     *string `json:"flavorID,omitempty"`
 }
 
 type ecsFlavorListFlavorListRealResponse struct {
@@ -116,15 +116,15 @@ type ecsFlavorListRealResponse struct {
 }
 
 type EcsFlavorListRequest struct {
-	RegionId     string
-	AzName       string
-	FlavorType   string
-	FlavorName   string
-	FlavorCpu    int
-	FlavorRam    int
-	FlavorArch   string
-	FlavorSeries string
-	FlavorId     string
+	RegionId     *string
+	AzName       *string
+	FlavorType   *string
+	FlavorName   *string
+	FlavorCpu    *int
+	FlavorRam    *int
+	FlavorArch   *string
+	FlavorSeries *string
+	FlavorId     *string
 }
 
 type EcsFlavorListFlavorListResponse struct {

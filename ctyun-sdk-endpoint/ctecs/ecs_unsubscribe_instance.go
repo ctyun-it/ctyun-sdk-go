@@ -26,9 +26,11 @@ func NewEcsUnsubscribeInstanceApi(client *ctyunsdk.CtyunClient) *EcsUnsubscribeI
 func (this *EcsUnsubscribeInstanceApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsUnsubscribeInstanceRequest) (*EcsUnsubscribeInstanceResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 	_, err := builder.WriteJson(&ecsUnsubscribeInstanceRealRequest{
-		ClientToken: req.ClientToken,
-		RegionID:    req.RegionId,
-		InstanceID:  req.InstanceId,
+		ClientToken:  req.ClientToken,
+		RegionID:     req.RegionId,
+		InstanceID:   req.InstanceId,
+		DeleteVolume: req.DeleteVolume,
+		DeleteEIP:    req.DeleteEIP,
 	})
 	if err != nil {
 		return nil, err
@@ -52,15 +54,19 @@ func (this *EcsUnsubscribeInstanceApi) Do(ctx context.Context, credential ctyuns
 }
 
 type ecsUnsubscribeInstanceRealRequest struct {
-	ClientToken string `json:"clientToken,omitempty"`
-	RegionID    string `json:"regionID,omitempty"`
-	InstanceID  string `json:"instanceID,omitempty"`
+	ClientToken  *string `json:"clientToken,omitempty"`
+	RegionID     *string `json:"regionID,omitempty"`
+	InstanceID   *string `json:"instanceID,omitempty"`
+	DeleteVolume *bool   `json:"deleteVolume,omitempty"`
+	DeleteEIP    *bool   `json:"deleteEIP,omitempty"`
 }
 
 type EcsUnsubscribeInstanceRequest struct {
-	ClientToken string
-	RegionId    string
-	InstanceId  string
+	ClientToken  *string
+	RegionId     *string
+	InstanceId   *string
+	DeleteVolume *bool
+	DeleteEIP    *bool
 }
 
 type ecsUnsubscribeInstanceRealResponse struct {

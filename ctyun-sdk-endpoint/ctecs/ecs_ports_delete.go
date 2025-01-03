@@ -50,15 +50,15 @@ func (this *EcsPortsDeleteApi) Do(ctx context.Context, credential ctyunsdk.Crede
 }
 
 type EcsPortsDeleteRealRequest struct {
-	ClientToken        string `json:"clientToken,omitempty"`
-	RegionID           string `json:"regionID,omitempty"`
-	NetworkInterfaceID string `json:"networkInterfaceID,omitempty"`
+	ClientToken        *string `json:"clientToken,omitempty"`
+	RegionID           *string `json:"regionID,omitempty"`
+	NetworkInterfaceID *string `json:"networkInterfaceID,omitempty"`
 }
 
 type EcsPortsDeleteRequest struct {
-	ClientToken        string
-	RegionID           string
-	NetworkInterfaceID string
+	ClientToken        *string
+	RegionID           *string
+	NetworkInterfaceID *string
 }
 
 type EcsPortsDeleteRealResponse struct {

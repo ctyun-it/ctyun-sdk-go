@@ -56,17 +56,17 @@ func (this *EcsEipDeleteApi) Do(ctx context.Context, credential ctyunsdk.Credent
 }
 
 type EcsEipDeleteRealRequest struct {
-	ClientToken string `json:"clientToken,omitempty"`
-	RegionID    string `json:"regionID,omitempty"`
-	ProjectID   string `json:"projectID,omitempty"`
-	EipID       string `json:"eipID,omitempty"`
+	ClientToken *string `json:"clientToken,omitempty"`
+	RegionID    *string `json:"regionID,omitempty"`
+	ProjectID   *string `json:"projectID,omitempty"`
+	EipID       *string `json:"eipID,omitempty"`
 }
 
 type EcsEipDeleteRequest struct {
-	ClientToken string
-	RegionID    string
-	ProjectID   string
-	EipID       string
+	ClientToken *string
+	RegionID    *string
+	ProjectID   *string
+	EipID       *string
 }
 
 type EcsEipDeleteRealResponse struct {

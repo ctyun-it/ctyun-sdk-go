@@ -52,19 +52,19 @@ func (this *EcsPortsAssignIpv6Api) Do(ctx context.Context, credential ctyunsdk.C
 }
 
 type EcsPortsAssignIpv6RealRequest struct {
-	ClientToken        string   `json:"clientToken,omitempty"`
-	RegionID           string   `json:"regionID,omitempty"`
-	NetworkInterfaceID string   `json:"networkInterfaceID,omitempty"`
-	Ipv6AddressesCount *int     `json:"ipv6AddressesCount,omitempty"`
-	Ipv6Addresses      []string `json:"ipv6Addresses,omitempty"`
+	ClientToken        *string   `json:"clientToken,omitempty"`
+	RegionID           *string   `json:"regionID,omitempty"`
+	NetworkInterfaceID *string   `json:"networkInterfaceID,omitempty"`
+	Ipv6AddressesCount *int      `json:"ipv6AddressesCount,omitempty"`
+	Ipv6Addresses      *[]string `json:"ipv6Addresses,omitempty"`
 }
 
 type EcsPortsAssignIpv6Request struct {
-	ClientToken        string
-	RegionID           string
-	NetworkInterfaceID string
+	ClientToken        *string
+	RegionID           *string
+	NetworkInterfaceID *string
 	Ipv6AddressesCount *int
-	Ipv6Addresses      []string
+	Ipv6Addresses      *[]string
 }
 
 type EcsPortsAssignIpv6RealResponse struct {

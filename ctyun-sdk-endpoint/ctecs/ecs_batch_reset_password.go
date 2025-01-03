@@ -59,22 +59,22 @@ func (this *EcsBatchResetPasswordApi) Do(ctx context.Context, credential ctyunsd
 }
 
 type EcsBatchResetPasswordUpdatePwdInfoRealRequest struct {
-	InstanceID  string `json:"instanceID,omitempty"`
-	NewPassword string `json:"newPassword,omitempty"`
+	InstanceID  *string `json:"instanceID,omitempty"`
+	NewPassword *string `json:"newPassword,omitempty"`
 }
 
 type EcsBatchResetPasswordRealRequest struct {
-	RegionID      string                                          `json:"regionID,omitempty"`
+	RegionID      *string                                         `json:"regionID,omitempty"`
 	UpdatePwdInfo []EcsBatchResetPasswordUpdatePwdInfoRealRequest `json:"updatePwdInfo,omitempty"`
 }
 
 type EcsBatchResetPasswordUpdatePwdInfoRequest struct {
-	InstanceID  string
-	NewPassword string
+	InstanceID  *string
+	NewPassword *string
 }
 
 type EcsBatchResetPasswordRequest struct {
-	RegionID      string
+	RegionID      *string
 	UpdatePwdInfo []EcsBatchResetPasswordUpdatePwdInfoRequest
 }
 

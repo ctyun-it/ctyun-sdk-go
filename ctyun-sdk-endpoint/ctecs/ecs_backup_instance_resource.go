@@ -51,11 +51,11 @@ func (this *EcsBackupInstanceResourceApi) Do(ctx context.Context, credential cty
 }
 
 type EcsBackupInstanceResourceRealRequest struct {
-	RegionID string `json:"regionID,omitempty"`
+	RegionID *string `json:"regionID,omitempty"`
 }
 
 type EcsBackupInstanceResourceRequest struct {
-	RegionID string
+	RegionID *string
 }
 
 type EcsBackupInstanceResourceRealResponse struct {

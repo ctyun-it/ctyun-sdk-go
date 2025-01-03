@@ -51,13 +51,13 @@ func (this *EcsBackupDeleteApi) Do(ctx context.Context, credential ctyunsdk.Cred
 }
 
 type EcsBackupDeleteRealRequest struct {
-	RegionID         string `json:"regionID,omitempty"`
-	InstanceBackupID string `json:"instanceBackupID,omitempty"`
+	RegionID         *string `json:"regionID,omitempty"`
+	InstanceBackupID *string `json:"instanceBackupID,omitempty"`
 }
 
 type EcsBackupDeleteRequest struct {
-	RegionID         string
-	InstanceBackupID string
+	RegionID         *string
+	InstanceBackupID *string
 }
 
 type EcsBackupDeleteRealResponse struct {

@@ -49,19 +49,19 @@ func (this *EcsJoinSecurityGroupApi) Do(ctx context.Context, credential ctyunsdk
 }
 
 type ecsJoinSecurityGroupRealRequest struct {
-	RegionID           string `json:"regionID,omitempty"`
-	SecurityGroupID    string `json:"securityGroupID,omitempty"`
-	InstanceID         string `json:"instanceID,omitempty"`
-	NetworkInterfaceID string `json:"networkInterfaceID,omitempty"`
-	Action             string `json:"action,omitempty"`
+	RegionID           *string `json:"regionID,omitempty"`
+	SecurityGroupID    *string `json:"securityGroupID,omitempty"`
+	InstanceID         *string `json:"instanceID,omitempty"`
+	NetworkInterfaceID *string `json:"networkInterfaceID,omitempty"`
+	Action             *string `json:"action,omitempty"`
 }
 
 type EcsJoinSecurityGroupRequest struct {
-	RegionId           string
-	SecurityGroupId    string
-	InstanceId         string
-	NetworkInterfaceId string
-	Action             string
+	RegionId           *string
+	SecurityGroupId    *string
+	InstanceId         *string
+	NetworkInterfaceId *string
+	Action             *string
 }
 
 type EcsJoinSecurityGroupResponse struct {

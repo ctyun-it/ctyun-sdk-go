@@ -47,15 +47,15 @@ func (this *EcsLeaveSecurityGroupApi) Do(ctx context.Context, credential ctyunsd
 }
 
 type ecsLeaveSecurityGroupRealRequest struct {
-	RegionID        string `json:"regionID,omitempty"`
-	SecurityGroupID string `json:"securityGroupID,omitempty"`
-	InstanceID      string `json:"instanceID,omitempty"`
+	RegionID        *string `json:"regionID,omitempty"`
+	SecurityGroupID *string `json:"securityGroupID,omitempty"`
+	InstanceID      *string `json:"instanceID,omitempty"`
 }
 
 type EcsLeaveSecurityGroupRequest struct {
-	RegionId        string
-	SecurityGroupId string
-	InstanceId      string
+	RegionId        *string
+	SecurityGroupId *string
+	InstanceId      *string
 }
 
 type EcsLeaveSecurityGroupResponse struct {

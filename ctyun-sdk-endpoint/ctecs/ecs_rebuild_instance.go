@@ -33,6 +33,7 @@ func (this *EcsRebuildInstanceApi) Do(ctx context.Context, credential ctyunsdk.C
 		UserData:       req.UserData,
 		InstanceName:   req.InstanceName,
 		MonitorService: req.MonitorService,
+		PayImage:       req.PayImage,
 	})
 	if err != nil {
 		return nil, err
@@ -54,23 +55,25 @@ func (this *EcsRebuildInstanceApi) Do(ctx context.Context, credential ctyunsdk.C
 }
 
 type ecsRebuildInstanceRealRequest struct {
-	RegionID       string `json:"regionID,omitempty"`
-	InstanceID     string `json:"instanceID,omitempty"`
-	Password       string `json:"password,omitempty"`
-	ImageID        string `json:"imageID,omitempty"`
-	UserData       string `json:"userData,omitempty"`
-	InstanceName   string `json:"instanceName,omitempty"`
-	MonitorService bool   `json:"monitorService,omitempty"`
+	RegionID       *string `json:"regionID,omitempty"`
+	InstanceID     *string `json:"instanceID,omitempty"`
+	Password       *string `json:"password,omitempty"`
+	ImageID        *string `json:"imageID,omitempty"`
+	UserData       *string `json:"userData,omitempty"`
+	InstanceName   *string `json:"instanceName,omitempty"`
+	MonitorService *bool   `json:"monitorService,omitempty"`
+	PayImage       *bool   `json:"payImage,omitempty"`
 }
 
 type EcsRebuildInstanceRequest struct {
-	RegionID       string
-	InstanceID     string
-	Password       string
-	ImageID        string
-	UserData       string
-	InstanceName   string
-	MonitorService bool
+	RegionID       *string
+	InstanceID     *string
+	Password       *string
+	ImageID        *string
+	UserData       *string
+	InstanceName   *string
+	MonitorService *bool
+	PayImage       *bool
 }
 
 type EcsRebuildInstanceRealResponse struct {

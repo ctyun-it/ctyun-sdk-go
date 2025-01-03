@@ -63,12 +63,12 @@ func (this *KeypairDetailApi) Do(ctx context.Context, credential ctyunsdk.Creden
 }
 
 type keypairDetailRealRequest struct {
-	RegionID     string `json:"regionID,omitempty"`
-	ProjectID    string `json:"projectID,omitempty"`
-	KeypairName  string `json:"keyPairName,omitempty"`
-	QueryContent string `json:"queryContent,omitempty"`
-	PageNo       int    `json:"pageNo,omitempty"`
-	PageSize     int    `json:"pageSize,omitempty"`
+	RegionID     *string `json:"regionID,omitempty"`
+	ProjectID    *string `json:"projectID,omitempty"`
+	KeypairName  *string `json:"keyPairName,omitempty"`
+	QueryContent *string `json:"queryContent,omitempty"`
+	PageNo       *int    `json:"pageNo,omitempty"`
+	PageSize     *int    `json:"pageSize,omitempty"`
 }
 
 type keypairDetailRealResponse struct {
@@ -92,12 +92,12 @@ type KeypairDetailResults struct {
 }
 
 type KeypairDetailRequest struct {
-	RegionId     string // 资源池ID
-	ProjectId    string // 企业项目id
-	KeyPairName  string // 密钥对名称。只能由数字、字母、-组成,不能以数字和-开头、以-结尾,且长度为2-63字符
-	QueryContent string
-	PageNo       int
-	PageSize     int
+	RegionId     *string // 资源池ID
+	ProjectId    *string // 企业项目id
+	KeyPairName  *string // 密钥对名称。只能由数字、字母、-组成,不能以数字和-开头、以-结尾,且长度为2-63字符
+	QueryContent *string
+	PageNo       *int
+	PageSize     *int
 }
 
 type KeypairDetailResponse struct {

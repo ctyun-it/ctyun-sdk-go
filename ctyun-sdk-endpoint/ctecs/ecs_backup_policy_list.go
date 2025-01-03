@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core"
 	"net/http"
+	"strconv"
 )
 
 // EcsBackupPolicyListApi
@@ -24,18 +25,16 @@ func NewEcsBackupPolicyListApi(client *ctyunsdk.CtyunClient) *EcsBackupPolicyLis
 
 func (this *EcsBackupPolicyListApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsBackupPolicyListRequest) (*EcsBackupPolicyListResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
-
-	_, err := builder.WriteJson(&EcsBackupPolicyListRealRequest{
-		RegionID:   req.RegionID,
-		PolicyID:   req.PolicyID,
-		PolicyName: req.PolicyName,
-		ProjectID:  req.ProjectID,
-		PageNo:     req.PageNo,
-		PageSize:   req.PageSize,
-	})
-
-	if err != nil {
-		return nil, err
+	builder.
+		AddParam("regionID", *req.RegionID).
+		AddParam("policyID", *req.PolicyID).
+		AddParam("policyName", *req.PolicyName).
+		AddParam("projectID", *req.ProjectID)
+	if req.PageNo != nil {
+		builder.AddParam("pageNo", strconv.Itoa(*req.PageNo))
+	}
+	if req.PageSize != nil {
+		builder.AddParam("pageSize", strconv.Itoa(*req.PageSize))
 	}
 
 	response, err := this.client.RequestToEndpoint(ctx, EndpointNameCtecs, builder)
@@ -87,19 +86,19 @@ func (this *EcsBackupPolicyListApi) Do(ctx context.Context, credential ctyunsdk.
 }
 
 type EcsBackupPolicyListRealRequest struct {
-	RegionID   string `json:"regionID,omitempty"`
-	PolicyID   string `json:"policyID,omitempty"`
-	PolicyName string `json:"policyName,omitempty"`
-	ProjectID  string `json:"projectID,omitempty"`
-	PageNo     *int   `json:"pageNo,omitempty"`
-	PageSize   *int   `json:"pageSize,omitempty"`
+	RegionID   *string `json:"regionID,omitempty"`
+	PolicyID   *string `json:"policyID,omitempty"`
+	PolicyName *string `json:"policyName,omitempty"`
+	ProjectID  *string `json:"projectID,omitempty"`
+	PageNo     *int    `json:"pageNo,omitempty"`
+	PageSize   *int    `json:"pageSize,omitempty"`
 }
 
 type EcsBackupPolicyListRequest struct {
-	RegionID   string
-	PolicyID   string
-	PolicyName string
-	ProjectID  string
+	RegionID   *string
+	PolicyID   *string
+	PolicyName *string
+	ProjectID  *string
 	PageNo     *int
 	PageSize   *int
 }

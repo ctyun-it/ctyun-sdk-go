@@ -49,8 +49,8 @@ func (this *KeypairDeleteApi) Do(ctx context.Context, credential ctyunsdk.Creden
 }
 
 type keypairDeleteRealRequest struct {
-	RegionID    string `json:"regionID"`
-	KeyPairName string `json:"keyPairName"`
+	RegionID    *string `json:"regionID"`
+	KeyPairName *string `json:"keyPairName"`
 }
 
 type KeypairDeleteRealResponse struct {
@@ -58,8 +58,8 @@ type KeypairDeleteRealResponse struct {
 }
 
 type KeypairDeleteRequest struct {
-	RegionId    string // 资源池ID
-	KeyPairName string // 密钥对名称。
+	RegionId    *string // 资源池ID
+	KeyPairName *string // 密钥对名称。
 }
 
 type KeypairDeleteResponse struct {

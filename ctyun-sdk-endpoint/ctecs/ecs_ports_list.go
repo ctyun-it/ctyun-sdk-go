@@ -27,10 +27,10 @@ func (this *EcsPortsListApi) Do(ctx context.Context, credential ctyunsdk.Credent
 	builder := this.WithCredential(&credential)
 
 	builder.
-		AddParam("regionID", req.RegionID).
-		AddParam("vpcID", req.VpcID).
-		AddParam("deviceID", req.DeviceID).
-		AddParam("subnetID", req.SubnetID).
+		AddParam("regionID", *req.RegionID).
+		AddParam("vpcID", *req.VpcID).
+		AddParam("deviceID", *req.DeviceID).
+		AddParam("subnetID", *req.SubnetID).
 		AddParam("pageNumber", strconv.Itoa(*req.PageNumber)).
 		AddParam("pageNo", strconv.Itoa(*req.PageNo)).
 		AddParam("pageSize", strconv.Itoa(*req.PageSize))
@@ -72,24 +72,14 @@ func (this *EcsPortsListApi) Do(ctx context.Context, credential ctyunsdk.Credent
 	return &realResponse, nil
 }
 
-type EcsPortsListRealRequest struct {
-	RegionID   string `json:"regionID,omitempty"`
-	VpcID      string `json:"vpcID,omitempty"`
-	DeviceID   string `json:"deviceID,omitempty"`
-	SubnetID   string `json:"subnetID,omitempty"`
-	PageNumber *int   `json:"pageNumber,omitempty"`
-	PageSize   *int   `json:"pageSize,omitempty"`
-	PageNo     *int   `json:"pageNo,omitempty"`
-}
-
 type EcsPortsListRequest struct {
-	RegionID   string
-	VpcID      string
-	DeviceID   string
-	SubnetID   string
-	PageNumber *int
-	PageSize   *int
-	PageNo     *int
+	RegionID   *string `json:"regionID,omitempty"`
+	VpcID      *string `json:"vpcID,omitempty"`
+	DeviceID   *string `json:"deviceID,omitempty"`
+	SubnetID   *string `json:"subnetID,omitempty"`
+	PageNumber *int    `json:"pageNumber,omitempty"`
+	PageSize   *int    `json:"pageSize,omitempty"`
+	PageNo     *int    `json:"pageNo,omitempty"`
 }
 
 type EcsPortsListAssociatedEipRealResponse struct {

@@ -67,16 +67,16 @@ func (this *EcsBatchRebuildInstancesApi) Do(ctx context.Context, credential ctyu
 }
 
 type ecsBatchRebuildInstancesRebuildInfoRealRequest struct {
-	InstanceID     string `json:"instanceID,omitempty"`
-	Password       string `json:"password,omitempty"`
-	ImageID        string `json:"imageID,omitempty"`
-	UserData       string `json:"userData,omitempty"`
-	InstanceName   string `json:"instanceName,omitempty"`
-	MonitorService bool   `json:"monitorService,omitempty"`
+	InstanceID     *string `json:"instanceID,omitempty"`
+	Password       *string `json:"password,omitempty"`
+	ImageID        *string `json:"imageID,omitempty"`
+	UserData       *string `json:"userData,omitempty"`
+	InstanceName   *string `json:"instanceName,omitempty"`
+	MonitorService *bool   `json:"monitorService,omitempty"`
 }
 
 type ecsBatchRebuildInstancesRealRequest struct {
-	RegionID    string                                           `json:"regionID"`
+	RegionID    *string                                          `json:"regionID"`
 	RebuildInfo []ecsBatchRebuildInstancesRebuildInfoRealRequest `json:"rebuildInfo"`
 }
 
@@ -88,17 +88,17 @@ type ecsBatchRebuildInstancesJobIDListRealResponse struct {
 }
 
 type EcsBatchRebuildInstancesRequest struct {
-	RegionID    string
+	RegionID    *string
 	RebuildInfo []EcsBatchRebuildInstancesRebuildInfoRequest
 }
 
 type EcsBatchRebuildInstancesRebuildInfoRequest struct {
-	InstanceID     string
-	Password       string
-	ImageID        string
-	UserData       string
-	InstanceName   string
-	MonitorService bool
+	InstanceID     *string
+	Password       *string
+	ImageID        *string
+	UserData       *string
+	InstanceName   *string
+	MonitorService *bool
 }
 
 type EcsBatchRebuildInstancesJobIDListResponse struct {

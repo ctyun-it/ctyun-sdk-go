@@ -91,22 +91,22 @@ func (this *EcsVmCpuHistoryMetricDataApi) Do(ctx context.Context, credential cty
 }
 
 type EcsVmCpuHistoryMetricDataRealRequest struct {
-	RegionID     string   `json:"regionID,omitempty"`
-	DeviceIDList []string `json:"deviceIDList,omitempty"`
-	Period       *int     `json:"period,omitempty"`
-	StartTime    string   `json:"startTime,omitempty"`
-	EndTime      string   `json:"endTime,omitempty"`
-	PageNo       *int     `json:"pageNo,omitempty"`
-	Page         *int     `json:"page,omitempty"`
-	PageSize     *int     `json:"pageSize,omitempty"`
+	RegionID     *string   `json:"regionID,omitempty"`
+	DeviceIDList *[]string `json:"deviceIDList,omitempty"`
+	Period       *int      `json:"period,omitempty"`
+	StartTime    *string   `json:"startTime,omitempty"`
+	EndTime      *string   `json:"endTime,omitempty"`
+	PageNo       *int      `json:"pageNo,omitempty"`
+	Page         *int      `json:"page,omitempty"`
+	PageSize     *int      `json:"pageSize,omitempty"`
 }
 
 type EcsVmCpuHistoryMetricDataRequest struct {
-	RegionID     string
-	DeviceIDList []string
+	RegionID     *string
+	DeviceIDList *[]string
 	Period       *int
-	StartTime    string
-	EndTime      string
+	StartTime    *string
+	EndTime      *string
 	PageNo       *int
 	Page         *int
 	PageSize     *int

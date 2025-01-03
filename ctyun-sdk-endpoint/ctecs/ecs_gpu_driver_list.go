@@ -53,13 +53,13 @@ func (this *EcsGpuDriverListApi) Do(ctx context.Context, credential ctyunsdk.Cre
 }
 
 type EcsGpuDriverListRealRequest struct {
-	RegionID string `json:"regionID,omitempty"`
-	FlavorID string `json:"flavorID,omitempty"`
+	RegionID *string `json:"regionID,omitempty"`
+	FlavorID *string `json:"flavorID,omitempty"`
 }
 
 type EcsGpuDriverListRequest struct {
-	RegionID string
-	FlavorID string
+	RegionID *string
+	FlavorID *string
 }
 
 type EcsGpuDriverListRealResponse struct {

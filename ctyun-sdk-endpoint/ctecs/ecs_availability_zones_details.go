@@ -26,7 +26,7 @@ func NewEcsAvailabilityZonesDetails(client *ctyunsdk.CtyunClient) *EcsAvailabili
 
 func (this *EcsAvailabilityZonesDetailsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsAvailabilityZonesDetailsRequest) (*EcsAvailabilityZonesDetailsResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
-	builder.AddParam("regionID", req.RegionID)
+	builder.AddParam("regionID", *req.RegionID)
 	resp, requestError := this.client.RequestToEndpoint(ctx, EndpointNameCtecs, builder)
 	if requestError != nil {
 		return nil, requestError
@@ -52,7 +52,7 @@ func (this *EcsAvailabilityZonesDetailsApi) Do(ctx context.Context, credential c
 }
 
 type EcsAvailabilityZonesDetailsRequest struct {
-	RegionID string
+	RegionID *string
 }
 
 type EcsAvailabilityZonesDetailsAzListRealResponse struct {

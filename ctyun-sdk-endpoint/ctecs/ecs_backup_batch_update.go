@@ -60,24 +60,24 @@ func (this *EcsBackupBatchUpdateApi) Do(ctx context.Context, credential ctyunsdk
 }
 
 type EcsBackupBatchUpdateUpdateInfoRealRequest struct {
-	InstanceBackupID          string `json:"instanceBackupID,omitempty"`
-	InstanceBackupName        string `json:"instanceBackupName,omitempty"`
-	InstanceBackupDescription string `json:"instanceBackupDescription,omitempty"`
+	InstanceBackupID          *string `json:"instanceBackupID,omitempty"`
+	InstanceBackupName        *string `json:"instanceBackupName,omitempty"`
+	InstanceBackupDescription *string `json:"instanceBackupDescription,omitempty"`
 }
 
 type EcsBackupBatchUpdateRealRequest struct {
-	RegionID   string                                      `json:"regionID,omitempty"`
+	RegionID   *string                                     `json:"regionID,omitempty"`
 	UpdateInfo []EcsBackupBatchUpdateUpdateInfoRealRequest `json:"updateInfo,omitempty"`
 }
 
 type EcsBackupBatchUpdateUpdateInfoRequest struct {
-	InstanceBackupID          string
-	InstanceBackupName        string
-	InstanceBackupDescription string
+	InstanceBackupID          *string
+	InstanceBackupName        *string
+	InstanceBackupDescription *string
 }
 
 type EcsBackupBatchUpdateRequest struct {
-	RegionID   string
+	RegionID   *string
 	UpdateInfo []EcsBackupBatchUpdateUpdateInfoRequest
 }
 

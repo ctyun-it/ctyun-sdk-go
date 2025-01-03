@@ -53,15 +53,15 @@ func (this *EcsBackupPolicyBindRepoApi) Do(ctx context.Context, credential ctyun
 }
 
 type EcsBackupPolicyBindRepoRealRequest struct {
-	RegionID     string `json:"regionID,omitempty"`
-	RepositoryID string `json:"repositoryID,omitempty"`
-	PolicyID     string `json:"policyID,omitempty"`
+	RegionID     *string `json:"regionID,omitempty"`
+	RepositoryID *string `json:"repositoryID,omitempty"`
+	PolicyID     *string `json:"policyID,omitempty"`
 }
 
 type EcsBackupPolicyBindRepoRequest struct {
-	RegionID     string
-	RepositoryID string
-	PolicyID     string
+	RegionID     *string
+	RepositoryID *string
+	PolicyID     *string
 }
 
 type EcsBackupPolicyBindRepoRealResponse struct {

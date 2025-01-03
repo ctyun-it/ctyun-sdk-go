@@ -25,7 +25,7 @@ func NewEcsOrderQueryUuid(client *ctyunsdk.CtyunClient) *EcsOrderQueryUuidApi {
 
 func (this *EcsOrderQueryUuidApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsOrderQueryUuidRequest) (*EcsOrderQueryUuidResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
-	builder.AddParam("masterOrderID", req.MasterOrderId)
+	builder.AddParam("masterOrderID", *req.MasterOrderId)
 	resp, requestError := this.client.RequestToEndpoint(ctx, EndpointNameCtecs, builder)
 	if requestError != nil {
 		return nil, requestError
@@ -47,7 +47,7 @@ type EcsOrderQueryUuidRealResponse struct {
 }
 
 type EcsOrderQueryUuidRequest struct {
-	MasterOrderId string
+	MasterOrderId *string
 }
 
 type EcsOrderQueryUuidResponse struct {

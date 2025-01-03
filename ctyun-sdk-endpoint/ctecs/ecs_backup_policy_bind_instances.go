@@ -53,15 +53,15 @@ func (this *EcsBackupPolicyBindInstancesApi) Do(ctx context.Context, credential 
 }
 
 type EcsBackupPolicyBindInstancesRealRequest struct {
-	RegionID       string `json:"regionID,omitempty"`
-	PolicyID       string `json:"policyID,omitempty"`
-	InstanceIDList string `json:"instanceIDList,omitempty"`
+	RegionID       *string `json:"regionID,omitempty"`
+	PolicyID       *string `json:"policyID,omitempty"`
+	InstanceIDList *string `json:"instanceIDList,omitempty"`
 }
 
 type EcsBackupPolicyBindInstancesRequest struct {
-	RegionID       string
-	PolicyID       string
-	InstanceIDList string
+	RegionID       *string
+	PolicyID       *string
+	InstanceIDList *string
 }
 
 type EcsBackupPolicyBindInstancesRealResponse struct {

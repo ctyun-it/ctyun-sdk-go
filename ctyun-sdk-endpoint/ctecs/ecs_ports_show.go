@@ -24,7 +24,9 @@ func NewEcsPortsShowApi(client *ctyunsdk.CtyunClient) *EcsPortsShowApi {
 
 func (this *EcsPortsShowApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsPortsShowRequest) (*EcsPortsShowResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
-	builder.AddParam("regionID", req.RegionID).AddParam("networkInterfaceID", req.NetworkInterfaceID)
+	builder.
+		AddParam("regionID", *req.RegionID).
+		AddParam("networkInterfaceID", *req.NetworkInterfaceID)
 
 	response, err := this.client.RequestToEndpoint(ctx, EndpointNameCtecs, builder)
 	if err != nil {
@@ -60,13 +62,13 @@ func (this *EcsPortsShowApi) Do(ctx context.Context, credential ctyunsdk.Credent
 }
 
 type EcsPortsShowRealRequest struct {
-	RegionID           string `json:"regionID,omitempty"`
-	NetworkInterfaceID string `json:"networkInterfaceID,omitempty"`
+	RegionID           *string `json:"regionID,omitempty"`
+	NetworkInterfaceID *string `json:"networkInterfaceID,omitempty"`
 }
 
 type EcsPortsShowRequest struct {
-	RegionID           string
-	NetworkInterfaceID string
+	RegionID           *string
+	NetworkInterfaceID *string
 }
 
 type EcsPortsShowAssociatedEipRealResponse struct {

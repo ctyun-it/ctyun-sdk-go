@@ -51,13 +51,13 @@ func (this *EcsBackupUsageApi) Do(ctx context.Context, credential ctyunsdk.Crede
 }
 
 type EcsBackupUsageRealRequest struct {
-	RegionID         string `json:"regionID,omitempty"`
-	InstanceBackupID string `json:"instanceBackupID,omitempty"`
+	RegionID         *string `json:"regionID,omitempty"`
+	InstanceBackupID *string `json:"instanceBackupID,omitempty"`
 }
 
 type EcsBackupUsageRequest struct {
-	RegionID         string
-	InstanceBackupID string
+	RegionID         *string
+	InstanceBackupID *string
 }
 
 type EcsBackupUsageRealResponse struct {

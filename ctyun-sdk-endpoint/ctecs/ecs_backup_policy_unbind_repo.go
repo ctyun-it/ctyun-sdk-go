@@ -51,13 +51,13 @@ func (this *EcsBackupPolicyUnbindRepoApi) Do(ctx context.Context, credential cty
 }
 
 type EcsBackupPolicyUnbindRepoRealRequest struct {
-	RegionID string `json:"regionID,omitempty"`
-	PolicyID string `json:"policyID,omitempty"`
+	RegionID *string `json:"regionID,omitempty"`
+	PolicyID *string `json:"policyID,omitempty"`
 }
 
 type EcsBackupPolicyUnbindRepoRequest struct {
-	RegionID string
-	PolicyID string
+	RegionID *string
+	PolicyID *string
 }
 
 type EcsBackupPolicyUnbindRepoRealResponse struct {

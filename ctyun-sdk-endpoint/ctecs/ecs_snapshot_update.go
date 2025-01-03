@@ -53,17 +53,17 @@ func (this *EcsUpdateSnapshotApi) Do(ctx context.Context, credential ctyunsdk.Cr
 }
 
 type EcsUpdateSnapshotRealRequest struct {
-	RegionID            string `json:"regionID,omitempty"`
-	SnapshotID          string `json:"snapshotID,omitempty"`
-	SnapshotName        string `json:"snapshotName,omitempty"`
-	SnapshotDescription string `json:"snapshotDescription,omitempty"`
+	RegionID            *string `json:"regionID,omitempty"`
+	SnapshotID          *string `json:"snapshotID,omitempty"`
+	SnapshotName        *string `json:"snapshotName,omitempty"`
+	SnapshotDescription *string `json:"snapshotDescription,omitempty"`
 }
 
 type EcsUpdateSnapshotRequest struct {
-	RegionID            string
-	SnapshotID          string
-	SnapshotName        string
-	SnapshotDescription string
+	RegionID            *string
+	SnapshotID          *string
+	SnapshotName        *string
+	SnapshotDescription *string
 }
 
 type EcsUpdateSnapshotRealResponse struct {

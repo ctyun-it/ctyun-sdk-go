@@ -84,27 +84,27 @@ func (this *EcsBackupListApi) Do(ctx context.Context, credential ctyunsdk.Creden
 }
 
 type EcsBackupListRealRequest struct {
-	RegionID             string `json:"regionID,omitempty"`
-	PageNo               *int   `json:"pageNo,omitempty"`
-	PageSize             *int   `json:"pageSize,omitempty"`
-	InstanceID           string `json:"instanceID,omitempty"`
-	RepositoryID         string `json:"repositoryID,omitempty"`
-	InstanceBackupID     string `json:"instanceBackupID,omitempty"`
-	QueryContent         string `json:"queryContent,omitempty"`
-	InstanceBackupStatus string `json:"instanceBackupStatus,omitempty"`
-	ProjectID            string `json:"projectID,omitempty"`
+	RegionID             *string `json:"regionID,omitempty"`
+	PageNo               *int    `json:"pageNo,omitempty"`
+	PageSize             *int    `json:"pageSize,omitempty"`
+	InstanceID           *string `json:"instanceID,omitempty"`
+	RepositoryID         *string `json:"repositoryID,omitempty"`
+	InstanceBackupID     *string `json:"instanceBackupID,omitempty"`
+	QueryContent         *string `json:"queryContent,omitempty"`
+	InstanceBackupStatus *string `json:"instanceBackupStatus,omitempty"`
+	ProjectID            *string `json:"projectID,omitempty"`
 }
 
 type EcsBackupListRequest struct {
-	RegionID             string
+	RegionID             *string
 	PageNo               *int
 	PageSize             *int
-	InstanceID           string
-	RepositoryID         string
-	InstanceBackupID     string
-	QueryContent         string
-	InstanceBackupStatus string
-	ProjectID            string
+	InstanceID           *string
+	RepositoryID         *string
+	InstanceBackupID     *string
+	QueryContent         *string
+	InstanceBackupStatus *string
+	ProjectID            *string
 }
 
 type EcsBackupListResultsRealResponse struct {

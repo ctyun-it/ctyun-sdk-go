@@ -52,15 +52,15 @@ func (this *EcsShareInterfaceAttachApi) Do(ctx context.Context, credential ctyun
 }
 
 type EcsShareInterfaceAttachRealRequest struct {
-	RegionID   string `json:"regionID,omitempty"`
-	InstanceID string `json:"instanceID,omitempty"`
-	SubnetID   string `json:"subnetID,omitempty"`
+	RegionID   *string `json:"regionID,omitempty"`
+	InstanceID *string `json:"instanceID,omitempty"`
+	SubnetID   *string `json:"subnetID,omitempty"`
 }
 
 type EcsShareInterfaceAttachRequest struct {
-	RegionID   string
-	InstanceID string
-	SubnetID   string
+	RegionID   *string
+	InstanceID *string
+	SubnetID   *string
 }
 
 type EcsShareInterfaceAttachRealResponse struct {

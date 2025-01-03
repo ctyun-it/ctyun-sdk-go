@@ -53,21 +53,21 @@ func (this *EcsPortsUpdateApi) Do(ctx context.Context, credential ctyunsdk.Crede
 }
 
 type EcsPortsUpdateRealRequest struct {
-	ClientToken        string   `json:"clientToken,omitempty"`
-	RegionID           string   `json:"regionID,omitempty"`
-	NetworkInterfaceID string   `json:"networkInterfaceID,omitempty"`
-	Name               string   `json:"name,omitempty"`
-	Description        string   `json:"description,omitempty"`
-	SecurityGroupIDs   []string `json:"securityGroupIDs,omitempty"`
+	ClientToken        *string   `json:"clientToken,omitempty"`
+	RegionID           *string   `json:"regionID,omitempty"`
+	NetworkInterfaceID *string   `json:"networkInterfaceID,omitempty"`
+	Name               *string   `json:"name,omitempty"`
+	Description        *string   `json:"description,omitempty"`
+	SecurityGroupIDs   *[]string `json:"securityGroupIDs,omitempty"`
 }
 
 type EcsPortsUpdateRequest struct {
-	ClientToken        string
-	RegionID           string
-	NetworkInterfaceID string
-	Name               string
-	Description        string
-	SecurityGroupIDs   []string
+	ClientToken        *string
+	RegionID           *string
+	NetworkInterfaceID *string
+	Name               *string
+	Description        *string
+	SecurityGroupIDs   *[]string
 }
 
 type EcsPortsUpdateRealResponse struct {

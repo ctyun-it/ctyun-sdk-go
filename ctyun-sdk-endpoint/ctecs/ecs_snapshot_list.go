@@ -96,27 +96,27 @@ func (this *EcsSnapshotListApi) Do(ctx context.Context, credential ctyunsdk.Cred
 }
 
 type EcsSnapshotListRealRequest struct {
-	RegionID       string `json:"regionID,omitempty"`
-	ProjectID      string `json:"projectID,omitempty"`
-	PageNo         *int   `json:"pageNo,omitempty"`
-	PageSize       *int   `json:"pageSize,omitempty"`
-	InstanceID     string `json:"instanceID,omitempty"`
-	SnapshotStatus string `json:"snapshotStatus,omitempty"`
-	SnapshotID     string `json:"snapshotID,omitempty"`
-	QueryContent   string `json:"queryContent,omitempty"`
-	SnapshotName   string `json:"snapshotName,omitempty"`
+	RegionID       *string `json:"regionID,omitempty"`
+	ProjectID      *string `json:"projectID,omitempty"`
+	PageNo         *int    `json:"pageNo,omitempty"`
+	PageSize       *int    `json:"pageSize,omitempty"`
+	InstanceID     *string `json:"instanceID,omitempty"`
+	SnapshotStatus *string `json:"snapshotStatus,omitempty"`
+	SnapshotID     *string `json:"snapshotID,omitempty"`
+	QueryContent   *string `json:"queryContent,omitempty"`
+	SnapshotName   *string `json:"snapshotName,omitempty"`
 }
 
 type EcsSnapshotListRequest struct {
-	RegionID       string
-	ProjectID      string
+	RegionID       *string
+	ProjectID      *string
 	PageNo         *int
 	PageSize       *int
-	InstanceID     string
-	SnapshotStatus string
-	SnapshotID     string
-	QueryContent   string
-	SnapshotName   string
+	InstanceID     *string
+	SnapshotStatus *string
+	SnapshotID     *string
+	QueryContent   *string
+	SnapshotName   *string
 }
 
 type EcsSnapshotListMembersRealResponse struct {

@@ -51,13 +51,13 @@ func (this *EcsSnapshotDeleteApi) Do(ctx context.Context, credential ctyunsdk.Cr
 }
 
 type EcsSnapshotDeleteRealRequest struct {
-	RegionID   string `json:"regionID,omitempty"`
-	SnapshotID string `json:"snapshotID,omitempty"`
+	RegionID   *string `json:"regionID,omitempty"`
+	SnapshotID *string `json:"snapshotID,omitempty"`
 }
 
 type EcsSnapshotDeleteRequest struct {
-	RegionID   string
-	SnapshotID string
+	RegionID   *string
+	SnapshotID *string
 }
 
 type EcsSnapshotDeleteRealResponse struct {

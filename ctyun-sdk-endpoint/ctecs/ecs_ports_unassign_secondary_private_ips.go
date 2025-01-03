@@ -51,17 +51,17 @@ func (this *EcsPortsUnassignSecondaryPrivateIpsApi) Do(ctx context.Context, cred
 }
 
 type EcsPortsUnassignSecondaryPrivateIpsRealRequest struct {
-	ClientToken         string   `json:"clientToken,omitempty"`
-	RegionID            string   `json:"regionID,omitempty"`
-	NetworkInterfaceID  string   `json:"networkInterfaceID,omitempty"`
-	SecondaryPrivateIps []string `json:"secondaryPrivateIps,omitempty"`
+	ClientToken         *string   `json:"clientToken,omitempty"`
+	RegionID            *string   `json:"regionID,omitempty"`
+	NetworkInterfaceID  *string   `json:"networkInterfaceID,omitempty"`
+	SecondaryPrivateIps *[]string `json:"secondaryPrivateIps,omitempty"`
 }
 
 type EcsPortsUnassignSecondaryPrivateIpsRequest struct {
-	ClientToken         string
-	RegionID            string
-	NetworkInterfaceID  string
-	SecondaryPrivateIps []string
+	ClientToken         *string
+	RegionID            *string
+	NetworkInterfaceID  *string
+	SecondaryPrivateIps *[]string
 }
 
 type EcsPortsUnassignSecondaryPrivateIpsRealResponse struct {

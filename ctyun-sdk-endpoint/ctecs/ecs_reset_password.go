@@ -50,9 +50,9 @@ func (this *EcsResetPasswordApi) Do(ctx context.Context, credential ctyunsdk.Cre
 }
 
 type ecsResetPasswordRealRequest struct {
-	RegionID    string `json:"regionID"`
-	InstanceID  string `json:"instanceID"`
-	NewPassword string `json:"newPassword"`
+	RegionID    *string `json:"regionID"`
+	InstanceID  *string `json:"instanceID"`
+	NewPassword *string `json:"newPassword"`
 }
 
 type EcsResetPasswordRealResponse struct {
@@ -60,9 +60,9 @@ type EcsResetPasswordRealResponse struct {
 }
 
 type EcsResetPasswordRequest struct {
-	RegionId    string
-	InstanceId  string
-	NewPassword string
+	RegionId    *string
+	InstanceId  *string
+	NewPassword *string
 }
 
 type EcsResetPasswordResponse struct {

@@ -47,15 +47,15 @@ func (this *KeypairAttachApi) Do(ctx context.Context, credential ctyunsdk.Creden
 }
 
 type keypairAttachRealRequest struct {
-	RegionID    string `json:"regionID"`
-	KeyPairName string `json:"keyPairName"`
-	InstanceID  string `json:"instanceID"`
+	RegionID    *string `json:"regionID"`
+	KeyPairName *string `json:"keyPairName"`
+	InstanceID  *string `json:"instanceID"`
 }
 
 type KeypairAttachRequest struct {
-	RegionId    string // 区域id
-	KeyPairName string // 密钥对名称
-	InstanceId  string // 云主机ID
+	RegionId    *string // 区域id
+	KeyPairName *string // 密钥对名称
+	InstanceId  *string // 云主机ID
 }
 
 type KeypairAttachResponse struct {

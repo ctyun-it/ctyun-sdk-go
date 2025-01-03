@@ -51,13 +51,13 @@ func (this *EcsRestoreSnapshotApi) Do(ctx context.Context, credential ctyunsdk.C
 }
 
 type EcsRestoreSnapshotRealRequest struct {
-	RegionID   string `json:"regionID,omitempty"`
-	SnapshotID string `json:"snapshotID,omitempty"`
+	RegionID   *string `json:"regionID,omitempty"`
+	SnapshotID *string `json:"snapshotID,omitempty"`
 }
 
 type EcsRestoreSnapshotRequest struct {
-	RegionID   string
-	SnapshotID string
+	RegionID   *string
+	SnapshotID *string
 }
 
 type EcsRestoreSnapshotRealResponse struct {

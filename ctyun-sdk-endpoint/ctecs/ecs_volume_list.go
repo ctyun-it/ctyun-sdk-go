@@ -65,17 +65,17 @@ func (this *EcsVolumeListApi) Do(ctx context.Context, credential ctyunsdk.Creden
 }
 
 type ecsVolumeListRealRequest struct {
-	RegionID   string `json:"regionID,omitempty"`
-	InstanceID string `json:"instanceID,omitempty"`
-	PageNo     int    `json:"securityGroupID,omitempty"`
-	PageSize   int    `json:"networkInterfaceID,omitempty"`
+	RegionID   *string `json:"regionID,omitempty"`
+	InstanceID *string `json:"instanceID,omitempty"`
+	PageNo     *int    `json:"securityGroupID,omitempty"`
+	PageSize   *int    `json:"networkInterfaceID,omitempty"`
 }
 
 type EcsVolumeListRequest struct {
-	RegionId   string
-	InstanceId string
-	PageNo     int
-	PageSize   int
+	RegionId   *string
+	InstanceId *string
+	PageNo     *int
+	PageSize   *int
 }
 
 type ecsVolumeListRealResponse struct {

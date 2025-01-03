@@ -24,15 +24,8 @@ func NewEcsSnapshotDetailsApi(client *ctyunsdk.CtyunClient) *EcsSnapshotDetailsA
 
 func (this *EcsSnapshotDetailsApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsSnapshotDetailsRequest) (*EcsSnapshotDetailsResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
-
-	_, err := builder.WriteJson(&EcsSnapshotDetailsRealRequest{
-		RegionID:   req.RegionID,
-		SnapshotID: req.SnapshotID,
-	})
-
-	if err != nil {
-		return nil, err
-	}
+	builder.AddParam("regionID", *req.RegionID).
+		AddParam("snapshotID", *req.SnapshotID)
 
 	response, err := this.client.RequestToEndpoint(ctx, EndpointNameCtecs, builder)
 	if err != nil {
@@ -86,13 +79,13 @@ func (this *EcsSnapshotDetailsApi) Do(ctx context.Context, credential ctyunsdk.C
 }
 
 type EcsSnapshotDetailsRealRequest struct {
-	RegionID   string `json:"regionID,omitempty"`
-	SnapshotID string `json:"snapshotID,omitempty"`
+	RegionID   *string `json:"regionID,omitempty"`
+	SnapshotID *string `json:"snapshotID,omitempty"`
 }
 
 type EcsSnapshotDetailsRequest struct {
-	RegionID   string
-	SnapshotID string
+	RegionID   *string
+	SnapshotID *string
 }
 
 type EcsSnapshotDetailsMembersRealResponse struct {

@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/ctyun-it/ctyun-sdk-go/ctyun-sdk-core"
 	"net/http"
+	"strconv"
 )
 
 // EcsBackupPolicyListInstancesApi
@@ -25,16 +26,15 @@ func NewEcsBackupPolicyListInstancesApi(client *ctyunsdk.CtyunClient) *EcsBackup
 func (this *EcsBackupPolicyListInstancesApi) Do(ctx context.Context, credential ctyunsdk.Credential, req *EcsBackupPolicyListInstancesRequest) (*EcsBackupPolicyListInstancesResponse, ctyunsdk.CtyunRequestError) {
 	builder := this.WithCredential(&credential)
 
-	_, err := builder.WriteJson(&EcsBackupPolicyListInstancesRealRequest{
-		RegionID:     req.RegionID,
-		PolicyID:     req.PolicyID,
-		InstanceName: req.InstanceName,
-		PageNo:       req.PageNo,
-		PageSize:     req.PageSize,
-	})
-
-	if err != nil {
-		return nil, err
+	builder.
+		AddParam("regionID", *req.RegionID).
+		AddParam("policyID", *req.PolicyID).
+		AddParam("policyName", *req.InstanceName)
+	if req.PageNo != nil {
+		builder.AddParam("pageNo", strconv.Itoa(*req.PageNo))
+	}
+	if req.PageSize != nil {
+		builder.AddParam("pageSize", strconv.Itoa(*req.PageSize))
 	}
 
 	response, err := this.client.RequestToEndpoint(ctx, EndpointNameCtecs, builder)
@@ -72,17 +72,17 @@ func (this *EcsBackupPolicyListInstancesApi) Do(ctx context.Context, credential 
 }
 
 type EcsBackupPolicyListInstancesRealRequest struct {
-	RegionID     string `json:"regionID,omitempty"`
-	PolicyID     string `json:"policyID,omitempty"`
-	InstanceName string `json:"instanceName,omitempty"`
-	PageNo       *int   `json:"pageNo,omitempty"`
-	PageSize     *int   `json:"pageSize,omitempty"`
+	RegionID     *string `json:"regionID,omitempty"`
+	PolicyID     *string `json:"policyID,omitempty"`
+	InstanceName *string `json:"instanceName,omitempty"`
+	PageNo       *int    `json:"pageNo,omitempty"`
+	PageSize     *int    `json:"pageSize,omitempty"`
 }
 
 type EcsBackupPolicyListInstancesRequest struct {
-	RegionID     string
-	PolicyID     string
-	InstanceName string
+	RegionID     *string
+	PolicyID     *string
+	InstanceName *string
 	PageNo       *int
 	PageSize     *int
 }

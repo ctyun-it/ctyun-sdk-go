@@ -51,13 +51,13 @@ func (this *EcsBackupRestoreApi) Do(ctx context.Context, credential ctyunsdk.Cre
 }
 
 type EcsBackupRestoreRealRequest struct {
-	RegionID         string `json:"regionID,omitempty"`
-	InstanceBackupID string `json:"instanceBackupID,omitempty"`
+	RegionID         *string `json:"regionID,omitempty"`
+	InstanceBackupID *string `json:"instanceBackupID,omitempty"`
 }
 
 type EcsBackupRestoreRequest struct {
-	RegionID         string
-	InstanceBackupID string
+	RegionID         *string
+	InstanceBackupID *string
 }
 
 type EcsBackupRestoreRealResponse struct {

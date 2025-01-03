@@ -56,8 +56,8 @@ func (this *EcsBatchRebootInstancesApi) Do(ctx context.Context, credential ctyun
 }
 
 type ecsBatchRebootInstanceRealRequest struct {
-	RegionID       string `json:"regionID,omitempty"`
-	InstanceIDList string `json:"instanceIDList,omitempty"`
+	RegionID       *string `json:"regionID,omitempty"`
+	InstanceIDList *string `json:"instanceIDList,omitempty"`
 }
 
 type EcsBatchRebootInstanceRealResponse struct {
@@ -68,8 +68,8 @@ type EcsBatchRebootInstanceRealResponse struct {
 }
 
 type EcsBatchRebootInstanceRequest struct {
-	RegionID       string
-	InstanceIDList string
+	RegionID       *string
+	InstanceIDList *string
 }
 type EcsBatchRebootInstanceJobIDListRequest struct {
 	JobID      string
